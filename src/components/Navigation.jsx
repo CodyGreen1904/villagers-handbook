@@ -11,7 +11,6 @@ function Navigation() {
           </NavLink>
           <div>
             <ul className="navbar-nav ml-auto">
-              </li>
               <li className="nav-item">
                 <NavLink className="nav-link" to="/about">
                   About
