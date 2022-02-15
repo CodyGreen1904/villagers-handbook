@@ -13,5 +13,7 @@ ReactDOM.render(
       <Route path="/" element={<Home />} />
     </Routes>
     <Footer />
-  </Router>
+  </Router>,
+
+  document.getElementById("root")
 );
