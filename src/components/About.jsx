@@ -27,4 +27,4 @@ function About() {
   );
 }
 
-export default Welcome;
+export default About;
