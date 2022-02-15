@@ -24,7 +24,7 @@ function Navigation() {
               </li>
               <li className="nav-item">
                 <NavLink className="nav-link" to="/search">
-                  Contact
+                  Search
                 </NavLink>
               </li>
             </ul>
