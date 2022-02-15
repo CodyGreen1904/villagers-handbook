@@ -3,13 +3,13 @@ import React from "react";
 function Welcome() {
   return (
     <div className="welcome">
-      <div class="d-flex flex-column">
-        <div class="d-flex p-2">Welcome to Villager's Handbook</div>
-        <div class="p-2">Filler Text</div>
-        <button type="button" class="btn btn-primary">
-          Enter Site
-        </button>
-      </div>
+      {/*CENTERED PAGE ENTRY*/}
+<div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+    <h1>Title</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+    <button class="btn btn-primary">Get Started</button>
+</div>
+{/*END PAGE ENTRY*/}
     </div>
   );
 }
