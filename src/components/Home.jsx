@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import background from "./img/bg_island.jpg";
-import '../styles/welcome.css';
+import "../styles/welcome.css";
 
 function Home() {
   return (
