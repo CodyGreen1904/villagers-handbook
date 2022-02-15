@@ -3,6 +3,7 @@ import React from "react";
 function Search() {
   return (
     <div className="Search">
+      <Navigation />
       <div class="container">
         <div class="row align-items-center my-5">
           <div class="col-lg-7">

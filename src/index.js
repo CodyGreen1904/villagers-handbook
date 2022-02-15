@@ -8,7 +8,6 @@ import { Navigation, Footer, Home, About, Search } from "./components";
 
 ReactDOM.render(
   <Router>
-    {window.location.pathname === '/' ? null : <Navigation />}
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/search" element={<Search />} />
