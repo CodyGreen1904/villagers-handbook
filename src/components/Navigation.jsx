@@ -16,6 +16,14 @@ function Navigation() {
                   Home
                   <span className="sr-only">(current)</span>
                 </NavLink>
+                <NavLink className="nav-link" to="/">
+                  Search
+                  <span className="sr-only">(current)</span>
+                </NavLink>
+                <NavLink className="nav-link" to="/">
+                  About
+                  <span className="sr-only">(current)</span>
+                </NavLink>
               </li>
             </ul>
           </div>
