@@ -13,7 +13,7 @@ function Home() {
         <div className="btn-group-vertical">
           <div className="row row-margin-05">
             <Link to="/search">
-              <button class="btn btn-primary">Enter Site</button>
+              <button className="btn btn-primary">Enter Site</button>
             </Link>
           </div>
           <div className="row row-margin-05">
