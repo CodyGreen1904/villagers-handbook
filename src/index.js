@@ -4,7 +4,7 @@ import "./index.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 //Routing imports
-import { Navigation, Footer, Home, About } from "./components";
+import { Navigation, Footer, Home, About, Search } from "./components";
 
 ReactDOM.render(
   <Router>
