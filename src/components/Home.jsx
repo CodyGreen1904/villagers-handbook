@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import background from "./img/bg_island.jpg";
+import '../styles/welcome.css';
 
-function Welcome() {
+function Home() {
   return (
-    <div className="welcome">
+    <div className="home" id="welcome_page">
       {/*CENTERED PAGE ENTRY*/}
       <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
         <h1>Title</h1>
@@ -20,4 +22,4 @@ function Welcome() {
   );
 }
 
-export default Welcome;
+export default Home;
