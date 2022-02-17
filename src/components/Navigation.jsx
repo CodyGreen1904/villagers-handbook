@@ -1,5 +1,6 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React from "react"
+import logo from "../img/Logo.png"
+import { NavLink } from "react-router-dom"
 
 function Navigation() {
   return (
@@ -7,7 +8,11 @@ function Navigation() {
       <nav className="navbar navbar-expand navbar-dark bg-dark">
         <div className="container">
           <NavLink className="navbar-brand" to="/">
-            Villager's Handbook
+            <img
+              id="logo"
+              src={logo}
+              alt="Logo for our the Villager's Handbook website"
+            />
           </NavLink>
           <div>
             <ul className="navbar-nav ml-auto">
@@ -26,7 +31,7 @@ function Navigation() {
         </div>
       </nav>
     </div>
-  );
+  )
 }
 
-export default Navigation;
+export default Navigation

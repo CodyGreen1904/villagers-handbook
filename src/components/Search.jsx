@@ -13,16 +13,6 @@ function Search() {
     <div id="searchDiv" className="Search">
       <Navigation />
       <div className="container">
-        <div className="row">
-          <div className="col-lg-5">
-            <img
-              id="logo"
-              className="img-fluid rounded mb-4 mb-lg-0"
-              src={logo}
-              alt="Logo for our the Villager's Handbook website"
-            />
-          </div>
-        </div>
         <div className="row align-items-center my-5">
           <div className="col-lg-12">
             <h1 id="searchHeader" className="font-weight-light">

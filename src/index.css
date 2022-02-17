@@ -24,8 +24,9 @@ a:hover {
   background-image: url(./img/tom.png);
 }
 #logo {
-  padding-left: 0;
   border: 5px solid white;
+  height: 100px;
+  width: 300px;
 }
 #searchHeader {
   text-align: center;
