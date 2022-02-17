@@ -1,7 +1,7 @@
 import React from "react"
 import Axios from "axios"
+import logo from "../img/Logo.png"
 import { Navigation } from "../components"
-import backgound from "../img/tom.png"
 
 function Search() {
   const getVillagers = () => {
@@ -13,21 +13,25 @@ function Search() {
     <div id="searchDiv" className="Search">
       <Navigation />
       <div className="container">
-        <div className="row align-items-center my-5">
-          <div className="col-lg-7">
+        <div className="row">
+          <div className="col-lg-5">
             <img
+              id="logo"
               className="img-fluid rounded mb-4 mb-lg-0"
-              src="http://placehold.it/900x400"
-              alt=""
+              src={logo}
+              alt="Logo for our the Villager's Handbook website"
             />
           </div>
-          <div className="col-lg-5">
-            <h1 className="font-weight-light">Search</h1>
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type
+        </div>
+        <div className="row align-items-center my-5">
+          <div className="col-lg-12">
+            <h1 id="searchHeader" className="font-weight-light">
+              Villager Search
+            </h1>
+            <p id="searchPar">
+              Click on a Villager to view their information. You can also use
+              the dropdown to select a category, or the search bar to search for
+              a villager by name
             </p>
             <button onClick={getVillagers}>Get Villagers</button>
           </div>

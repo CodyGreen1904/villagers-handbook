@@ -23,3 +23,23 @@ a:hover {
   height: 100vh;
   background-image: url(./img/tom.png);
 }
+#logo {
+  padding-left: 0;
+  border: 5px solid white;
+}
+#searchHeader {
+  text-align: center;
+  background-color: #c9859a;
+  border-radius: 20px;
+  font-weight: bolder;
+  color: white;
+  outline: auto;
+}
+#searchPar {
+  text-align: center;
+  background-color: #c99d85;
+  border-radius: 20px;
+  outline: auto;
+  color: white;
+  font-weight: bolder;
+}
