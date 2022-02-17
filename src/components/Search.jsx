@@ -1,6 +1,7 @@
 import React from "react"
 import Axios from "axios"
 import { Navigation } from "../components"
+import backgound from "../img/tom.png"
 
 function Search() {
   const getVillagers = () => {
@@ -9,7 +10,7 @@ function Search() {
     })
   }
   return (
-    <div className="Search">
+    <div id="searchDiv" className="Search">
       <Navigation />
       <div className="container">
         <div className="row align-items-center my-5">

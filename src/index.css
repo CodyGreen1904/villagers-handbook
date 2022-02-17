@@ -19,3 +19,7 @@ a:hover {
   text-decoration: none;
   color: rgba(0, 0, 0, 0.349);
 }
+#searchDiv {
+  height: 100vh;
+  background-image: url(./img/tom.png);
+}
