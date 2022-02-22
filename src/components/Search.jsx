@@ -1,13 +1,34 @@
 import React from "react"
 import Axios from "axios"
-import logo from "../img/Logo.png"
 import { Navigation } from "../components"
 
 function Search() {
   const getVillagers = () => {
     Axios.get("https://acnhapi.com/v1/villagers").then((response) => {
-      console.log(response)
+      console.log(response.data)
+      displayInfo(response.data)
     })
+  }
+  function displayInfo(data) {
+    document.getElementById("villagers").innerHTML = ""
+    for (let character in data) {
+      const newI = document.createElement("img")
+      newI.setAttribute("id", data[character].name["name-USen"] + "Img")
+      newI.setAttribute("src", data[character].image_uri)
+      newI.setAttribute("alt", "Image of " + data[character].name["name-USen"])
+      const newF = document.createElement("figure")
+      newF.appendChild(newI)
+      newF.setAttribute("id", data[character].name["name-USen"] + "Figure")
+      const newFigC = document.createElement("figcaption")
+      newFigC.innerHTML = data[character].name["name-USen"]
+      newFigC.setAttribute("id", data[character].name["name-USen"] + "Name")
+      newF.appendChild(newFigC)
+      const newP = document.createElement("p")
+      newP.innerHTML = data[character].personality
+      newP.setAttribute("id", data[character].name["name-USen"] + "Title")
+      newF.appendChild(newP)
+      document.getElementById("villagers").appendChild(newF)
+    }
   }
   return (
     <div id="searchDiv" className="Search">
@@ -24,6 +45,7 @@ function Search() {
               a villager by name
             </p>
             <button onClick={getVillagers}>Get Villagers</button>
+            <div id="villagers"></div>
           </div>
         </div>
       </div>
