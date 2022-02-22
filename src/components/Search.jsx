@@ -26,10 +26,12 @@ function Search() {
       const newP = document.createElement("p")
       newP.innerHTML = data[character].personality
       newP.setAttribute("id", data[character].name["name-USen"] + "Title")
+      newP.setAttribute("class", "villagerP")
       newF.appendChild(newP)
       document.getElementById("villagers").appendChild(newF)
     }
   }
+  getVillagers()
   return (
     <div id="searchDiv" className="Search">
       <Navigation />
@@ -44,8 +46,7 @@ function Search() {
               the dropdown to select a category, or the search bar to search for
               a villager by name
             </p>
-            <button onClick={getVillagers}>Get Villagers</button>
-            <div id="villagers"></div>
+            <section id="villagers"></section>
           </div>
         </div>
       </div>

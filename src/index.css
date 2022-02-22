@@ -20,8 +20,9 @@ a:hover {
   color: rgba(0, 0, 0, 0.349);
 }
 #searchDiv {
-  height: 100vh;
+  height: fit-content;
   background-image: url(./img/tom.png);
+  background-repeat: repeat-y;
 }
 #logo {
   border: 5px solid white;
@@ -43,4 +44,36 @@ a:hover {
   outline: auto;
   color: white;
   font-weight: bolder;
+}
+#villagers {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+img {
+  width: 250px;
+  height: 250px;
+  justify-self: center;
+}
+.villagerP {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 10px;
+  max-width: 250px;
+}
+figcaption {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.5em;
+  max-width: 250px;
+}
+figure:hover {
+  background-color: #00435b;
+  color: white;
+}
+figure {
+  padding: 5px;
+  background-color: white;
+  margin: 5px;
+  border-radius: 5px;
 }
