@@ -1,6 +1,7 @@
 import React from "react"
 import Axios from "axios"
 import { Navigation } from "../components"
+import "../styles/search.css";
 
 function Search() {
   let hideSearch = false
