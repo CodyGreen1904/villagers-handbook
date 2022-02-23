@@ -2,20 +2,21 @@
   --bg1: url(../img/bg_island.jpg);
 }
 
-.mainContainer{
-  border:1px solid black;
-}
-
-.titleContainer{
-  border: 1px solid green;
-}
-
-.btnContainer{
+.villager_container {
   border: 1px solid red;
+   width:250px; /* or whatever width you want. */
+   max-width:250px; /* or whatever width you want. */
+   height:250px; /* or whatever width you want. */
+   max-height:250px; /* or whatever width you want. */
+   display: inline-block;
 }
 
-#welcome_page {
-  background: var(--bg1) no-repeat center center fixed; 
+.btn {
+  width: 75%;
+}
+
+body {
+  background: var(--bg1) no-repeat center center fixed !important; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
