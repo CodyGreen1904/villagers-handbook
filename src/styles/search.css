@@ -8,21 +8,13 @@
   height: 75px;
   width: 220px;
 }
-#searchHeader {
+#searchTitle {
   text-align: center;
   background-color: #c9859a;
   border-radius: 20px;
   font-weight: bolder;
   color: white;
   outline: auto;
-}
-#searchPar {
-  text-align: center;
-  background-color: #c99d85;
-  border-radius: 20px;
-  outline: auto;
-  color: white;
-  font-weight: bolder;
 }
 #searchBarCol {
   text-align: center;
@@ -33,7 +25,7 @@
   font-weight: bolder;
   padding-top: 8px;
   padding-bottom: 8px;
-  margin-top: -60px;
+  margin-top: -40px;
 }
 #villagers {
   display: flex;
@@ -66,7 +58,7 @@
 #speciesButton {
   margin-left: 2px;
   border-radius: 5px;
-  background-color: #fde394;
+  background-color: #c9859a;
   color: white;
   font-weight: bolder;
 }

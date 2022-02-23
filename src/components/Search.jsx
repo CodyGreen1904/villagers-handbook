@@ -164,7 +164,7 @@ function Search() {
       <Navigation />
       <div className="container">
         <div className="row align-items-center my-5">
-          <div className="col-lg-12">
+          <div id="searchTitle" className="col-lg-12">
             <h1 id="searchHeader">Villager Search</h1>
             <p id="searchPar">
               Click on a Villager to view their information. You can also use
@@ -174,7 +174,7 @@ function Search() {
           </div>
         </div>
         <div className="row align-items-center my-5">
-          <div id="searchBarCol" className="col-sm-12">
+          <div id="searchBarCol" className="col-lg-12">
             <input
               hidden={hideSearch}
               type="text"
