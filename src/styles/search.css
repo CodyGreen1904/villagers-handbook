@@ -1,7 +1,13 @@
+:root {
+  --bg2: url(../img/tom.png);
+}
+
 #searchDiv {
-  height: fit-content;
-  background-image: url(../img/tom.png);
-  background-repeat: repeat-y;
+  background: var(--bg2) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 #logo {
   border: 5px solid white;

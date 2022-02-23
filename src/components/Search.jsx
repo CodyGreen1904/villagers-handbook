@@ -7,25 +7,21 @@ function Search() {
   let hideSearch = false
   let hideSpecies = false
   let hidePersonality = false
+  let info = null
   const getVillagers = () => {
     Axios.get("https://acnhapi.com/v1/villagers").then((response) => {
       displayInfo(response.data)
+      info = response.data
     })
   }
   const searchVillagers = () => {
-    Axios.get("https://acnhapi.com/v1/villagers").then((response) => {
-      displaySearchInfo(response.data)
-    })
+    displaySearchInfo(info)
   }
   const searchSpecies = () => {
-    Axios.get("https://acnhapi.com/v1/villagers").then((response) => {
-      displaySpecies(response.data)
-    })
+    displaySpecies(info)
   }
   const searchPersonality = () => {
-    Axios.get("https://acnhapi.com/v1/villagers").then((response) => {
-      displayPersonality(response.data)
-    })
+    displayPersonality(info)
   }
 
   function displayInfo(data) {
@@ -160,7 +156,7 @@ function Search() {
   }
   getVillagers()
   return (
-    <div id="searchDiv" className="Search">
+    <div id="searchDiv" className="Search min-vh-100">
       <Navigation />
       <div className="container">
         <div className="row align-items-center my-5">
