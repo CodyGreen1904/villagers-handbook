@@ -1,5 +1,5 @@
 :root {
-    --bg2: url(../img/bg_blue.jpg);
+    --bg2: url(../img/bg_leaf.jpg);
 }
 
 #aboutDiv {
@@ -8,4 +8,8 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+}
+
+#aboutText {
+    margin: auto;
 }
