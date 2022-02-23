@@ -1,7 +1,7 @@
 import React from "react"
 import Axios from "axios"
 import { Navigation } from "../components"
-import "../styles/search.css";
+import "../styles/search.css"
 
 function Search() {
   let hideSearch = false
@@ -199,8 +199,7 @@ function Search() {
               <option value="Chicken">Chickens</option>
               <option value="Cow">Cows</option>
               <option value="Cub">Cubs</option>
-              <option value="Deer">Cranky</option>
-              <option value="Cranky">Deer</option>
+              <option value="Deer">Deer</option>
               <option value="Dog">Dogs</option>
               <option value="Duck">Ducks</option>
               <option value="Eagle">Eagles</option>
