@@ -15,7 +15,7 @@
   width: 75%;
 }
 
-body {
+#welcome_page {
   background: var(--bg1) no-repeat center center fixed !important; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
