@@ -1,0 +1,111 @@
+:root {
+  --bg2: url(../img/tom.png);
+}
+
+#searchDiv {
+  background: var(--bg2) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+#logo {
+  border: 5px solid white;
+  height: 75px;
+  width: 220px;
+}
+#searchTitle {
+  text-align: center;
+  background-color: #c9859a;
+  border-radius: 20px;
+  font-weight: bolder;
+  color: white;
+  outline: auto;
+}
+#searchBarCol {
+  text-align: center;
+  background-color: #c99d85;
+  border-radius: 20px;
+  outline: auto;
+  color: white;
+  font-weight: bolder;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin-top: -40px;
+}
+#villagers {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  background-color: #86caa1;
+  border-radius: 5px;
+  margin-top: -15px;
+  outline: auto;
+  outline-color: white;
+  margin-bottom: 85px;
+}
+#villagerSearch {
+  width: 40%;
+  border-radius: 5px;
+}
+#personalitySelect,
+#speciesSelect {
+  width: 40%;
+  border-radius: 5px;
+  height: 1.8em;
+}
+#searchButton {
+  margin-left: 2px;
+  border-radius: 5px;
+  background-color: #86caa1;
+  color: white;
+  font-weight: bolder;
+}
+#speciesButton {
+  margin-left: 2px;
+  border-radius: 5px;
+  background-color: #c9859a;
+  color: white;
+  font-weight: bolder;
+}
+#nameButton {
+  margin-left: 2px;
+  border-radius: 5px;
+  background-color: #c9859a;
+  color: white;
+  font-weight: bolder;
+}
+#personalityButton {
+  margin-left: 2px;
+  border-radius: 5px;
+  background-color: #b5b6f7;
+  color: white;
+  font-weight: bolder;
+}
+img {
+  width: 250px;
+  height: 250px;
+  justify-self: center;
+}
+.villagerP {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 10px;
+  max-width: 250px;
+}
+figcaption {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.5em;
+  max-width: 250px;
+}
+figure:hover {
+  background-color: #c99d85;
+  color: white;
+}
+figure {
+  padding: 5px;
+  background-color: white;
+  margin: 5px;
+  border-radius: 5px;
+}

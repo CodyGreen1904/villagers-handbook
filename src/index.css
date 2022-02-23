@@ -19,28 +19,3 @@ a:hover {
   text-decoration: none;
   color: rgba(0, 0, 0, 0.349);
 }
-#searchDiv {
-  height: 100vh;
-  background-image: url(./img/tom.png);
-}
-#logo {
-  border: 5px solid white;
-  height: 100px;
-  width: 300px;
-}
-#searchHeader {
-  text-align: center;
-  background-color: #c9859a;
-  border-radius: 20px;
-  font-weight: bolder;
-  color: white;
-  outline: auto;
-}
-#searchPar {
-  text-align: center;
-  background-color: #c99d85;
-  border-radius: 20px;
-  outline: auto;
-  color: white;
-  font-weight: bolder;
-}
