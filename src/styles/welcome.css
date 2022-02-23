@@ -2,6 +2,18 @@
   --bg1: url(../img/bg_island.jpg);
 }
 
+.mainContainer{
+  border:1px solid black;
+}
+
+.titleContainer{
+  border: 1px solid green;
+}
+
+.btnContainer{
+  border: 1px solid red;
+}
+
 #welcome_page {
   background: var(--bg1) no-repeat center center fixed; 
   -webkit-background-size: cover;
