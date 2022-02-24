@@ -14,6 +14,9 @@
   height: 75px;
   width: 220px;
 }
+#searchHeader {
+  padding-top: 5px;
+}
 #searchTitle {
   text-align: center;
   background-color: #c9859a;
@@ -21,6 +24,7 @@
   font-weight: bolder;
   color: white;
   outline: auto;
+  box-shadow: 5px 5px 5px 5px grey;
 }
 #searchBarCol {
   text-align: center;
@@ -32,6 +36,7 @@
   padding-top: 8px;
   padding-bottom: 8px;
   margin-top: -40px;
+  box-shadow: 5px 5px 5px 5px grey;
 }
 #villagers {
   display: flex;
@@ -43,6 +48,7 @@
   outline: auto;
   outline-color: white;
   margin-bottom: 85px;
+  box-shadow: 5px 5px 5px 5px grey;
 }
 #villagerSearch {
   width: 40%;
@@ -86,6 +92,7 @@ img {
   width: 250px;
   height: 250px;
   justify-self: center;
+  border-radius: 5px;
 }
 .villagerP {
   text-align: center;
@@ -93,19 +100,45 @@ img {
   margin-top: 10px;
   max-width: 250px;
 }
-figcaption {
+h2 {
   text-align: center;
-  font-weight: bold;
+  font-weight: bolder;
   font-size: 1.5em;
   max-width: 250px;
 }
-figure:hover {
-  background-color: #c99d85;
-  color: white;
+.innerCard {
+  background-color: transparent;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
 }
-figure {
-  padding: 5px;
-  background-color: white;
+.card {
+  background-color: transparent;
+  width: 270px;
+  height: 346px;
   margin: 5px;
+  border: transparent;
+}
+.card:hover .innerCard {
+  transform: rotateY(180deg);
+}
+.cardFront,
+.cardBack {
+  padding-top: 5px;
   border-radius: 5px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  /* backface-visibility: hidden; */
+}
+.cardFront {
+  background-color: white;
+}
+.cardBack {
+  /* transform: rotateY(180deg); */
+  background: var(--bg2);
 }
