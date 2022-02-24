@@ -6,7 +6,7 @@ import "../styles/about.css";
 function About() {
   const vId1 = 61;
   const vId2 = 372;
-  const vId3 = 17;
+  const vId3 = 267;
   
   const getVillager1 = () => {
     Axios.get("https://acnhapi.com/v1/villagers/61").then((response) => {
@@ -19,7 +19,7 @@ function About() {
     })
   }
   const getVillager3 = () => {
-    Axios.get("https://acnhapi.com/v1/villagers/17").then((response) => {
+    Axios.get("https://acnhapi.com/v1/villagers/267").then((response) => {
       displayVillager(response.data, vId3)
     })
   }
@@ -36,12 +36,6 @@ function About() {
     vFigCap.innerHTML = info.name["name-USen"]
     vFigCap.setAttribute("id", info.name["name-USen"] + "Name")
     vFig.appendChild(vFigCap)
-    {/*
-    const vPers = document.createElement("p")
-    vPers.innerHTML = info.personality
-    vPers.setAttribute("id", info.name["name-USen"] + "Title")
-    vPers.setAttribute("class", "villagerP")
-    vFigCap.appendChild(vPers)*/}
     if (vId === 61) {
       document.getElementById("villager1").appendChild(vFig)
     }
@@ -70,25 +64,34 @@ function About() {
       </div>
       <div id="villCards" className="container px-3">
         <div className="row gx-5">
-          <div className="col-sm-4 border-0">
-            <div id="cards" className="p-3 border bg-light">
-              <section id="villager1">
+          <div className="col-md-4 border-0 card-container">
+            <div id="cards" className="p-3 border bg-light card-flip">
+              <div id="villager1" className="card-front">
                 <p id="cardText">Sammi's Favorite Villager</p>
-              </section>
+              </div>
+              <div className="card-back">
+                <p className="aboutInfo">Sammi's about info</p>
+              </div>
             </div>
           </div>
-          <div className="col-sm-4 border-0">
-            <div id="cards" className="p-3 border bg-light">
-              <section id="villager2">
+          <div className="col-md-4 border-0 card-container">
+            <div id="cards" className="p-3 border bg-light card-flip">
+              <div id="villager2" className="card-front">
                 <p id="cardText">Cody's Favorite Villager</p>
-              </section>
+              </div>
+              <div className="card-back">
+                <p className="aboutInfo">Cody's about info</p>
+              </div>
             </div>
           </div>
-          <div className="col-sm-4 border-0">
-            <div id="cards" className="p-3 border bg-light">
-              <section id="villager3">
+          <div className="col-md-4 border-0 card-container">
+            <div id="cards" className="p-3 border bg-light card-flip">
+              <div id="villager3" className="card-front">
                 <p id="cardText">Matthew's Favorite Villager</p>
-              </section>
+              </div>
+              <div className="card-back">
+                <p className="aboutInfo">Matthew's about info</p>
+              </div>
             </div>
           </div>
         </div>
@@ -99,12 +102,3 @@ function About() {
 }
 
 export default About;
-    {/*
-          <div className="col-lg-7">
-            <img
-              className="img-fluid rounded mb-4 mb-lg-0"
-              src="http://placehold.it/900x400"
-              alt=""
-            />
-          </div>
-          */}
