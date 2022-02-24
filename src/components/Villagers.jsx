@@ -4,9 +4,6 @@ import { Navigation } from "."
 import "../styles/search.css"
 
 function Villagers() {
-  let hideSearch = false
-  let hideSpecies = false
-  let hidePersonality = false
   let info = null
   const getVillagers = () => {
     Axios.get("https://acnhapi.com/v1/villagers").then((response) => {
@@ -30,27 +27,52 @@ function Villagers() {
       displayVillager(data[character])
     }
   }
-  function hideStuff(value) {
-    switch (value) {
-      case "name":
-        hideSearch = false
-        hidePersonality = false
-        hideSpecies = false
-        break
-      case "species":
-        hideSearch = true
-        hidePersonality = false
-        hideSpecies = true
-        break
-      case "personality":
-        hideSearch = true
-        hidePersonality = true
-        hideSpecies = false
-        break
-      default:
-        break
-    }
+
+  const searchDiv = document.getElementById("villagerSearch")
+  const speciesDiv = document.getElementById("speciesSelect")
+  const personalityDiv = document.getElementById("personalitySelect")
+  const searchButton = document.getElementById("searchButton")
+  const nameButton = document.getElementById("nameButton")
+  const speciesButton = document.getElementById("speciesButton")
+  const personalityButton = document.getElementById("personalityButton")
+
+  nameButton.onclick = function () {
+    displayInfo(info)
+    speciesDiv.value = ""
+    personalityDiv.value = ""
+    searchDiv.hidden = false
+    speciesDiv.hidden = true
+    personalityDiv.hidden = true
+    searchButton.hidden = false
+    nameButton.hidden = true
+    speciesButton.hidden = false
+    personalityButton.hidden = false
   }
+  speciesButton.onclick = function () {
+    displayInfo(info)
+    speciesDiv.value = ""
+    personalityDiv.value = ""
+    searchDiv.hidden = true
+    speciesDiv.hidden = false
+    personalityDiv.hidden = true
+    searchButton.hidden = true
+    nameButton.hidden = false
+    speciesButton.hidden = true
+    personalityButton.hidden = false
+  }
+  personalityButton.onclick = function () {
+    displayInfo(info)
+    speciesDiv.value = ""
+    personalityDiv.value = ""
+    searchDiv.hidden = true
+    speciesDiv.hidden = true
+    personalityDiv.hidden = false
+    searchButton.hidden = true
+    nameButton.hidden = false
+    speciesButton.hidden = false
+    personalityButton.hidden = true
+  }
+
   function displaySearchInfo(data) {
     document.getElementById("villagers").innerHTML = ""
     let search = document.getElementById("villagerSearch").value
@@ -171,17 +193,11 @@ function Villagers() {
         <div className="row align-items-center my-5">
           <div id="searchBarCol" className="col-lg-12">
             <input
-              hidden={hideSearch}
               type="text"
               id="villagerSearch"
               placeholder="Search for a specific villager..."
             />
-            <select
-              name="species"
-              id="speciesSelect"
-              onChange={searchSpecies}
-              hidden={hideSpecies}
-            >
+            <select name="species" id="speciesSelect" onChange={searchSpecies}>
               <option value="" selected>
                 Select a species
               </option>
@@ -225,7 +241,6 @@ function Villagers() {
               name="personality"
               onChange={searchPersonality}
               id="personalitySelect"
-              hidden={hidePersonality}
             >
               <option value="" selected>
                 Select a Personality
@@ -239,34 +254,12 @@ function Villagers() {
               <option value="Smug">Smug</option>
               <option value="Snooty">Snooty</option>
             </select>
-            <button
-              hidden={hideSearch}
-              onClick={searchVillagers}
-              id="searchButton"
-            >
+            <button id="searchButton" onClick={searchVillagers}>
               Search
             </button>
-            <button
-              hidden={!hideSearch}
-              onClick={hideStuff("name")}
-              id="nameButton"
-            >
-              Search by Name
-            </button>
-            <button
-              hidden={hideSpecies}
-              onClick={hideStuff("species")}
-              id="speciesButton"
-            >
-              Search by Species
-            </button>
-            <button
-              hidden={hidePersonality}
-              onClick={hideStuff("personality")}
-              id="personalityButton"
-            >
-              Search by Personality
-            </button>
+            <button id="nameButton">Search by Name</button>
+            <button id="speciesButton">Search by Species</button>
+            <button id="personalityButton">Search by Personality</button>
           </div>
         </div>
         <div className="row align-items-center my-5">

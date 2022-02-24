@@ -18,7 +18,7 @@ function Fish() {
     displaySearchInfo(info)
   }
   function displayInfo(data) {
-    document.getElementById("villagers").innerHTML = ""
+    document.getElementById("fish").innerHTML = ""
     for (let character in data) {
       displayFish(data[character])
     }
@@ -45,8 +45,8 @@ function Fish() {
     }
   }
   function displaySearchInfo(data) {
-    document.getElementById("villagers").innerHTML = ""
-    let search = document.getElementById("villagerSearch").value
+    document.getElementById("fish").innerHTML = ""
+    let search = document.getElementById("fishSearch").value
     for (let character in data) {
       let c = data[character].name["name-USen"].toLowerCase()
       if (c.includes(search.toLowerCase())) {
@@ -142,7 +142,7 @@ function Fish() {
     newInner.appendChild(newB)
     newCard.appendChild(newInner)
 
-    document.getElementById("villagers").appendChild(newCard)
+    document.getElementById("fish").appendChild(newCard)
   }
   getFish()
   return (
@@ -161,10 +161,9 @@ function Fish() {
         <div className="row align-items-center my-5">
           <div id="searchBarCol" className="col-lg-12">
             <input
-              hidden={hideSearch}
               type="text"
-              id="villagerSearch"
-              placeholder="Search for a specific villager..."
+              id="fishSearch"
+              placeholder="Search for a specific fish..."
             />
             <button onClick={searchFish} id="searchButton">
               Search
@@ -173,7 +172,7 @@ function Fish() {
         </div>
         <div className="row align-items-center my-5">
           <div className="col-lg-12">
-            <section id="villagers"></section>
+            <section id="fish"></section>
           </div>
         </div>
       </div>

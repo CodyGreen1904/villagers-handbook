@@ -23,7 +23,7 @@ function Fossils() {
   }
   function displaySearchInfo(data) {
     document.getElementById("fossils").innerHTML = ""
-    let search = document.getElementById("villagerSearch").value
+    let search = document.getElementById("fossilSearch").value
     for (let character in data) {
       let c = data[character].name["name-USen"].toLowerCase()
       if (c.includes(search.toLowerCase())) {
@@ -76,11 +76,14 @@ function Fossils() {
 
     const newP2 = document.createElement("h4")
     newP2.setAttribute("id", data.name["name-USen"] + "BackName")
-    newP2.innerHTML = "Name: " + data.name["name-USen"]
+    newP2.innerHTML =
+      "Name: " +
+      data.name["name-USen"].charAt(0).toUpperCase() +
+      data.name["name-USen"].slice(1)
     newB.appendChild(newP2)
 
     const newP4 = document.createElement("p")
-    newP4.setAttribute("id", data.name["name-USen"] + "Backpersonality")
+    newP4.setAttribute("id", data.name["name-USen"] + "BackMuseum")
     newP4.innerHTML = data["museum-phrase"]
     newB.appendChild(newP4)
 
@@ -108,7 +111,7 @@ function Fossils() {
           <div id="searchBarCol" className="col-lg-12">
             <input
               type="text"
-              id="villagerSearch"
+              id="fossilSearch"
               placeholder="Search for a specific fossill..."
             />
             <button onClick={searchFossils} id="searchButton">
