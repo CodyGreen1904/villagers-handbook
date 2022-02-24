@@ -27,23 +27,85 @@ function Search() {
   function displayInfo(data) {
     document.getElementById("villagers").innerHTML = ""
     for (let character in data) {
+      //Build the outer card
+      const newCard = document.createElement("div")
+      newCard.setAttribute("id", data[character].name["name-USen"] + "Card")
+      newCard.setAttribute("class", "card")
+      //Build inner card
+      const newInner = document.createElement("div")
+      newInner.setAttribute(
+        "id",
+        data[character].name["name-USen"] + "InnerCard"
+      )
+      newInner.setAttribute("class", "innerCard")
+      //Build Character Image
       const newI = document.createElement("img")
       newI.setAttribute("id", data[character].name["name-USen"] + "Img")
       newI.setAttribute("src", data[character].image_uri)
       newI.setAttribute("alt", "Image of " + data[character].name["name-USen"])
-      const newF = document.createElement("figure")
+
+      //Build front of card
+      const newF = document.createElement("div")
       newF.appendChild(newI)
       newF.setAttribute("id", data[character].name["name-USen"] + "Figure")
-      const newFigC = document.createElement("figcaption")
+      newF.setAttribute("class", "cardFront")
+      //Build front of card caption
+      const newFigC = document.createElement("h2")
       newFigC.innerHTML = data[character].name["name-USen"]
       newFigC.setAttribute("id", data[character].name["name-USen"] + "Name")
       newF.appendChild(newFigC)
+      //Build front of card personality caption
       const newP = document.createElement("p")
       newP.innerHTML = data[character].personality
       newP.setAttribute("id", data[character].name["name-USen"] + "Title")
       newP.setAttribute("class", "villagerP")
       newF.appendChild(newP)
-      document.getElementById("villagers").appendChild(newF)
+
+      //Build back of card
+      const newB = document.createElement("div")
+      newB.setAttribute(
+        "style",
+        "background: url(" + data[character].icon_uri + ") no-repeat center"
+      )
+      newB.setAttribute("class", "cardBack")
+
+      const newP2 = document.createElement("h4")
+      newP2.setAttribute("id", data[character].name["name-USen"] + "BackName")
+      newP2.innerHTML = "Name: " + data[character].name["name-USen"]
+      newB.appendChild(newP2)
+
+      const newP3 = document.createElement("h4")
+      newP3.setAttribute("id", data[character].name["name-USen"] + "Species")
+      newP3.innerHTML = "Species: " + data[character].species
+      newB.appendChild(newP3)
+
+      const newP4 = document.createElement("h4")
+      newP4.setAttribute(
+        "id",
+        data[character].name["name-USen"] + "Backpersonality"
+      )
+      newP4.innerHTML = "Personality: " + data[character].personality
+      newB.appendChild(newP4)
+
+      const newP5 = document.createElement("h4")
+      newP5.setAttribute(
+        "id",
+        data[character].name["name-USen"] + "Catchphrase"
+      )
+      newP5.setAttribute("style", "margin-top: 125px")
+      newP5.innerHTML = "Birthday: " + data[character]["birthday-string"]
+      newB.appendChild(newP5)
+
+      const newP6 = document.createElement("h4")
+      newP6.setAttribute("id", data[character].name["name-USen"] + "BackName")
+      newP6.innerHTML = "Catch Phrase: " + data[character]["catch-phrase"]
+      newB.appendChild(newP6)
+
+      newInner.appendChild(newF)
+      newInner.appendChild(newB)
+      newCard.appendChild(newInner)
+
+      document.getElementById("villagers").appendChild(newCard)
     }
   }
   function hideStuff(value) {
@@ -114,12 +176,44 @@ function Search() {
         const newB = document.createElement("div")
         newB.setAttribute(
           "style",
-          "background: url(" + data[character].icon_uri + ") "
+          "background: url(" + data[character].icon_uri + ") no-repeat center"
         )
         newB.setAttribute("class", "cardBack")
 
-        newF.appendChild(newB)
+        const newP2 = document.createElement("h4")
+        newP2.setAttribute("id", data[character].name["name-USen"] + "BackName")
+        newP2.innerHTML = "Name: " + data[character].name["name-USen"]
+        newB.appendChild(newP2)
+
+        const newP3 = document.createElement("h4")
+        newP3.setAttribute("id", data[character].name["name-USen"] + "Species")
+        newP3.innerHTML = "Species: " + data[character].species
+        newB.appendChild(newP3)
+
+        const newP4 = document.createElement("h4")
+        newP4.setAttribute(
+          "id",
+          data[character].name["name-USen"] + "Backpersonality"
+        )
+        newP4.innerHTML = "Personality: " + data[character].personality
+        newB.appendChild(newP4)
+
+        const newP5 = document.createElement("h4")
+        newP5.setAttribute(
+          "id",
+          data[character].name["name-USen"] + "Catchphrase"
+        )
+        newP5.setAttribute("style", "margin-top: 125px")
+        newP5.innerHTML = "Birthday: " + data[character]["birthday-string"]
+        newB.appendChild(newP5)
+
+        const newP6 = document.createElement("h4")
+        newP6.setAttribute("id", data[character].name["name-USen"] + "BackName")
+        newP6.innerHTML = "Catch Phrase: " + data[character]["catch-phrase"]
+        newB.appendChild(newP6)
+
         newInner.appendChild(newF)
+        newInner.appendChild(newB)
         newCard.appendChild(newInner)
 
         document.getElementById("villagers").appendChild(newCard)
@@ -132,6 +226,18 @@ function Search() {
     for (let character in data) {
       let c = data[character].species
       if (c.includes(search)) {
+        //Build the outer card
+        const newCard = document.createElement("div")
+        newCard.setAttribute("id", data[character].name["name-USen"] + "Card")
+        newCard.setAttribute("class", "card")
+        //Build inner card
+        const newInner = document.createElement("div")
+        newInner.setAttribute(
+          "id",
+          data[character].name["name-USen"] + "InnerCard"
+        )
+        newInner.setAttribute("class", "innerCard")
+        //Build Character Image
         const newI = document.createElement("img")
         newI.setAttribute("id", data[character].name["name-USen"] + "Img")
         newI.setAttribute("src", data[character].image_uri)
@@ -139,19 +245,69 @@ function Search() {
           "alt",
           "Image of " + data[character].name["name-USen"]
         )
-        const newF = document.createElement("figure")
+
+        //Build front of card
+        const newF = document.createElement("div")
         newF.appendChild(newI)
         newF.setAttribute("id", data[character].name["name-USen"] + "Figure")
-        const newFigC = document.createElement("figcaption")
+        newF.setAttribute("class", "cardFront")
+        //Build front of card caption
+        const newFigC = document.createElement("h2")
         newFigC.innerHTML = data[character].name["name-USen"]
         newFigC.setAttribute("id", data[character].name["name-USen"] + "Name")
         newF.appendChild(newFigC)
+        //Build front of card personality caption
         const newP = document.createElement("p")
         newP.innerHTML = data[character].personality
         newP.setAttribute("id", data[character].name["name-USen"] + "Title")
         newP.setAttribute("class", "villagerP")
         newF.appendChild(newP)
-        document.getElementById("villagers").appendChild(newF)
+
+        //Build back of card
+        const newB = document.createElement("div")
+        newB.setAttribute(
+          "style",
+          "background: url(" + data[character].icon_uri + ") no-repeat center"
+        )
+        newB.setAttribute("class", "cardBack")
+
+        const newP2 = document.createElement("h4")
+        newP2.setAttribute("id", data[character].name["name-USen"] + "BackName")
+        newP2.innerHTML = "Name: " + data[character].name["name-USen"]
+        newB.appendChild(newP2)
+
+        const newP3 = document.createElement("h4")
+        newP3.setAttribute("id", data[character].name["name-USen"] + "Species")
+        newP3.innerHTML = "Species: " + data[character].species
+        newB.appendChild(newP3)
+
+        const newP4 = document.createElement("h4")
+        newP4.setAttribute(
+          "id",
+          data[character].name["name-USen"] + "Backpersonality"
+        )
+        newP4.innerHTML = "Personality: " + data[character].personality
+        newB.appendChild(newP4)
+
+        const newP5 = document.createElement("h4")
+        newP5.setAttribute(
+          "id",
+          data[character].name["name-USen"] + "Catchphrase"
+        )
+        newP5.setAttribute("style", "margin-top: 125px")
+        newP5.innerHTML = "Birthday: " + data[character]["birthday-string"]
+        newB.appendChild(newP5)
+
+        const newP6 = document.createElement("h4")
+        newP6.setAttribute("id", data[character].name["name-USen"] + "BackName")
+        newP6.innerHTML = "Catch Phrase: " + data[character]["catch-phrase"]
+        newB.appendChild(newP6)
+
+        newInner.appendChild(newF)
+        newInner.appendChild(newB)
+        newCard.appendChild(newInner)
+
+        document.getElementById("villagers").appendChild(newCard)
       }
     }
   }
@@ -161,6 +317,18 @@ function Search() {
     for (let character in data) {
       let c = data[character].personality
       if (c.includes(search)) {
+        //Build the outer card
+        const newCard = document.createElement("div")
+        newCard.setAttribute("id", data[character].name["name-USen"] + "Card")
+        newCard.setAttribute("class", "card")
+        //Build inner card
+        const newInner = document.createElement("div")
+        newInner.setAttribute(
+          "id",
+          data[character].name["name-USen"] + "InnerCard"
+        )
+        newInner.setAttribute("class", "innerCard")
+        //Build Character Image
         const newI = document.createElement("img")
         newI.setAttribute("id", data[character].name["name-USen"] + "Img")
         newI.setAttribute("src", data[character].image_uri)
@@ -168,19 +336,69 @@ function Search() {
           "alt",
           "Image of " + data[character].name["name-USen"]
         )
-        const newF = document.createElement("figure")
+
+        //Build front of card
+        const newF = document.createElement("div")
         newF.appendChild(newI)
         newF.setAttribute("id", data[character].name["name-USen"] + "Figure")
-        const newFigC = document.createElement("figcaption")
+        newF.setAttribute("class", "cardFront")
+        //Build front of card caption
+        const newFigC = document.createElement("h2")
         newFigC.innerHTML = data[character].name["name-USen"]
         newFigC.setAttribute("id", data[character].name["name-USen"] + "Name")
         newF.appendChild(newFigC)
+        //Build front of card personality caption
         const newP = document.createElement("p")
         newP.innerHTML = data[character].personality
         newP.setAttribute("id", data[character].name["name-USen"] + "Title")
         newP.setAttribute("class", "villagerP")
         newF.appendChild(newP)
-        document.getElementById("villagers").appendChild(newF)
+
+        //Build back of card
+        const newB = document.createElement("div")
+        newB.setAttribute(
+          "style",
+          "background: url(" + data[character].icon_uri + ") no-repeat center"
+        )
+        newB.setAttribute("class", "cardBack")
+
+        const newP2 = document.createElement("h4")
+        newP2.setAttribute("id", data[character].name["name-USen"] + "BackName")
+        newP2.innerHTML = "Name: " + data[character].name["name-USen"]
+        newB.appendChild(newP2)
+
+        const newP3 = document.createElement("h4")
+        newP3.setAttribute("id", data[character].name["name-USen"] + "Species")
+        newP3.innerHTML = "Species: " + data[character].species
+        newB.appendChild(newP3)
+
+        const newP4 = document.createElement("h4")
+        newP4.setAttribute(
+          "id",
+          data[character].name["name-USen"] + "Backpersonality"
+        )
+        newP4.innerHTML = "Personality: " + data[character].personality
+        newB.appendChild(newP4)
+
+        const newP5 = document.createElement("h4")
+        newP5.setAttribute(
+          "id",
+          data[character].name["name-USen"] + "Catchphrase"
+        )
+        newP5.setAttribute("style", "margin-top: 125px")
+        newP5.innerHTML = "Birthday: " + data[character]["birthday-string"]
+        newB.appendChild(newP5)
+
+        const newP6 = document.createElement("h4")
+        newP6.setAttribute("id", data[character].name["name-USen"] + "BackName")
+        newP6.innerHTML = "Catch Phrase: " + data[character]["catch-phrase"]
+        newB.appendChild(newP6)
+
+        newInner.appendChild(newF)
+        newInner.appendChild(newB)
+        newCard.appendChild(newInner)
+
+        document.getElementById("villagers").appendChild(newCard)
       }
     }
   }
