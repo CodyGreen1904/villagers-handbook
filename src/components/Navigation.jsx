@@ -1,5 +1,5 @@
 import React from "react"
-import logo from "../img/Logo.png"
+import vhtext from "../img/vhtext_white.png"
 import { NavLink } from "react-router-dom"
 
 function Navigation() {
@@ -10,7 +10,7 @@ function Navigation() {
           <NavLink className="navbar-brand" to="/">
             <img
               id="logo"
-              src={logo}
+              src={vhtext}
               alt="Logo for our the Villager's Handbook website"
             />
           </NavLink>
