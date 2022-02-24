@@ -13,3 +13,30 @@
 #aboutText {
     margin: auto;
 }
+
+#villCards {
+    border-radius: 5px;
+}
+
+#cards {
+    border-radius: 10px;
+}
+
+#villagerImg {
+    width: 200px;
+    height: 200px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+figure {
+    margin: auto;
+}
+
+#cardText {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+}
+

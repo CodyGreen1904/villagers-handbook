@@ -26,7 +26,7 @@ function About() {
           
   function displayVillager(info, vId) {
     const vImg = document.createElement("img");
-    vImg.setAttribute("id", info.name["name-USen"] + "Img")
+    vImg.setAttribute("id", "villagerImg")
     vImg.setAttribute("src", info.image_uri)
     vImg.setAttribute("alt", "Image of " + info.name["name-USen"])
     const vFig = document.createElement("figure");
@@ -36,11 +36,12 @@ function About() {
     vFigCap.innerHTML = info.name["name-USen"]
     vFigCap.setAttribute("id", info.name["name-USen"] + "Name")
     vFig.appendChild(vFigCap)
+    {/*
     const vPers = document.createElement("p")
     vPers.innerHTML = info.personality
     vPers.setAttribute("id", info.name["name-USen"] + "Title")
     vPers.setAttribute("class", "villagerP")
-    vFigCap.appendChild(vPers)
+    vFigCap.appendChild(vPers)*/}
     if (vId === 61) {
       document.getElementById("villager1").appendChild(vFig)
     }
@@ -60,30 +61,34 @@ function About() {
     <div id="aboutDiv" className="about min-vh-100">
       <Navigation />
       <div className="container">
-        <div className="row align-items-center my-5">
-          <div id="aboutText" className="col-lg-5">
-            <h1 className="font-weight-light">About</h1>
-            <p>
-              The Villager's Handook is a place to learn about all of the fascinating residents of Animal Crossing: New Horizons. 
-            </p>
-          </div>
+        <div id="aboutText" className="col-lg-5">
+          <h1 className="font-weight-light">About</h1>
+          <p>
+            The Villager's Handook is a place to learn about all of the fascinating residents of Animal Crossing: New Horizons. 
+          </p>
         </div>
       </div>
-      <div id="villCards" className="container px-4">
+      <div id="villCards" className="container px-3">
         <div className="row gx-5">
-          <div className="col border-0">
-            <div className="p-3 border bg-light">
-              <section id="villager1">Villager 1</section>
+          <div className="col-sm-4 border-0">
+            <div id="cards" className="p-3 border bg-light">
+              <section id="villager1">
+                <p id="cardText">Sammi's Favorite Villager</p>
+              </section>
             </div>
           </div>
-          <div className="col border-0">
-            <div className="p-3 border bg-light">
-              <section id="villager2">Villager 2</section>
+          <div className="col-sm-4 border-0">
+            <div id="cards" className="p-3 border bg-light">
+              <section id="villager2">
+                <p id="cardText">Cody's Favorite Villager</p>
+              </section>
             </div>
           </div>
-          <div className="col border-0">
-            <div className="p-3 border bg-light">
-              <section id="villager3">Villager 3</section>
+          <div className="col-sm-4 border-0">
+            <div id="cards" className="p-3 border bg-light">
+              <section id="villager3">
+                <p id="cardText">Matthew's Favorite Villager</p>
+              </section>
             </div>
           </div>
         </div>
