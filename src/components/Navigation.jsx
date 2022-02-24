@@ -22,8 +22,18 @@ function Navigation() {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/search">
-                  Search
+                <NavLink className="nav-link" to="/villagers">
+                  Villagers
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/fossils">
+                  Fossils
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/fish">
+                  Fish
                 </NavLink>
               </li>
             </ul>

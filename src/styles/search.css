@@ -36,7 +36,9 @@
   margin-top: -40px;
   box-shadow: 5px 5px 5px 5px grey;
 }
-#villagers {
+#villagers,
+#fossils,
+#fish {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -92,6 +94,10 @@ img {
   justify-self: center;
   border-radius: 5px;
 }
+.fishImage {
+  width: 250px;
+  height: 125px;
+}
 .villagerP {
   text-align: center;
   font-weight: bold;
@@ -125,7 +131,9 @@ h2 {
   transform: rotateY(180deg);
 }
 .cardFront,
-.cardBack {
+.cardBack,
+.fossilCardFront,
+.fishCardFront {
   padding-top: 5px;
   border-radius: 5px;
   position: absolute;
@@ -143,4 +151,16 @@ h2 {
   border: white;
   color: white;
   outline: auto;
+}
+.fossilCardFront {
+  background-color: rgb(181, 182, 247);
+  border: white;
+  outline: auto;
+  color: white;
+}
+.fishCardFront {
+  background-color: #2167d0;
+  border: white;
+  outline: auto;
+  color: white;
 }
