@@ -28,16 +28,15 @@ function Villagers() {
     }
   }
 
-  const searchDiv = document.getElementById("villagerSearch")
-  const speciesDiv = document.getElementById("speciesSelect")
-  const personalityDiv = document.getElementById("personalitySelect")
-  const searchButton = document.getElementById("searchButton")
-  const nameButton = document.getElementById("nameButton")
-  const speciesButton = document.getElementById("speciesButton")
-  const personalityButton = document.getElementById("personalityButton")
-
-  nameButton.onclick = function () {
-    displayInfo(info)
+  const nameClick = () => {
+    const searchDiv = document.getElementById("villagerSearch")
+    const speciesDiv = document.getElementById("speciesSelect")
+    const personalityDiv = document.getElementById("personalitySelect")
+    const searchButton = document.getElementById("searchButton")
+    const nameButton = document.getElementById("nameButton")
+    const speciesButton = document.getElementById("speciesButton")
+    const personalityButton = document.getElementById("personalityButton")
+    searchDiv.value = ""
     speciesDiv.value = ""
     personalityDiv.value = ""
     searchDiv.hidden = false
@@ -48,8 +47,15 @@ function Villagers() {
     speciesButton.hidden = false
     personalityButton.hidden = false
   }
-  speciesButton.onclick = function () {
-    displayInfo(info)
+  const speciesClick = () => {
+    const searchDiv = document.getElementById("villagerSearch")
+    const speciesDiv = document.getElementById("speciesSelect")
+    const personalityDiv = document.getElementById("personalitySelect")
+    const searchButton = document.getElementById("searchButton")
+    const nameButton = document.getElementById("nameButton")
+    const speciesButton = document.getElementById("speciesButton")
+    const personalityButton = document.getElementById("personalityButton")
+    searchDiv.value = ""
     speciesDiv.value = ""
     personalityDiv.value = ""
     searchDiv.hidden = true
@@ -60,8 +66,15 @@ function Villagers() {
     speciesButton.hidden = true
     personalityButton.hidden = false
   }
-  personalityButton.onclick = function () {
-    displayInfo(info)
+  const personalityClick = () => {
+    const searchDiv = document.getElementById("villagerSearch")
+    const speciesDiv = document.getElementById("speciesSelect")
+    const personalityDiv = document.getElementById("personalitySelect")
+    const searchButton = document.getElementById("searchButton")
+    const nameButton = document.getElementById("nameButton")
+    const speciesButton = document.getElementById("speciesButton")
+    const personalityButton = document.getElementById("personalityButton")
+    searchDiv.value = ""
     speciesDiv.value = ""
     personalityDiv.value = ""
     searchDiv.hidden = true
@@ -197,7 +210,12 @@ function Villagers() {
               id="villagerSearch"
               placeholder="Search for a specific villager..."
             />
-            <select name="species" id="speciesSelect" onChange={searchSpecies}>
+            <select
+              hidden="true"
+              name="species"
+              id="speciesSelect"
+              onChange={searchSpecies}
+            >
               <option value="" selected>
                 Select a species
               </option>
@@ -238,6 +256,7 @@ function Villagers() {
               <option value="Wolf">Wolves</option>
             </select>
             <select
+              hidden="true"
               name="personality"
               onChange={searchPersonality}
               id="personalitySelect"
@@ -254,12 +273,18 @@ function Villagers() {
               <option value="Smug">Smug</option>
               <option value="Snooty">Snooty</option>
             </select>
-            <button id="searchButton" onClick={searchVillagers}>
+            <button onClick={searchVillagers} id="searchButton">
               Search
             </button>
-            <button id="nameButton">Search by Name</button>
-            <button id="speciesButton">Search by Species</button>
-            <button id="personalityButton">Search by Personality</button>
+            <button onClick={nameClick} id="nameButton">
+              Search by Name
+            </button>
+            <button onClick={speciesClick} id="speciesButton">
+              Search by Species
+            </button>
+            <button onClick={personalityClick} id="personalityButton">
+              Search by Personality
+            </button>
           </div>
         </div>
         <div className="row align-items-center my-5">
