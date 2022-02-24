@@ -38,6 +38,9 @@
     padding: 20px;
     border-radius: 30px;
     margin-bottom: 20px;
+    border: 3px;
+    border-style: solid;
+    border-color: var(--gr);
 }
 
 
@@ -45,11 +48,13 @@
 
 #villCards {
     border-radius: 5px;
+    margin-bottom: 30px;
     
 }
 
 #cards {
     border-radius: 10px;
+    margin-bottom: 40px;
 }
 
 #villagerImg {
@@ -65,6 +70,10 @@
 #villagerFigure {
     margin: auto;
     background-color: var(--sand2);
+}
+
+#villagerName {
+    text-align: center;
 }
 
 #cardText {

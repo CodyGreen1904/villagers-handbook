@@ -34,7 +34,7 @@ function About() {
     vFig.setAttribute("id", "villagerFigure")
     const vFigCap = document.createElement("figcaption")
     vFigCap.innerHTML = info.name["name-USen"]
-    vFigCap.setAttribute("id", info.name["name-USen"] + "Name")
+    vFigCap.setAttribute("id", "villagerName")
     vFig.appendChild(vFigCap)
     if (vId === 61) {
       document.getElementById("villager1").appendChild(vFig)
@@ -67,7 +67,7 @@ function About() {
         </div>
       </div>
       <div id="villCards" className="container px-3">
-        <div className="row gx-3">
+        <div id="villCards2" className="row gx-3">
           <div className="col-md-4 border-0 card-container">
             <div id="cards" className="p-3 card-flip">
               <div id="villager2" className="card-front">
