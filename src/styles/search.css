@@ -10,9 +10,7 @@
   background-size: cover;
 }
 #logo {
-  border: 5px solid white;
-  height: 75px;
-  width: 220px;
+  height: 40px;
 }
 #searchHeader {
   padding-top: 5px;
