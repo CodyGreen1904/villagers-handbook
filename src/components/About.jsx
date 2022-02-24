@@ -31,7 +31,7 @@ function About() {
     vImg.setAttribute("alt", "Image of " + info.name["name-USen"])
     const vFig = document.createElement("figure");
     vFig.appendChild(vImg)
-    vFig.setAttribute("id", info.name["name-USen"] + "Figure")
+    vFig.setAttribute("id", "villagerFigure")
     const vFigCap = document.createElement("figcaption")
     vFigCap.innerHTML = info.name["name-USen"]
     vFigCap.setAttribute("id", info.name["name-USen"] + "Name")
@@ -56,26 +56,20 @@ function About() {
       <Navigation />
       <div className="container">
         <div id="aboutText" className="col-lg-5">
-          <h1 className="font-weight-light">About</h1>
-          <p>
-            The Villager's Handook is a place to learn about all of the fascinating residents of Animal Crossing: New Horizons. 
-          </p>
+          <h1 id="aboutTitle">About Us</h1>
+          <div id="bubble">
+            <p>
+              The Villager's Handook is a place to learn about all of the fascinating residents of Animal Crossing: New Horizons. 
+              This dashboard was created by Cody Green, Sammi King, and Matthew Berzinskas. Our decision to create this dashboard 
+              came from our love of video games and the magical worlds that have emerged from them. 
+            </p>
+          </div>
         </div>
       </div>
       <div id="villCards" className="container px-3">
-        <div className="row gx-5">
+        <div className="row gx-3">
           <div className="col-md-4 border-0 card-container">
-            <div id="cards" className="p-3 border bg-light card-flip">
-              <div id="villager1" className="card-front">
-                <p id="cardText">Sammi's Favorite Villager</p>
-              </div>
-              <div className="card-back">
-                <p className="aboutInfo">Sammi's about info</p>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4 border-0 card-container">
-            <div id="cards" className="p-3 border bg-light card-flip">
+            <div id="cards" className="p-3 card-flip">
               <div id="villager2" className="card-front">
                 <p id="cardText">Cody's Favorite Villager</p>
               </div>
@@ -85,7 +79,21 @@ function About() {
             </div>
           </div>
           <div className="col-md-4 border-0 card-container">
-            <div id="cards" className="p-3 border bg-light card-flip">
+            <div id="cards" className="p-3 card-flip">
+              <div id="villager1" className="card-front">
+                <p id="cardText">Sammi's Favorite Villager</p>
+              </div>
+              <div className="card-back">
+                <p className="aboutInfo">Name: Samantha (Sammi) King</p>
+                <p className="aboutInfo">Species: Human</p>
+                <p className="aboutInfo">Hobby: Hooping</p>
+                <p className="aboutInfo">Personality: Peppy</p>
+                <p className="aboutInfo">Saying: "Be here now." -Ram Dass</p>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-4 border-0 card-container">
+            <div id="cards" className="p-3 card-flip">
               <div id="villager3" className="card-front">
                 <p id="cardText">Matthew's Favorite Villager</p>
               </div>

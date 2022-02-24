@@ -1,21 +1,51 @@
 :root {
-    --bg2: url(../img/bg_leaf.jpg);
+    --bg3: url(../img/isabelle.png);
+    --colblue: #73B8BF;
+    --colblue2: #5CACF2;
+    --sand: #FFFEA1;
+    --bubb: #FFFAE4;
+    --oran: #FD9B15;
+    --sand2: #F2DC9B;
+    --gr: #8DF25E;
+
 }
 
 #aboutDiv {
-    background: var(--bg2) no-repeat center center fixed;
+    background: var(--bg3) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
 }
 
+#aboutTitle {
+    text-align: center;
+    font-size: 3.25em;
+    font-weight: bolder;
+    -webkit-text-stroke: 2px var(--sand2);
+    color: var(--colblue2);
+}
+
 #aboutText {
     margin: auto;
+    width: 80%;
+    text-align: center;
 }
+
+
+#bubble {
+    background-color: var(--bubb);
+    padding: 20px;
+    border-radius: 30px;
+    margin-bottom: 20px;
+}
+
+
+
 
 #villCards {
     border-radius: 5px;
+    
 }
 
 #cards {
@@ -32,8 +62,9 @@
 
 
 
-figure {
+#villagerFigure {
     margin: auto;
+    background-color: var(--sand2);
 }
 
 #cardText {
@@ -44,6 +75,7 @@ figure {
 
 .card-container {
     perspective: 700px;
+    
 }
 
 .card-flip, .card-container {
@@ -61,6 +93,10 @@ figure {
     grid-template-areas: "frontAndBack";
     transform-style: preserve-3d;
     transition: all 0.7s ease;
+    background-color: var(--sand2);
+    border: 3px;
+    border-style: solid;
+    border-color: var(--colblue2);
 }
 
 .card-front {
@@ -73,6 +109,21 @@ figure {
 
 }
 
+.card-front, .card-back {
+    background-color: var(--sand2);
+}
+
 .card-container:hover .card-flip {
     transform: rotateY(180deg);
+}
+
+.aboutInfo {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+@media screen and (min-width: 776px) {
+    .card-flip {
+        justify-content: center;
+    }
 }
