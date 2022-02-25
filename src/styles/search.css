@@ -1,5 +1,8 @@
 :root {
   --bg2: url(../img/tom.png);
+  --bg3: url(../img/stars.png);
+  --bg4: url(../img/underwater.png);
+  --bg5: url(../img/bg_leaf_3.jpg);
 }
 
 #searchDiv {
@@ -15,15 +18,26 @@
 #searchHeader {
   padding-top: 5px;
 }
-#searchTitle {
+#villagerTitle,
+#fossilTitle,
+#fishTitle {
   text-align: center;
-  background-color: #c9859a;
   border-radius: 20px;
   font-weight: bolder;
   color: white;
   outline: auto;
   box-shadow: 5px 5px 5px 5px grey;
 }
+#villagerTitle {
+  background-color: #c9859a;
+}
+#fossilTitle {
+  background-color: #5020bb;
+}
+#fishTitle {
+  background-color: #31788a;
+}
+
 #searchBarCol {
   text-align: center;
   background-color: #c99d85;
@@ -122,7 +136,6 @@ h2 {
   transform-style: preserve-3d;
 }
 .card {
-  text-align: center;
   background-color: transparent;
   width: 270px;
   height: 346px;
@@ -146,7 +159,7 @@ h2 {
   backface-visibility: hidden;
 }
 .cardFront {
-  background-color: white;
+  background: var(--bg5);
 }
 .cardBack {
   transform: rotateY(180deg);
@@ -156,14 +169,20 @@ h2 {
   outline: auto;
 }
 .fossilCardFront {
-  background-color: rgb(181, 182, 247);
+  background: var(--bg3);
   border: white;
   outline: auto;
   color: white;
 }
 .fishCardFront {
-  background-color: #2167d0;
+  background: var(--bg4);
   border: white;
   outline: auto;
   color: white;
+}
+.fossilImage {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.fishImage {
+  background-color: rgba(255, 255, 255, 0.5);
 }

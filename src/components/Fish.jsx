@@ -73,7 +73,7 @@ function Fish() {
     newI.setAttribute("src", data.image_uri)
     newI.setAttribute("class", "fishImage")
     newI.setAttribute("alt", "Image of " + data.name["name-USen"])
-    newI.setAttribute("style", "background-color: white !important")
+    newI.setAttribute("class", "fishImage")
 
     //Build front of card
     const newF = document.createElement("div")
@@ -154,7 +154,7 @@ function Fish() {
       <Navigation />
       <div className="container">
         <div className="row align-items-center my-5">
-          <div id="searchTitle" className="col-lg-12">
+          <div id="fishTitle" className="col-lg-12">
             <h1 id="searchHeader">Fish Search</h1>
             <p id="searchPar">
               Hover over a Fish to view its information. You can also use the

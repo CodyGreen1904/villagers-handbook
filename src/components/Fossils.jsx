@@ -70,7 +70,7 @@ function Fossils() {
     newI.setAttribute("id", data.name["name-USen"] + "Img")
     newI.setAttribute("src", data.image_uri)
     newI.setAttribute("alt", "Image of " + data.name["name-USen"])
-    newI.setAttribute("style", "background-color: white !important")
+    newI.setAttribute("class", "fossilImage")
 
     //Build front of card
     const newF = document.createElement("div")
@@ -124,7 +124,7 @@ function Fossils() {
       <Navigation />
       <div className="container">
         <div className="row align-items-center my-5">
-          <div id="searchTitle" className="col-lg-12">
+          <div id="fossilTitle" className="col-lg-12">
             <h1 id="searchHeader">Fossil Search</h1>
             <p id="searchPar">
               Hover over a Fossil to view its information. You can also use the
