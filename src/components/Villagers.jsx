@@ -1,6 +1,7 @@
 import React from "react"
 import Axios from "axios"
 import { Navigation } from "."
+import sad from "../img/sadisabelle.png"
 import "../styles/search.css"
 
 function Villagers() {
@@ -13,6 +14,25 @@ function Villagers() {
   }
   const searchVillagers = () => {
     displaySearchInfo(info)
+    const test = document.getElementById("villagers")
+    if (test.innerHTML == "") {
+      const newCard = document.createElement("div")
+      newCard.setAttribute("class", "card")
+      newCard.setAttribute("style", "background-color: white !important")
+
+      const newP = document.createElement("p")
+      newP.innerHTML = "No Results"
+      newP.setAttribute("class", "villagerP")
+
+      const newI = document.createElement("img")
+      newI.setAttribute("id", "sadIsabelleImg")
+      newI.setAttribute("src", sad)
+      newI.setAttribute("alt", "Image of sad Isabelle")
+      newI.setAttribute("style", "margin-left: 9px")
+      newCard.appendChild(newP)
+      newCard.appendChild(newI)
+      test.appendChild(newCard)
+    }
   }
   const searchSpecies = () => {
     displaySpecies(info)
@@ -20,15 +40,19 @@ function Villagers() {
   const searchPersonality = () => {
     displayPersonality(info)
   }
-
+  const checkEnter = (event) => {
+    if (event.code == "Enter") {
+      searchVillagers()
+    }
+  }
   function displayInfo(data) {
     document.getElementById("villagers").innerHTML = ""
     for (let character in data) {
       displayVillager(data[character])
     }
   }
-
   const nameClick = () => {
+    displayInfo(info)
     const searchDiv = document.getElementById("villagerSearch")
     const speciesDiv = document.getElementById("speciesSelect")
     const personalityDiv = document.getElementById("personalitySelect")
@@ -48,6 +72,7 @@ function Villagers() {
     personalityButton.hidden = false
   }
   const speciesClick = () => {
+    displayInfo(info)
     const searchDiv = document.getElementById("villagerSearch")
     const speciesDiv = document.getElementById("speciesSelect")
     const personalityDiv = document.getElementById("personalitySelect")
@@ -67,6 +92,7 @@ function Villagers() {
     personalityButton.hidden = false
   }
   const personalityClick = () => {
+    displayInfo(info)
     const searchDiv = document.getElementById("villagerSearch")
     const speciesDiv = document.getElementById("speciesSelect")
     const personalityDiv = document.getElementById("personalitySelect")
@@ -85,7 +111,6 @@ function Villagers() {
     speciesButton.hidden = false
     personalityButton.hidden = true
   }
-
   function displaySearchInfo(data) {
     document.getElementById("villagers").innerHTML = ""
     let search = document.getElementById("villagerSearch").value
@@ -206,6 +231,7 @@ function Villagers() {
         <div className="row align-items-center my-5">
           <div id="searchBarCol" className="col-lg-12">
             <input
+              onKeyUp={checkEnter}
               type="text"
               id="villagerSearch"
               placeholder="Search for a specific villager..."
@@ -276,7 +302,7 @@ function Villagers() {
             <button onClick={searchVillagers} id="searchButton">
               Search
             </button>
-            <button onClick={nameClick} id="nameButton">
+            <button hidden="true" onClick={nameClick} id="nameButton">
               Search by Name
             </button>
             <button onClick={speciesClick} id="speciesButton">

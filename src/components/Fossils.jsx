@@ -1,6 +1,7 @@
 import React from "react"
 import Axios from "axios"
 import { Navigation } from "."
+import sad from "../img/sadisabelle.png"
 import "../styles/search.css"
 
 function Fossils() {
@@ -11,8 +12,32 @@ function Fossils() {
       info = response.data
     })
   }
+  const checkEnter = (event) => {
+    if (event.code == "Enter") {
+      searchFossils()
+    }
+  }
   const searchFossils = () => {
     displaySearchInfo(info)
+    const test = document.getElementById("fossils")
+    if (test.innerHTML == "") {
+      const newCard = document.createElement("div")
+      newCard.setAttribute("class", "card")
+      newCard.setAttribute("style", "background-color: white !important")
+
+      const newP = document.createElement("p")
+      newP.innerHTML = "No Results"
+      newP.setAttribute("class", "villagerP")
+
+      const newI = document.createElement("img")
+      newI.setAttribute("id", "sadIsabelleImg")
+      newI.setAttribute("src", sad)
+      newI.setAttribute("alt", "Image of sad Isabelle")
+      newI.setAttribute("style", "margin-left: 9px")
+      newCard.appendChild(newP)
+      newCard.appendChild(newI)
+      test.appendChild(newCard)
+    }
   }
 
   function displayInfo(data) {
@@ -110,6 +135,7 @@ function Fossils() {
         <div className="row align-items-center my-5">
           <div id="searchBarCol" className="col-lg-12">
             <input
+              onKeyUp={checkEnter}
               type="text"
               id="fossilSearch"
               placeholder="Search for a specific fossill..."

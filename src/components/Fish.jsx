@@ -1,6 +1,7 @@
 import React from "react"
 import Axios from "axios"
 import { Navigation } from "."
+import sad from "../img/sadisabelle.png"
 import "../styles/search.css"
 
 function Fish() {
@@ -14,34 +15,37 @@ function Fish() {
       info = response.data
     })
   }
+  const checkEnter = (event) => {
+    if (event.code == "Enter") {
+      searchFish()
+    }
+  }
   const searchFish = () => {
     displaySearchInfo(info)
+    const test = document.getElementById("fish")
+    if (test.innerHTML == "") {
+      const newCard = document.createElement("div")
+      newCard.setAttribute("class", "card")
+      newCard.setAttribute("style", "background-color: white !important")
+
+      const newP = document.createElement("p")
+      newP.innerHTML = "No Results"
+      newP.setAttribute("class", "villagerP")
+
+      const newI = document.createElement("img")
+      newI.setAttribute("id", "sadIsabelleImg")
+      newI.setAttribute("src", sad)
+      newI.setAttribute("alt", "Image of sad Isabelle")
+      newI.setAttribute("style", "margin-left: 9px")
+      newCard.appendChild(newP)
+      newCard.appendChild(newI)
+      test.appendChild(newCard)
+    }
   }
   function displayInfo(data) {
     document.getElementById("fish").innerHTML = ""
     for (let character in data) {
       displayFish(data[character])
-    }
-  }
-  function hideStuff(value) {
-    switch (value) {
-      case "name":
-        hideSearch = false
-        hidePersonality = false
-        hideSpecies = false
-        break
-      case "species":
-        hideSearch = true
-        hidePersonality = false
-        hideSpecies = true
-        break
-      case "personality":
-        hideSearch = true
-        hidePersonality = true
-        hideSpecies = false
-        break
-      default:
-        break
     }
   }
   function displaySearchInfo(data) {
@@ -161,6 +165,7 @@ function Fish() {
         <div className="row align-items-center my-5">
           <div id="searchBarCol" className="col-lg-12">
             <input
+              onKeyUp={checkEnter}
               type="text"
               id="fishSearch"
               placeholder="Search for a specific fish..."
