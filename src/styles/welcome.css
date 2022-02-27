@@ -59,7 +59,7 @@
 
 .icon_container img {
   border: 3px solid blue; /* for styling */
-  width: 100%;
+  width: 75%;
   height: 100%;
   object-fit: cover;
 }
