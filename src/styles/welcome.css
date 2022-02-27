@@ -10,10 +10,6 @@
   font-family: "Dosis", "Roboto", sans-serif;
 }
 
-.col {
-  border: 1px solid purple;
-}
-
 #title {
   padding: 7px;
   font-size: 3.25em;
@@ -30,27 +26,57 @@
   filter: drop-shadow(1px 5px 7px #060606);
 }
 
-.container-fluid{
+.container-fluid {
   padding: 20px !important;
 }
 
 .villager_container {
-  border: 1px solid red;
-  width: 250px; /* or whatever width you want. */
-  max-width: 250px; /* or whatever width you want. */
-  height: 250px; /* or whatever width you want. */
-  max-height: 250px; /* or whatever width you want. */
-  display: inline-block;
+  border: 1px solid red; /* for styling */
+  max-width: 300px;
+  height: 300px;
+}
+
+.villager_container img {
+  border: 3px solid blue; /* for styling */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.icon_container,
+.icon_container .col {
+  padding-top: 20px;
+  border: 5px dashed darkorange;
+}
+
+.icon_container .col {
+  border: 2px dashed #f69c55;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.icon_container img {
+  border: 3px solid blue; /* for styling */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.btn-group-vertical {
+  border: 2px solid black;
 }
 
 .btn {
-  width: 20vh;
+  width: 30vh;
   border: none !important;
+  margin: 5px;
   background-color: #327a93 !important;
   filter: drop-shadow(1px 5px 7px #060606);
 }
 
-.btn:hover{
+.btn:hover {
   color: black !important;
   background-color: #bcddc8 !important;
 }

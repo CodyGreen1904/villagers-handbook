@@ -1,7 +1,9 @@
-import React from "react"
-import ReactDOM from "react-dom"
-import "./index.css"
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
+import PageNotFound from "./components/PageNotFound";
+import "./index.css";
 
 //Routing imports
 import {
@@ -11,8 +13,8 @@ import {
   About,
   Villagers,
   Fossils,
-  Fish,
-} from "./components"
+  Fish
+} from "./components";
 
 ReactDOM.render(
   <Router>
@@ -22,9 +24,10 @@ ReactDOM.render(
       <Route path="/about" element={<About />} />
       <Route path="/fossils" element={<Fossils />} />
       <Route path="/fish" element={<Fish />} />
+      <Route path="*" element={<PageNotFound />} />
     </Routes>
     <Footer />
   </Router>,
 
   document.getElementById("root")
-)
+);
