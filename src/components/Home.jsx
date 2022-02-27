@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "../styles/welcome.css";
-import uuid from "react-uuid";
 
 //Generates random numbers for API call
 function randomUniqueIntegers(total, quantity) {
@@ -17,57 +16,35 @@ function randomUniqueIntegers(total, quantity) {
     .slice(0, quantity);
 }
 
-export default function Home() {
-  let url = "https://acnhapi.com/v1/villagers/";
-
+export default function Home(props) {
   let [main, setMain] = useState();
   let [others, setOthers] = useState([]);
-  let [endPoints, setEndPoints] = useState([]);
-  let MAX = 391;
 
   useEffect(() => {
-    //Get main villager to display
-    //Pulls "Raymond"
-    axios({
-      method: "GET",
-      url: `${url}64`
-    })
-      .then((response) => {
-        setMain(response.data);
-        //console.log(JSON.stringify(main.id, null, 3));
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    //Convert data to an array
+    let data = Object.keys(props.state).map(function (i) {
+      return props.state[i];
+    });
 
-    //Get random villagers to display
-    //Pulls 6 random numbers from 1-MAX( currently 391)
-    let nums = randomUniqueIntegers(MAX, 6);
-    console.log(nums);
-    for (const num of nums) {
-      let endPoint = url + num;
-      //console.log(endPoint);
-      setEndPoints([...endPoints, endPoint]);
-      //console.log(endPoints);
-    }
+    console.log(data);
+    //Get the size of the database
+    let max = data.length;
+    console.log(max);
 
-    axios.all(
-      endPoints.map((endpoint) =>
-        axios({
-          method: "GET",
-          url: endpoint
-        })
-          .then((response) => {
-            setOthers((others) => [...others, response.data]);
-          })
-          .catch((error) => {
-            console.log(error);
-          })
-      )
-    );
+    //Retrieve a random item from the array
+    const selected = data[Math.floor(Math.random() * max)];
+
+    //let selected = Object.keys(props.state).slice(0, max);
+    console.log(selected);
+    setMain(selected);
+    setOthers([
+      data[Math.floor(Math.random() * max)],
+      data[Math.floor(Math.random() * max)],
+      data[Math.floor(Math.random() * max)],
+      data[Math.floor(Math.random() * max)],
+      data[Math.floor(Math.random() * max)]
+    ]);
   }, []);
-
-  //console.log(JSON.stringify(others.name, null, 3));
 
   return (
     <main>
@@ -107,13 +84,7 @@ export default function Home() {
           </div>
           <div className="container icon_container">
             <div className="row">
-              <div className="lists-wrapper">
-                {/*                 {Object.keys(others).map((key) => (
-                  <div key={uuid()} className="col col-sm">
-                    <img alt="Random Villager" src={others[key].icon_uri} />
-                  </div>
-                ))} */}
-              </div>
+              <div className="lists-wrapper"></div>
               <div className="col col-sm">
                 {others[0] ? (
                   <img alt="Random Villager" src={others[0].icon_uri} />
