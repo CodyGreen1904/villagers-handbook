@@ -9,21 +9,39 @@ import "./index.css";
 import { Footer, Home, About, Villagers, Fossils, Fish } from "./components";
 
 export default function App() {
-  const [state, setState] = useState([]);
+  const [villagers, setVillagers] = useState([]);
+  const [fossils, setFossils] = useState([]);
+  const [fish, setFish] = useState([]);
   const [loadState, setLoadState] = useState(false);
 
-  const fetchData = async () => {
+  const fetchVillagers = async () => {
     if (!loadState) {
-      console.log("App: Retrieving data from API");
+      console.log("App: Retrieving Villagers from API");
       axios.get(`https://acnhapi.com/v1/villagers/`).then((res) => {
-        setState(res.data);
+        setVillagers(res.data);
         setLoadState(true);
       });
     }
   };
 
+  const fetchFossils = async () => {
+    console.log("App: Retrieving Fossils from API");
+    axios.get(`https://acnhapi.com/v1/fossils/`).then((res) => {
+      setVillagers(res.data);
+      setLoadState(true);
+    });
+  };
+
+  const fetchFish = async () => {
+    console.log("App: Retrieving Fish from API");
+    axios.get(`https://acnhapi.com/v1/fish/`).then((res) => {
+      setVillagers(res.data);
+      setLoadState(true);
+    });
+  };
+
   useEffect(() => {
-    fetchData();
+    fetchVillagers();
   }, []);
 
   return (
@@ -31,11 +49,19 @@ export default function App() {
       {loadState ? (
         <Router>
           <Routes>
-            <Route path="/" element={<Home state={state} />} />
-            <Route path="/villagers" element={<Villagers />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/fossils" element={<Fossils />} />
-            <Route path="/fish" element={<Fish />} />
+            <Route
+              path="/"
+              element={
+                <Home state={villagers} fetchVillagers={fetchVillagers} />
+              }
+            />
+            <Route path="/about" element={<About state={villagers} />} />
+            <Route
+              path="/villagers"
+              element={<Villagers state={villagers} />}
+            />
+            <Route path="/fossils" element={<Fossils state={fossils} />} />
+            <Route path="/fish" element={<Fish state={fish} />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
           <Footer />

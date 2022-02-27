@@ -1,49 +1,41 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import "../styles/welcome.css";
-
-//Generates random numbers for API call
-function randomUniqueIntegers(total, quantity) {
-  const numbers = Array(total)
-    .fill(null)
-    .map((_, i) => i + 1);
-
-  return numbers
-    .map((value) => ({ value, sort: Math.random() }))
-    .sort((a, b) => a.sort - b.sort)
-    .map(({ value }) => value)
-    .slice(0, quantity);
-}
 
 export default function Home(props) {
   let [main, setMain] = useState();
   let [others, setOthers] = useState([]);
+  let [loadState, setLoadState] = useState(false);
 
   useEffect(() => {
-    //Convert data to an array
-    let data = Object.keys(props.state).map(function (i) {
-      return props.state[i];
-    });
+    if (!loadState) {
+      console.log("Loading initial data...");
+      //Convert data to an array
+      let data = Object.keys(props.state).map(function (i) {
+        return props.state[i];
+      });
 
-    console.log(data);
-    //Get the size of the database
-    let max = data.length;
-    console.log(max);
+      console.log(data);
+      //Get the size of the database
+      let max = data.length;
+      console.log(max);
 
-    //Retrieve a random item from the array
-    const selected = data[Math.floor(Math.random() * max)];
+      //Retrieve a random item from the array
+      const selected = data[Math.floor(Math.random() * max)];
 
-    //let selected = Object.keys(props.state).slice(0, max);
-    console.log(selected);
-    setMain(selected);
-    setOthers([
-      data[Math.floor(Math.random() * max)],
-      data[Math.floor(Math.random() * max)],
-      data[Math.floor(Math.random() * max)],
-      data[Math.floor(Math.random() * max)],
-      data[Math.floor(Math.random() * max)]
-    ]);
+      //let selected = Object.keys(props.state).slice(0, max);
+      console.log(selected);
+      setMain(selected);
+      setOthers([
+        data[Math.floor(Math.random() * max)],
+        data[Math.floor(Math.random() * max)],
+        data[Math.floor(Math.random() * max)],
+        data[Math.floor(Math.random() * max)],
+        data[Math.floor(Math.random() * max)]
+      ]);
+
+      setLoadState(true);
+    }
   }, []);
 
   return (
