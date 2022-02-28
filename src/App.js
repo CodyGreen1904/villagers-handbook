@@ -15,13 +15,11 @@ export default function App() {
   const [loadState, setLoadState] = useState(false);
 
   const fetchVillagers = async () => {
-    if (!loadState) {
-      console.log("App: Retrieving Villagers from API");
-      axios.get(`https://acnhapi.com/v1/villagers/`).then((res) => {
-        setVillagers(res.data);
-        setLoadState(true);
-      });
-    }
+    console.log("App: Retrieving Villagers from API");
+    axios.get(`https://acnhapi.com/v1/villagers/`).then((res) => {
+      setVillagers(res.data);
+      setLoadState(true);
+    });
   };
 
   const fetchFossils = async () => {
@@ -41,7 +39,9 @@ export default function App() {
   };
 
   useEffect(() => {
-    fetchVillagers();
+    if (!loadState) {
+      fetchVillagers();
+    }
   }, []);
 
   return (
