@@ -1,6 +1,5 @@
 :root {
-  --bg1: url(../img/bg_island.jpg);
-  --bg2: url(../img/bg_blue.jpg);
+  --bg: url(/src/img/bg_blue.png);
   --textbox: #ffe599;
   --wood: #976e29;
   --gold: #ffc936;
@@ -10,8 +9,14 @@
   font-family: "Dosis", "Roboto", sans-serif;
 }
 
-body {
+#homepage{
   background-color: lightblue;
+  background-image: var(--bg) no-repeat center center fixed !important;
+  background-position: center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .title_container {
@@ -41,7 +46,7 @@ body {
   margin-left: 30px;
   margin-right: 30px;
   padding: 7px;
-  font-size: 16px;
+  font-size: 18px;
   background-color: var(--textbox);
   filter: drop-shadow(1px 5px 7px #060606);
 }
@@ -52,8 +57,8 @@ body {
 
 .villager_container {
 /*   border: 1px solid red; */
-  max-width: 400px;
-  height: 400px;
+  max-width: 350px;
+  height: 350px;
 }
 
 .villager_container img {
@@ -72,6 +77,7 @@ body {
 
 .icon_container .col {
 /*   border: 2px dashed #f69c55; */
+width: 75%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -112,11 +118,4 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 3px solid green;
-  background: var(--bg2) no-repeat !important;
-  background-position: center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
 }
