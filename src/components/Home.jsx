@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../styles/welcome.css";
+import title from "../img/vhtext_white.png";
+import backdrop from "../img/backdrop_text.png";
 
 export default function Home(props) {
   let [main, setMain] = useState();
@@ -52,10 +54,9 @@ export default function Home(props) {
             </div>
           </div>
 
-          <div className="col-lg-6 text-center">
-            <h1 id="title" className="display-5 fw-bold lh-1">
-              Welcome to the Villagers Handbook!
-            </h1>
+          <div className="title_container col-lg-6 text-center">
+            <img alt="wood sign" className="title-box" src={backdrop} />
+            {/*             <img alt="Title text" className="title" src={title} /> */}
             <p id="intro" className="lead">
               Villagers Handbook is a lightweight search application that allows
               you to quickly and easily look up information related to the world
