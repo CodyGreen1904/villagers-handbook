@@ -1,16 +1,45 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../styles/welcome.css";
-import title from "../img/vhtext_white.png";
-import backdrop from "../img/backdrop_text.png";
+import title from "../img/backdrop_text.png";
+import background from "../img/bg_blue.jpg";
+import axios from "axios";
 
 export default function Home(props) {
   let [main, setMain] = useState();
   let [others, setOthers] = useState([]);
-  let [loadState, setLoadState] = useState(false);
+
+  const [villagers, setVillagers] = useState([]);
+  const [fossils, setFossils] = useState([]);
+  const [fish, setFish] = useState([]);
+  const [loadState, setLoadState] = useState(false);
+
+  const fetchVillagers = async () => {
+    console.log("App: Retrieving Villagers from API");
+    axios.get(`https://acnhapi.com/v1/villagers/`).then((res) => {
+      setVillagers(res.data);
+      setLoadState(true);
+    });
+  };
+
+  const fetchFossils = async () => {
+    console.log("App: Retrieving Fossils from API");
+    axios.get(`https://acnhapi.com/v1/fossils/`).then((res) => {
+      setVillagers(res.data);
+      setLoadState(true);
+    });
+  };
+
+  const fetchFish = async () => {
+    console.log("App: Retrieving Fish from API");
+    axios.get(`https://acnhapi.com/v1/fish/`).then((res) => {
+      setVillagers(res.data);
+      setLoadState(true);
+    });
+  };
 
   useEffect(() => {
-    if (!loadState) {
+    if (!loadState && props.data) {
       console.log("Loading initial data...");
       //Convert data to an array
       let data = Object.keys(props.state).map(function (i) {
@@ -41,7 +70,50 @@ export default function Home(props) {
   }, []);
 
   return (
-    <main id="homepage">
+    <div className="homepage">
+      <div className="container">
+        <div className="row">
+          {/** Title Section */}
+          <div id="title" className="col col-md-8 col-xs-12 text-center">
+            <img
+              className="img-responsive"
+              alt="Villagers Handbook Logo"
+              src={title}
+            />
+            <div className="col col-xs-12">
+              <p id="intro" className="lead">
+                Villagers Handbook is a lightweight search application that
+                allows you to quickly and easily look up information related to
+                the world of Animal Crossing New Horizons.
+              </p>
+              <button className="btn">Enter</button>
+            </div>
+          </div>
+          <div id="villager" className="col col-xs-12 col-md-4">
+            {main ? (
+              <img alt="Random Villager" src={main.image_uri} />
+            ) : (
+              "Loading..."
+            )}
+          </div>
+        </div>
+
+        {/** Icon Container Section */}
+        <div id="icon_container" className="row">
+          <div className="col col-xs-6 col-md-4">Icon 1</div>
+          <div className="col col-xs-6 col-md-4">Icon 2</div>
+          <div className="col col-xs-6 col-md-4">Icon 3</div>
+          <div className="col col-xs-6 col-md-4">Icon 4</div>
+          <div className="col col-xs-6 col-md-4">Icon 5</div>
+          <div className="col col-xs-6 col-md-4">Icon 6</div>
+        </div>
+      </div>
+    </div>
+    /*    <main
+      style={{
+        backgroundImage: `url(${process.env.PUBLIC_URL + "../img/tom.png"})`
+      }}
+    >
       <div className="container col-xxl-8 px-4 py-5">
         <div className="row flex-lg-row-reverse align-items-center g-5 py-5">
           <div className="col-12 col-lg-6">
@@ -56,7 +128,6 @@ export default function Home(props) {
 
           <div className="title_container col-lg-6 text-center">
             <img alt="wood sign" className="title-box" src={backdrop} />
-            {/*             <img alt="Title text" className="title" src={title} /> */}
             <p id="intro" className="lead">
               Villagers Handbook is a lightweight search application that allows
               you to quickly and easily look up information related to the world
@@ -121,6 +192,6 @@ export default function Home(props) {
           </div>
         </div>
       </div>
-    </main>
+    </main> */
   );
 }

@@ -9,66 +9,21 @@ import "./index.css";
 import { Footer, Home, About, Villagers, Fossils, Fish } from "./components";
 
 export default function App() {
-  const [villagers, setVillagers] = useState([]);
-  const [fossils, setFossils] = useState([]);
-  const [fish, setFish] = useState([]);
-  const [loadState, setLoadState] = useState(false);
-
-  const fetchVillagers = async () => {
-    console.log("App: Retrieving Villagers from API");
-    axios.get(`https://acnhapi.com/v1/villagers/`).then((res) => {
-      setVillagers(res.data);
-      setLoadState(true);
-    });
-  };
-
-  const fetchFossils = async () => {
-    console.log("App: Retrieving Fossils from API");
-    axios.get(`https://acnhapi.com/v1/fossils/`).then((res) => {
-      setVillagers(res.data);
-      setLoadState(true);
-    });
-  };
-
-  const fetchFish = async () => {
-    console.log("App: Retrieving Fish from API");
-    axios.get(`https://acnhapi.com/v1/fish/`).then((res) => {
-      setVillagers(res.data);
-      setLoadState(true);
-    });
-  };
-
-  useEffect(() => {
-    if (!loadState) {
-      fetchVillagers();
-    }
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <div>
-      {loadState ? (
-        <Router>
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <Home state={villagers} fetchVillagers={fetchVillagers} />
-              }
-            />
-            <Route path="/about" element={<About state={villagers} />} />
-            <Route
-              path="/villagers"
-              element={<Villagers state={villagers} />}
-            />
-            <Route path="/fossils" element={<Fossils state={fossils} />} />
-            <Route path="/fish" element={<Fish state={fish} />} />
-            <Route path="*" element={<PageNotFound />} />
-          </Routes>
-          <Footer />
-        </Router>
-      ) : (
-        <div>Loading...</div>
-      )}
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/villagers" element={<Villagers />} />
+          <Route path="/fossils" element={<Fossils />} />
+          <Route path="/fish" element={<Fish />} />
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+        <Footer />
+      </Router>
     </div>
   );
 }
