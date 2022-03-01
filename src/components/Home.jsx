@@ -15,7 +15,8 @@ class Home extends React.Component {
       fossils: [],
       fossils_loaded: false,
       max: 0,
-      isFlipped: false
+      isFlipped: false,
+      randomVillager: []
     };
   }
 
@@ -31,7 +32,8 @@ class Home extends React.Component {
           this.setState({
             max: result.length,
             villagers: result,
-            villagers_loaded: true
+            villagers_loaded: true,
+            randomVillager: result[Math.floor(Math.random() * result.length)]
           });
         })
         .catch((error) => {
@@ -59,19 +61,18 @@ class Home extends React.Component {
     }
 
     function Villager(state) {
-      let max = state.villagers.length;
-      return (
-        <img
-          alt="Random Villager"
-          src={state.villagers[Math.floor(Math.random() * max)].image_uri}
-        />
-      );
+      return <img alt="Random Villager" src={state.villager.image_uri} />;
     }
 
-    function VillagerBack() {
+    function VillagerBack(state) {
       return (
         <div id="villager_back">
-          <p> Text </p>
+          <p>Name: {state.villager.name["name-USen"]}</p>
+          <p>Species: {state.villager.species}</p>
+          <p>Personality: {state.villager.personality}</p>
+          <img src={state.villager.icon_uri} alt="Villager Icon" />
+          <p>Birthday: {state.villager["birthday-string"]}</p>
+          <p>Catchphrase: {state.villager.saying}</p>
         </div>
       );
     }
@@ -99,9 +100,9 @@ class Home extends React.Component {
       <div className="homepage">
         <div className="container">
           <div className="row">
-            <div id="title" className="col col-md-8 col-xs-12 text-center">
+            <div id="title" className="col col-md-8 col-12 text-center">
               <Logo />
-              <div className="col col-xs-12">
+              <div className="col col-12">
                 <p id="intro" className="lead">
                   Villagers Handbook is a lightweight search application that
                   allows you to quickly and easily look up information related
@@ -112,14 +113,14 @@ class Home extends React.Component {
                 </Link>
               </div>
             </div>
-            <div id="villager" className="col col-xs-12 col-md-4">
+            <div id="villager" className="col col-12 col-md-4">
               <div class="flip-card">
                 <div class="flip-card-inner">
                   <div class="flip-card-front">
-                    <Villager villagers={this.state.villagers} />
+                    <Villager villager={this.state.randomVillager} />
                   </div>
                   <div class="flip-card-back">
-                    <VillagerBack />
+                    <VillagerBack villager={this.state.randomVillager} />
                   </div>
                 </div>
               </div>
