@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "../styles/welcome.css";
+import "../styles/home.css";
 import title from "../img/backdrop_text.png";
 
 class Home extends React.Component {
@@ -97,29 +97,29 @@ class Home extends React.Component {
       );
 
     return (
-      <div className="homepage">
-        <div className="container">
+      <div id="homepage">
+        <div className="container-fluid text-center">
           <div className="row">
-            <div id="title" className="col col-md-8 col-12 text-center">
+            <div id="logo_container" className="col col-12 col-md-7">
               <Logo />
-              <div className="col col-12">
-                <p id="intro" className="lead">
-                  Villagers Handbook is a lightweight search application that
-                  allows you to quickly and easily look up information related
-                  to the world of Animal Crossing New Horizons.
-                </p>
-                <Link to="/villagers">
-                  <button className="btn">Enter</button>
-                </Link>
+
+              <div id="intro">
+                Villagers Handbook is a lightweight search application that
+                allows you to quickly and easily look up information related to
+                the world of Animal Crossing New Horizons.
               </div>
+
+              <Link to="/villagers">
+                <button className="btn">Enter</button>
+              </Link>
             </div>
-            <div id="villager" className="col col-12 col-md-4">
-              <div class="flip-card">
-                <div class="flip-card-inner">
-                  <div class="flip-card-front">
+            <div id="villager" className="col col-12 col-lg-5 col-md-5">
+              <div className="card_container">
+                <div id="cards" className="card_flip">
+                  <div className="card_front">
                     <Villager villager={this.state.randomVillager} />
                   </div>
-                  <div class="flip-card-back">
+                  <div className="card_back">
                     <VillagerBack villager={this.state.randomVillager} />
                   </div>
                 </div>
@@ -128,7 +128,7 @@ class Home extends React.Component {
           </div>
 
           <div id="icon_container" className="row">
-            <div className="col col-12">
+            <div className="col col-10">
               <Icon villagers={this.state.villagers} />
               <Icon villagers={this.state.villagers} />
               <Icon villagers={this.state.villagers} />

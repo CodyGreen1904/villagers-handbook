@@ -1,15 +1,12 @@
-import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import axios from "axios";
 
 import PageNotFound from "./components/PageNotFound";
-import "./index.css";
+import "./styles/index.css";
 
 //Routing imports
 import { Footer, Home, About, Villagers, Fossils, Fish } from "./components";
 
 export default function App() {
-  useEffect(() => {}, []);
 
   return (
     <div>

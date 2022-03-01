@@ -5,14 +5,17 @@
   padding: 15px;
   background-color: black;
   color: white;
-  position: relative;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
 }
 
 .footer-basic ul {
   padding: 0;
   list-style: none;
   text-align: center;
-  font-size: 18px;
+  font-size: 1.5vh;
   line-height: 1.6;
   margin-bottom: 0;
 }
