@@ -1,6 +1,6 @@
 :root {
   --bg1: url(../img/bg_island.jpg);
-  --bg2: url(../img/bg_blue.jpg);
+  --bg2: url(../img/bg_blue.png);
   --textbox: #ffe599;
   --wood: #976e29;
   --gold: #ffc936;
@@ -12,12 +12,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100%;
 }
 
 .homepage .container {
   background: lightcyan;
   border: 1px dashed black;
+  height: 100%;
+  margin: 5px;
 }
 
 #title {

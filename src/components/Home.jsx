@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../styles/welcome.css";
 import title from "../img/backdrop_text.png";
-import background from "../img/bg_blue.jpg";
+import background from "../img/bg_blue.png";
 import axios from "axios";
 
 class Home extends React.Component {

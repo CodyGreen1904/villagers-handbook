@@ -1,14 +1,30 @@
 import React from "react";
+import "../styles/footer.css";
+import GitHubIcon from "@mui/icons-material/GitHub";
 
 function Footer() {
   return (
-      <footer className="py-3 bg-dark fixed-bottom">
-        <div className="container">
-          <p className="m-0 text-center text-white">
-            Copyright &copy; Your Website 2022
-          </p>
-        </div>
+    <div class="footer-basic">
+      <footer>
+        <ul class="list-inline">
+          <li class="list-inline-item">
+            <a href="#">About</a>
+          </li>
+          <li class="list-inline-item">&mdash;</li>
+          <li class="list-inline-item">
+            <a href="#">Terms</a>
+          </li>
+          <li class="list-inline-item">&mdash;</li>
+          <li class="list-inline-item">
+            <a href="#">Privacy Policy</a>
+          </li>
+          <li class="list-inline-item">&mdash;</li>
+          <li class="list-inline-item">
+            <GitHubIcon />
+          </li>
+        </ul>
       </footer>
+    </div>
   );
 }
 
