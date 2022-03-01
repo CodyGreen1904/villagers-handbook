@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../styles/welcome.css";
 import title from "../img/backdrop_text.png";
-import ReactCardFlip from "react-card-flip";
 
 class Home extends React.Component {
   constructor(props) {
