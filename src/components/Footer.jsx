@@ -20,7 +20,9 @@ function Footer() {
           </li>
           <li class="list-inline-item">&mdash;</li>
           <li class="list-inline-item">
-            <GitHubIcon />
+            <a href="">
+              <GitHubIcon />
+            </a>
           </li>
         </ul>
       </footer>
