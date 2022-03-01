@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../styles/welcome.css";
 import title from "../img/backdrop_text.png";
-import background from "../img/bg_blue.png";
-import axios from "axios";
+import ReactCardFlip from "react-card-flip";
 
 class Home extends React.Component {
   constructor(props) {
@@ -16,7 +15,8 @@ class Home extends React.Component {
       fish_loaded: false,
       fossils: [],
       fossils_loaded: false,
-      max: 0
+      max: 0,
+      isFlipped: false
     };
   }
 
@@ -69,10 +69,19 @@ class Home extends React.Component {
       );
     }
 
+    function VillagerBack() {
+      return (
+        <div id="villager_back">
+          <p> Text </p>
+        </div>
+      );
+    }
+
     function Icon(state) {
       let max = state.villagers.length;
       return (
         <img
+          id="villager_front"
           alt="Random Villager Icon"
           src={state.villagers[Math.floor(Math.random() * max)].icon_uri}
         />
@@ -99,11 +108,22 @@ class Home extends React.Component {
                   allows you to quickly and easily look up information related
                   to the world of Animal Crossing New Horizons.
                 </p>
-                <button className="btn">Enter</button>
+                <Link to="/villagers">
+                  <button className="btn">Enter</button>
+                </Link>
               </div>
             </div>
             <div id="villager" className="col col-xs-12 col-md-4">
-              <Villager villagers={this.state.villagers} />
+              <div class="flip-card">
+                <div class="flip-card-inner">
+                  <div class="flip-card-front">
+                    <Villager villagers={this.state.villagers} />
+                  </div>
+                  <div class="flip-card-back">
+                    <VillagerBack />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
