@@ -9,23 +9,21 @@
   --bg3: url(../img/isabelle.png);
   --bg4: url(../img/underwater.png);
   --bg5: url(../img/bg_leaf_3.jpg);
-  --bg6: url(../img/bg_blue.jpg);
+  --bg6: url(../img/bg_blue.png);
   --textbox: #ffe599;
   --wood: #976e29;
   --gold: #ffc936;
   --green: #4eb967;
   --dark_green: #18935a;
-  --colblue: #73B8BF;
-  --colblue2: #5CACF2;
-  --sand: #FFFEA1;
-  --sand2: #F2DC9B;
-  --bubb: #FFFAE4;
-  --oran: #FD9B15;
-  --gr: #8DF25E;
-}
+  --colblue: #73b8bf;
+  --colblue2: #5cacf2;
+  --sand: #fffea1;
+  --sand2: #f2dc9b;
+  --bubb: #fffae4;
+  --oran: #fd9b15;
+  --gr: #8df25e;
 
-* {
-  font-family: "Dosis", "Roboto", sans-serif;
+  font-family: "Dosis", "Roboto", sans-serif !important;
 }
 
 html,
@@ -33,9 +31,9 @@ body {
   margin: 0;
   padding: 0;
   border: 3px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  /*   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+    sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

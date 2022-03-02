@@ -4,6 +4,7 @@
   overflow: auto;
   background: var(--bg6) no-repeat center center fixed;
   background-size: cover;
+  font-family: 'Dosis', sans-serif !important;
 }
 
 #homepage .container {
@@ -47,7 +48,7 @@
 /* Animation for cards */
 #homepage .card_flip_container {
   perspective: 1000;
-  padding: 20px;
+  padding: 10px;
 }
 
 #homepage .card_flip_container {
@@ -91,13 +92,13 @@
 
 @media screen and (max-width: 768px) {
   #homepage .card_flipper {
-    width: 50%;
+    width: 60%;
   }
 }
 
 @media screen and (max-width: 576px) {
   #homepage .card_flipper {
-    width: 90%;
+    width: 80%;
   }
 }
 /* Animation for ICONS */
