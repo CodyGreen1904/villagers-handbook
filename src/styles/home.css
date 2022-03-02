@@ -1,195 +1,111 @@
-:root {
-  --bg-color: lightblue;
-  --bg1: url(../img/bg_island.jpg);
-  --bg2: url(../img/bg_blue.png);
-  --textbox: #ffe599;
-  --wood: #976e29;
-  --gold: #ffc936;
-}
-
-* {
-  box-sizing: border-box;
-}
-
 #homepage {
   height: 100vh;
-  background: lightblue;
-  max-width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 1rem;
-  display: flex;
-  justify-content: center !important;
-  align-items: center !important;
+  max-height: 100%;
+  overflow: auto;
+  background: var(--bg6) no-repeat center center fixed;
+  background-size: cover;
 }
 
-.container-fluid {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+#homepage .container {
   max-height: 100%;
 }
 
-#logo_container {
-  height: 100%;
-  padding-bottom: 10px;
-  display: flex;
-  flex-flow: column;
-  justify-content: center !important;
-  align-items: center !important;
-}
-
-#logo_container img {
-  width: 100vh;
-  height: auto;
-  max-width: 100%;
-  object-fit: contain;
-  margin: 0 auto;
-  filter: drop-shadow(12px 7px 8px #060606);
+#title img {
+  filter: drop-shadow(10px 10px 15px #060606);
 }
 
 #intro {
-  padding: 7px;
-  font-size: 2vh;
   height: 100%;
   max-width: 80%;
   background-color: var(--textbox);
   filter: drop-shadow(1px 5px 7px #060606);
-  border-radius: 5px;
+  border-radius: 10px;
+  padding: 10px;
 }
 
-#homepage .btn {
-  width: 10rem;
-  border: none !important;
-  margin: 5px;
-  margin-top: 15px;
-  font-size: 16px;
-  color: white;
-  background-color: #327a93 !important;
+#enter .btn {
+  background-color: var(--green);
+  width: 75%;
+  margin-bottom: 5px;
+}
+
+#enter .btn:hover {
+  background-color: var(--dark_green);
+}
+
+#homepage #villager img,
+#homepage #icon img,
+#homepage #enter .btn,
+#homepage .card_back {
   filter: drop-shadow(1px 5px 7px #060606);
 }
 
-#homepage .btn:hover {
-  color: black !important;
-  background-color: #bcddc8 !important;
+#homepage #icon_container {
+  padding-top: 30px;
 }
 
-#icon_container {
+/* Animation for cards */
+#homepage .card_flip_container {
+  perspective: 1000;
+  padding: 20px;
+}
+
+#homepage .card_flip_container {
   display: flex;
-  flex-flow: column;
-  justify-content: center !important;
-  align-items: center !important;
-  position: relative;
-  padding-bottom: 30px;
+  justify-content: center;
 }
 
-#icon_container img {
-  width: 4rem;
-  height: auto;
-  object-fit: contain;
-  margin: 10px;
-  filter: drop-shadow(1px 5px 7px #060606);
+#homepage .card_flipper {
+  transform-style: preserve-3d;
+  display: flex;
+  align-items: stretch;
+  width: 80%;
+  transition: transform 0.6s;
+  will-change: transform;
+}
+#homepage .card_flip_container:hover .card_flipper {
+  transform: rotateY(180deg);
+}
+#homepage .card_front,
+#homepage .card_back {
+  width: 100%;
+  flex: 0 0 auto;
+  backface-visibility: hidden;
+  font-size: 1.25vh;
+}
+#homepage .card_back {
+  transform: rotateY(180deg);
+  margin-left: -100%;
+  border-radius: 8px;
+  background-color: aliceblue;
 }
 
-#icon_container img:hover {
+#homepage .card_back p {
+  margin: 0.5em;
+}
+
+#homepage .card_back img {
+  height: 80px;
+  margin-bottom: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  #homepage .card_flipper {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  #homepage .card_flipper {
+    width: 90%;
+  }
+}
+/* Animation for ICONS */
+#homepage #icon_container img:hover {
   animation: shake 0.5s;
   animation-iteration-count: 1;
 }
 
-#villager {
-  height: 100%;
-  width: 80%;
-  margin: auto;
-  display: flex;
-  flex-flow: column;
-  justify-content: center !important;
-  align-items: center !important;
-  position: relative;
-}
-
-#villager img {
-  margin-top: 5px;
-  width: 100%;
-  max-width: 100%;
-  height: 100%;
-  object-fit: contain;
-  border-radius: 15px;
-  filter: drop-shadow(1px 5px 7px #060606);
-}
-
-#villager_back img {
-  width: 15vh;
-  max-width: 100%;
-  height: 100%;
-  filter: drop-shadow(1px 5px 7px #060606);
-}
-
-.card_container {
-  perspective: 1000px;
-  max-width: 90%;
-}
-
-.card_flip,
-.card_container {
-  transform-style: preserve-3d;
-  transition: all 0.7s ease;
-}
-
-.card_flip div {
-  backface-visibility: hidden;
-  transform-style: preserve-3d;
-}
-
-.card_flip {
-  display: grid;
-  grid-template: 1fr/1fr;
-  grid-template-areas: "frontAndBack";
-  transform-style: preserve-3d;
-  transition: all 0.7s ease;
-}
-
-.card_front {
-  grid-area: frontAndBack;
-}
-
-.card_back {
-  grid-area: frontAndBack;
-  transform: rotateY(-180deg);
-  background-color: var(--sand2);
-  border: 3px;
-  border-style: solid;
-  border-color: var(--colblue2);
-  filter: drop-shadow(1px 5px 7px #060606);
-  font-size: 1rem;
-  margin-top: 50px;
-}
-
-.card_container:hover .card_flip {
-  transform: rotateY(180deg);
-}
-
-/* Small devices (tablets, 768px and up) */
-@media only screen and (max-width: 768px) {
-  #homepage .container-fluid {
-    max-width: 70%;
-  }
-
-  #homepage {
-    height: 100%;
-  }
-
-  #intro,
-  .card_container {
-    max-width: 100%;
-  }
-}
-/* Medium devices (desktops, 992px and up) */
-@media (min-width: 992px) {
-  #homepage .container-fluid {
-    max-width: 80%;
-  }
-}
-
-/* Animations */
 @keyframes shake {
   0% {
     transform: translate(1px, 1px) rotate(0deg);
