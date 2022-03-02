@@ -24,6 +24,10 @@
   --gr: #8DF25E;
 }
 
+* {
+  font-family: "Dosis", "Roboto", sans-serif;
+}
+
 html,
 body {
   margin: 0;
