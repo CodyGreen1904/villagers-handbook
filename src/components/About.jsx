@@ -74,7 +74,12 @@ function About() {
                 <p id="cardText">Cody's Favorite Villager</p>
               </div>
               <div className="card-back">
-                <p className="aboutInfo">Cody's about info</p>
+                <p className="aboutInfo">Name: Cody Green</p>
+                <p className="aboutInfo">Species: Human</p>
+                <p className="aboutInfo">Hobby: Video Games</p>
+                <p className="aboutInfo">Personality: Cranky</p>
+                <p className="aboutInfo">Saying: "Am I Me???"</p>
+                <p className="aboutInfo">email: greencod@pdx.edu</p>
               </div>
             </div>
           </div>
@@ -89,6 +94,7 @@ function About() {
                 <p className="aboutInfo">Hobby: Hooping</p>
                 <p className="aboutInfo">Personality: Peppy</p>
                 <p className="aboutInfo">Saying: "Be here now." -Ram Dass</p>
+                <p className="aboutInfo">email: samaki2@pdx.edu</p>
               </div>
             </div>
           </div>
@@ -98,7 +104,12 @@ function About() {
                 <p id="cardText">Matthew's Favorite Villager</p>
               </div>
               <div className="card-back">
-                <p className="aboutInfo">Matthew's about info</p>
+                <p className="aboutInfo">Name: Matt Berzinskas</p>
+                <p className="aboutInfo">Species: Kangaroo</p>
+                <p className="aboutInfo">Hobby: Walking</p>
+                <p className="aboutInfo">Personality: Cranky</p>
+                <p className="aboutInfo">Saying: "A house without either a cat or a dog is a sad house indeed"</p>
+                <p className="aboutInfo">email: mberz2@pdx.edu</p>
               </div>
             </div>
           </div>
