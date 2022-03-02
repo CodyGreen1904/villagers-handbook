@@ -19,7 +19,7 @@ export default function App() {
           <Route path="/fish" element={<Fish />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
-        <Footer />
+{/*         <Footer /> */}
       </Router>
     </div>
   );

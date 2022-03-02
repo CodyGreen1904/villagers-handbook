@@ -1,19 +1,9 @@
-:root {
-  --bg2: url(../img/tom.png);
-  --bg3: url(../img/stars.png);
-  --bg4: url(../img/underwater.png);
-  --bg5: url(../img/bg_leaf_3.jpg);
-}
-
 #searchDiv {
   background: var(--bg2) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-}
-#logo {
-  height: 40px;
 }
 #searchHeader {
   padding-top: 5px;
@@ -104,7 +94,7 @@
   color: white;
   font-weight: bolder;
 }
-img {
+#searchDiv img {
   width: 250px;
   height: 250px;
   justify-self: center;
@@ -120,13 +110,13 @@ img {
   margin-top: 10px;
   max-width: 250px;
 }
-h2 {
+#searchDiv h2 {
   text-align: center;
   font-weight: bolder;
   font-size: 1.5em;
   max-width: 250px;
 }
-.innerCard {
+#searchDiv .innerCard {
   background-color: transparent;
   position: relative;
   width: 100%;
@@ -135,7 +125,7 @@ h2 {
   transition: transform 0.8s;
   transform-style: preserve-3d;
 }
-.card {
+#searchDiv .card {
   background-color: transparent;
   width: 270px;
   height: 346px;

@@ -1,6 +1,7 @@
 import React from "react"
 import vhtext from "../img/vhtext_white.png"
 import { NavLink } from "react-router-dom"
+import "../styles/navigation.css"
 
 function Navigation() {
   return (
