@@ -1,53 +1,40 @@
-import React from "react"
-import vhtext from "../img/vhtext_white.png"
-import { NavLink } from "react-router-dom"
-import "../styles/navigation.css"
+import React from "react";
+import title from "../img/vhtext_white.png";
+import "../styles/navigation.css";
+import { Navbar, Nav, Container } from "react-bootstrap";
 
 function Navigation() {
   return (
-    <div className="navigation">
-      <nav className="navbar navbar-expand navbar-dark bg-dark">
-        <div className="container">
-          <NavLink className="navbar-brand" to="/">
-            <img
-              id="logo"
-              src={vhtext}
-              alt="Logo for our the Villager's Handbook website"
-            />
-          </NavLink>
-          <div>
-            <ul className="navbar-nav ml-auto">
-              <li className="nav-item">
-                <NavLink className="nav-link" to="/about">
-                  About
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="nav-link" to="/villagers">
-                  Villagers
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="nav-link" to="/fossils">
-                  Fossils
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="nav-link" to="/fish">
-                  Fish
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="nav-link" to="/charts">
-                  Charts
-                </NavLink>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+    <div>
+      <Navbar
+        id="navbar"
+        collapseOnSelect
+        sticky="top"
+        expand="sm"
+        bg="dark"
+        variant="dark"
+        className="p-1"
+      >
+        <Navbar.Brand className="d-none d-sm-block p-3" href="#home">
+          <Nav.Link href="/">
+            <img id="logo" src={title} alt="Site logo" />
+          </Nav.Link>
+        </Navbar.Brand>
+        <Container className="p-2">
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="container-fluid">
+              <Nav.Item className="ms-auto" />
+              <Nav.Link href="/about">About</Nav.Link>
+              <Nav.Link href="/villagers">Villagers</Nav.Link>
+              <Nav.Link href="/fossils">Fossils</Nav.Link>
+              <Nav.Link href="/fish">Fish</Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
     </div>
-  )
+  );
 }
 
-export default Navigation
+export default Navigation;

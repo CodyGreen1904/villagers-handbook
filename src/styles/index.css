@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  font-family: "Dosis", sans-serif !important;
 }
 
 :root {
@@ -23,8 +24,6 @@
   --bubb: #fffae4;
   --oran: #fd9b15;
   --gr: #8df25e;
-
-  font-family: "Dosis", "Roboto", sans-serif !important;
 }
 
 html,
