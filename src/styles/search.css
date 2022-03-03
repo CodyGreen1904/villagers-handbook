@@ -18,6 +18,18 @@
   outline: auto;
   box-shadow: 5px 5px 5px 5px grey;
 }
+#alphabeticalOrderButton,
+#speciesOrderButton,
+#personalityOrderButton {
+  margin-left: 2px;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  background-color: #5020bb;
+}
+#personalityOrderButton {
+  margin-right: 2px;
+}
 #villagerTitle {
   background-color: #c9859a;
 }
@@ -53,6 +65,7 @@
   outline-color: white;
   margin-bottom: 85px;
   box-shadow: 5px 5px 5px 5px grey;
+  padding-top: 5px;
 }
 #villagerSearch,
 #fishSearch,
@@ -101,8 +114,8 @@
   border-radius: 5px;
 }
 .fishImage {
-  width: 250px;
-  height: 125px;
+  width: 250px !important;
+  height: 125px !important;
 }
 .villagerP {
   text-align: center;
@@ -159,7 +172,7 @@
   outline: auto;
 }
 .fossilCardFront {
-  background: var(--bg3);
+  background: var(--bg7);
   border: white;
   outline: auto;
   color: white;
