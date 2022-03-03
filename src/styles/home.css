@@ -1,17 +1,39 @@
 :root {
+  --home_dark: #39383d;
 }
 
 /* Default Theme - Villagers */
 .theme_villagers {
-  --home_bg: #bcf8cb;
+  --home_bg: #eafcdc;
+  --home_bg: url(../img/tom.png);
+  --home_btn: #66b888;
+  --home_btn_accent: #bcf8cb;
+  --home_textbox: #ffeab8;
+  --home_card_bg: #f2d99a;
+  --home_font: #39383d;
 }
 
-.theme_fossils {
-  --home_bg: #cfaf8e;
-}
-
+/* Theme - Fish */
 .theme_fish {
   --home_bg: #b1f5fb;
+  --home_bg: url(../img/bg_blue.png);
+  --home_btn_accent: #b8f0ed;
+  --home_btn: #1d9c9c;
+  --home_textbox: #006a84;
+  --home_font: #fffffa;
+  --home_card_bg: #e8dece;
+  --fish_card: url("../img/underwater.png");
+}
+
+/* Theme - Fossils */
+.theme_fossils {
+  --home_bg: #ffeab8;
+  --home_bg: url(../img/bg_leaf_3.jpg);
+  --home_btn: #664a44;
+  --home_btn_accent: #f0e0cc;
+  --home_textbox: #836b55;
+  --home_font: #fffffa;
+  --home_card_bg: #e8dece;
 }
 
 #homepage {
@@ -34,19 +56,28 @@
 #intro {
   height: 100%;
   max-width: 80%;
-  background-color: var(--textbox);
-  border-radius: 10px;
-  padding: 10px;
+  background-color: var(--home_textbox);
+  border-radius: 5px;
+  padding: 15px;
+  padding-bottom: 0px;
+  margin-bottom: 5px;
+}
+
+#intro p {
+  font-size: 1.15rem;
+  color: var(--home_font);
+  font-weight: lighter;
 }
 
 #enter .btn {
-  background-color: var(--green);
+  background-color: var(--home_btn);
   width: 75%;
   margin-bottom: 5px;
 }
 
 #enter .btn:hover {
-  background-color: var(--dark_green);
+  background-color: var(--home_btn_accent);
+  color: var(--home_dark);
 }
 
 #intro,
@@ -70,7 +101,7 @@
 #homepage .card_flip,
 .card-container {
   transform-style: preserve-3d;
-  transition: all 0.7s ease;
+  transition: all 0s ease;
 }
 
 #homepage .card_flip div {
@@ -94,12 +125,22 @@
 #homepage .card_back {
   grid-area: frontAndBack;
   transform: rotateY(-180deg);
-  background-color: var(--sand2);
+  background-color: var(--home_card_bg);
+  border-radius: 10px;
 }
 
 #homepage .card_front,
 #homepage .card_back {
   backface-visibility: hidden;
+}
+
+#fossil_front {
+  max-width: 80%;
+}
+
+#homepage #fish_front {
+  background: var(--bg4);
+  border: 2px solid white;
 }
 
 #homepage .card_back img {
