@@ -37,6 +37,11 @@ function Navigation() {
                   Fish
                 </NavLink>
               </li>
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/charts">
+                  Charts
+                </NavLink>
+              </li>
             </ul>
           </div>
         </div>

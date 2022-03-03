@@ -6,3 +6,4 @@ export { default as About } from "./About";
 export { default as Villagers } from "./Villagers";
 export { default as Fossils } from "./Fossils";
 export { default as Fish } from "./Fish";
+export { default as Charts } from "./Charts";

@@ -4,7 +4,7 @@ import PageNotFound from "./components/PageNotFound";
 import "./styles/index.css";
 
 //Routing imports
-import { Footer, Home, About, Villagers, Fossils, Fish } from "./components";
+import { Footer, Home, About, Villagers, Fossils, Fish, Charts } from "./components";
 
 export default function App() {
 
@@ -17,6 +17,7 @@ export default function App() {
           <Route path="/villagers" element={<Villagers />} />
           <Route path="/fossils" element={<Fossils />} />
           <Route path="/fish" element={<Fish />} />
+          <Route path="/charts" element={<Charts />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
 {/*         <Footer /> */}
