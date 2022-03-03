@@ -39,7 +39,61 @@ function Fossils() {
       test.appendChild(newCard)
     }
   }
+  const alphabeticalOrder = () => {
+    displayInfo(info)
+  }
+  function priceLowOrder() {
+    let toSort = document.getElementById("fossils").children
+    toSort = Array.prototype.slice.call(toSort, 0)
 
+    toSort.sort(function (a, b) {
+      var aord = a.getElementsByClassName("innerCard")
+      aord = aord[0].getElementsByClassName("fossilCardFront")
+      aord = aord[0].getElementsByClassName("villagerP")
+      var bord = b.getElementsByClassName("innerCard")
+      bord = bord[0].getElementsByClassName("fossilCardFront")
+      bord = bord[0].getElementsByClassName("villagerP")
+      console.log(aord)
+      if (aord[0].textContent < bord[0].textContent) {
+        return -1
+      } else {
+        return 1
+      }
+    })
+
+    var parent = document.getElementById("fossils")
+    parent.innerHTML = ""
+
+    for (var i = 0; i < toSort.length; i++) {
+      parent.append(toSort[i])
+    }
+  }
+  function priceHighOrder() {
+    let toSort = document.getElementById("fossils").children
+    toSort = Array.prototype.slice.call(toSort, 0)
+
+    toSort.sort(function (a, b) {
+      var aord = a.getElementsByClassName("innerCard")
+      aord = aord[0].getElementsByClassName("fossilCardFront")
+      aord = aord[0].getElementsByClassName("villagerP")
+      var bord = b.getElementsByClassName("innerCard")
+      bord = bord[0].getElementsByClassName("fossilCardFront")
+      bord = bord[0].getElementsByClassName("villagerP")
+      console.log(aord)
+      if (aord[0].textContent < bord[0].textContent) {
+        return 1
+      } else {
+        return -1
+      }
+    })
+
+    var parent = document.getElementById("fossils")
+    parent.innerHTML = ""
+
+    for (var i = 0; i < toSort.length; i++) {
+      parent.append(toSort[i])
+    }
+  }
   function displayInfo(data) {
     document.getElementById("fossils").innerHTML = ""
     for (let character in data) {
@@ -134,6 +188,16 @@ function Fossils() {
         </div>
         <div className="row align-items-center my-5">
           <div id="searchBarCol" className="col-lg-12">
+            <label htmlFor="alphabeticalButton">Order By: </label>
+            <button onClick={alphabeticalOrder} id="alphabeticalOrderButton">
+              Name
+            </button>
+            <button onClick={priceLowOrder} id="priceLowOrderButton">
+              Price (Low to High)
+            </button>
+            <button onClick={priceHighOrder} id="priceHighOrderButton">
+              Price (High to Low)
+            </button>
             <input
               onKeyUp={checkEnter}
               type="text"

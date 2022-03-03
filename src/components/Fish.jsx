@@ -5,9 +5,6 @@ import sad from "../img/sadisabelle.png"
 import "../styles/search.css"
 
 function Fish() {
-  let hideSearch = false
-  let hideSpecies = false
-  let hidePersonality = false
   let info = null
   const getFish = () => {
     Axios.get("https://acnhapi.com/v1/fish").then((response) => {
@@ -16,14 +13,14 @@ function Fish() {
     })
   }
   const checkEnter = (event) => {
-    if (event.code == "Enter") {
+    if (event.code === "Enter") {
       searchFish()
     }
   }
   const searchFish = () => {
     displaySearchInfo(info)
     const test = document.getElementById("fish")
-    if (test.innerHTML == "") {
+    if (test.innerHTML === "") {
       const newCard = document.createElement("div")
       newCard.setAttribute("class", "card")
       newCard.setAttribute("style", "background-color: white !important")
@@ -73,7 +70,6 @@ function Fish() {
     newI.setAttribute("src", data.image_uri)
     newI.setAttribute("class", "fishImage")
     newI.setAttribute("alt", "Image of " + data.name["name-USen"])
-    newI.setAttribute("class", "fishImage")
 
     //Build front of card
     const newF = document.createElement("div")
@@ -126,17 +122,17 @@ function Fish() {
     newP2.innerHTML = "Name: " + data.name["name-USen"]
     newB.appendChild(newP2)
 
-    const newP3 = document.createElement("h4")
+    const newP3 = document.createElement("h5")
     newP3.setAttribute("id", data.name["name-USen"] + "Shadow")
     newP3.innerHTML = "Shadow Size: " + data.shadow
     newB.appendChild(newP3)
 
-    const newP4 = document.createElement("h4")
+    const newP4 = document.createElement("h5")
     newP4.setAttribute("id", data.name["name-USen"] + "CjPrice")
     newP4.innerHTML = "Cj's Price: " + data["price-cj"] + " Bells"
     newB.appendChild(newP4)
 
-    const newP6 = document.createElement("h4")
+    const newP6 = document.createElement("h5")
     newP6.setAttribute("id", data.name["name-USen"] + "BackName")
     newP6.setAttribute("style", "margin-top: 125px")
     newP6.innerHTML = "Catch Phrase When Caught: " + data["catch-phrase"]

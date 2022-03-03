@@ -1,10 +1,26 @@
+:root {
+}
+
+/* Default Theme - Villagers */
+.theme_villagers {
+  --home_bg: #bcf8cb;
+}
+
+.theme_fossils {
+  --home_bg: #cfaf8e;
+}
+
+.theme_fish {
+  --home_bg: #b1f5fb;
+}
+
 #homepage {
   height: 100vh;
   max-height: 100%;
   overflow: auto;
-  background: var(--bg6) no-repeat center center fixed;
+  background: var(--home_bg) no-repeat center center fixed;
   background-size: cover;
-  font-family: 'Dosis', sans-serif !important;
+  font-family: "Dosis", sans-serif !important;
 }
 
 #homepage .container {
@@ -19,7 +35,6 @@
   height: 100%;
   max-width: 80%;
   background-color: var(--textbox);
-  filter: drop-shadow(1px 5px 7px #060606);
   border-radius: 10px;
   padding: 10px;
 }
@@ -34,7 +49,8 @@
   background-color: var(--dark_green);
 }
 
-#homepage #villager img,
+#intro,
+#homepage #card_big img,
 #homepage #icon img,
 #homepage #enter .btn,
 #homepage .card_back {
@@ -43,46 +59,47 @@
 
 #homepage #icon_container {
   padding-top: 30px;
+  padding-bottom: 20px;
 }
 
 /* Animation for cards */
-#homepage .card_flip_container {
+#homepage .card_container {
   perspective: 1000;
-  padding: 10px;
 }
 
-#homepage .card_flip_container {
-  display: flex;
-  justify-content: center;
-}
-
-#homepage .card_flipper {
+#homepage .card_flip,
+.card-container {
   transform-style: preserve-3d;
-  display: flex;
-  align-items: stretch;
-  width: 80%;
-  transition: transform 0.6s;
-  will-change: transform;
+  transition: all 0.7s ease;
 }
-#homepage .card_flip_container:hover .card_flipper {
-  transform: rotateY(180deg);
+
+#homepage .card_flip div {
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
 }
+
+#homepage .card_flip {
+  display: grid;
+  grid-template: 1fr/1fr;
+  grid-template-areas: "frontAndBack";
+  transform-style: preserve-3d;
+  transition: all 0.7s ease;
+}
+
+#homepage .card_front {
+  grid-area: frontAndBack;
+  background-color: none;
+}
+
+#homepage .card_back {
+  grid-area: frontAndBack;
+  transform: rotateY(-180deg);
+  background-color: var(--sand2);
+}
+
 #homepage .card_front,
 #homepage .card_back {
-  width: 100%;
-  flex: 0 0 auto;
   backface-visibility: hidden;
-  font-size: 1.25vh;
-}
-#homepage .card_back {
-  transform: rotateY(180deg);
-  margin-left: -100%;
-  border-radius: 8px;
-  background-color: aliceblue;
-}
-
-#homepage .card_back p {
-  margin: 0.5em;
 }
 
 #homepage .card_back img {
@@ -90,17 +107,32 @@
   margin-bottom: 10px;
 }
 
-@media screen and (max-width: 768px) {
+#homepage .card_back p {
+  margin: 0.2em;
+}
+
+#homepage .card_container:hover .card_flip {
+  transform: rotateY(180deg);
+}
+
+@media screen and (max-width: 992px) {
   #homepage .card_flipper {
-    width: 60%;
+    width: 70%;
   }
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 768px) {
   #homepage .card_flipper {
-    width: 80%;
+    width: 50%;
   }
 }
+
+#drop_btn {
+  width: 100%;
+  border: none;
+  background: transparent;
+}
+
 /* Animation for ICONS */
 #homepage #icon_container img:hover {
   animation: shake 0.5s;
