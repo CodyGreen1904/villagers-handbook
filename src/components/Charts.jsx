@@ -18,67 +18,51 @@ const Charts = () => {
     const [charSpeciesList, setCharSpeciesList] = useState([]);
     const [charCount, setCharCount] = useState([]);
 
-    const lineChart = () => {
-        let charBday = [];
-        let monthsList = [];
-        let charBdayCount = [];
-        let bday = null;
+    
+    const barChart = () => {
+        let charPers = [];
+        let charPersList = [];
+        let charPersCount = [];
         Axios.get("https://acnhapi.com/v1/villagers").then(response => {
-            monthsList = [
-                'January', 'February', 'March', 'April',
-                'May', 'June', 'July', 'August', 'September',
-                'October', 'November', 'December'
+            charPersList = [
+                'Cranky', 'Jock', 'Lazy', 'Normal',
+                'Peppy', 'Uchi', 'Smug', 'Snooty'
             ]
-            for (var n = 0; n<12; ++n) {
-                charBdayCount.push(0);
+            for (var n = 0; n<8; ++n) {
+                charPersCount.push(0);
             }
             for(let character in response.data){
-                //let data1 = response.data[character];
-                bday = response.data[character].birthday;
-                var mon = bday.split("/").pop();
-                console.log(mon);
-                charBday.push(mon);
+                charPers.push(response.data[character].personality);
             }
-            for(var i = 0; i < charBday.length; ++i) {
-                for (var j = 0; j<12; ++j) {
-                    if((charBday[i] - 1) === j) {
-                        charBdayCount[j]++;
+            for(var i = 0; i < charPers.length; ++i) {
+                for (var j = 0; j<8; ++j) {
+                    if(charPers[i] === charPersList[j]) {
+                        charPersCount[j]++;
                     }
                 }
             }
-            setLineChartData({
-                labels: monthsList,
+            setBarChartData({
+                labels: charPersList,
                 datasets: [
                     {
-                        label: "Villager Birthdays",
-                        data: charBdayCount,
-                        fill: true,
+                        label: "Villagers",
+                        data: charPersCount,
                         backgroundColor: ['rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(60, 200, 70, 1)',
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(60, 200, 70, 1)',
-                            'rgba(255, 99, 132, 1)',
                             'rgba(54, 162, 235, 1)',
                             'rgba(255, 206, 86, 1)',
                             'rgba(60, 200, 70, 1)'
                             ],
-                        tension: 0.1,
-                        pointRadius: 5
-
+                        borderWidth: 1
                     }
                 ]
             });
-            setHaveLineData(true);
+            setHaveBarData(true);
         })
         .catch(error => {
             console.log(error);
-            setHaveLineData(false);
+            setHaveBarData(false);
         });
-        console.log(monthsList, charBdayCount);
+        console.log(charPersList, charPersCount);
     }
 
     const chart = () => {
@@ -172,51 +156,67 @@ const Charts = () => {
         });
         console.log(charSpeciesList, charCount);
     };
-
-    const barChart = () => {
-        let charPers = [];
-        let charPersList = [];
-        let charPersCount = [];
+    const lineChart = () => {
+        let charBday = [];
+        let monthsList = [];
+        let charBdayCount = [];
+        let bday = null;
         Axios.get("https://acnhapi.com/v1/villagers").then(response => {
-            charPersList = [
-                'Cranky', 'Jock', 'Lazy', 'Normal',
-                'Peppy', 'Uchi', 'Smug', 'Snooty'
+            monthsList = [
+                'January', 'February', 'March', 'April',
+                'May', 'June', 'July', 'August', 'September',
+                'October', 'November', 'December'
             ]
-            for (var n = 0; n<8; ++n) {
-                charPersCount.push(0);
+            for (var n = 0; n<12; ++n) {
+                charBdayCount.push(0);
             }
             for(let character in response.data){
-                charPers.push(response.data[character].personality);
+                //let data1 = response.data[character];
+                bday = response.data[character].birthday;
+                var mon = bday.split("/").pop();
+                console.log(mon);
+                charBday.push(mon);
             }
-            for(var i = 0; i < charPers.length; ++i) {
-                for (var j = 0; j<8; ++j) {
-                    if(charPers[i] === charPersList[j]) {
-                        charPersCount[j]++;
+            for(var i = 0; i < charBday.length; ++i) {
+                for (var j = 0; j<12; ++j) {
+                    if((charBday[i] - 1) === j) {
+                        charBdayCount[j]++;
                     }
                 }
             }
-            setBarChartData({
-                labels: charPersList,
+            setLineChartData({
+                labels: monthsList,
                 datasets: [
                     {
-                        label: "Villagers",
-                        data: charPersCount,
+                        label: "Villager Birthdays",
+                        data: charBdayCount,
+                        fill: true,
                         backgroundColor: ['rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(60, 200, 70, 1)',
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(60, 200, 70, 1)',
+                            'rgba(255, 99, 132, 1)',
                             'rgba(54, 162, 235, 1)',
                             'rgba(255, 206, 86, 1)',
                             'rgba(60, 200, 70, 1)'
                             ],
-                        borderWidth: 1
+                        tension: 0.1,
+                        pointRadius: 5
+
                     }
                 ]
             });
-            setHaveBarData(true);
+            setHaveLineData(true);
         })
         .catch(error => {
             console.log(error);
-            setHaveBarData(false);
+            setHaveLineData(false);
         });
-        console.log(charPersList, charPersCount);
+        console.log(monthsList, charBdayCount);
     }
     useEffect(() => {
         lineChart();
@@ -229,54 +229,66 @@ const Charts = () => {
     }
     else {
         return (
-            <div>
+            <div id="chartPage">
                 <Navigation />
-                <div id="chartsDiv" className="ChartsPage">
-                    <div className="container">
-                        <div className="row align-items-center">
-                            <div id="chartsTitle" className="col-lg-12">
-                                <h1 id="chartsHeader">Villager Charts</h1>
-                            </div>
-                            <div id="speciesTitle" className="col-lg-12">
-                                <h3 id="speciesHeader">Species</h3>
-                            </div>
-                            <div id="birthdayChart" className="col-md-4">
-                                <h3 id="bdayTitle">Birthdays</h3>
-                                <Line 
-                                    data={lineChartData}
-                                    height={"200px"}
-                                    options={{
-                                        plugins: {
-                                            legend: {
-                                                display: false
-                                            }
-                                        },
-                                        scale: {
-                                            x: {
-                                                ticks: {
-                                                    font: {
-                                                        weight: "bolder"
-                                                    }
+                <div id="chartsTitle" className="col-lg-12">
+                    <h1 id="chartsHeader">Villager Charts</h1>
+                </div>
+                <div id="chartContainer" className="container">
+                    <div className="row align-items-center">
+                        <div id="personalityChart" className="col-md-4">
+                            <h3 id="persTitle">Personalities</h3>
+                            <Bar 
+                                data={barChartData}
+                                height={"200px"}
+                                options={{
+                                    scales: {
+                                        x: {
+                                            ticks: {
+                                                font: {
+                                                    weight: "bolder"
                                                 }
                                             }
                                         }
-                                        
-                                    }}
-                                    />
-                            </div>
-                            <div id="speciesChart" className="col-md-4">
-                                
+                                    },
+                                    plugins: {
+                                        legend: {
+                                            display: false,
+                                            labels: {
+                                                font: {
+                                                    weight: "bold"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }} />
+                        </div>
+                        
+                        <div id="speciesChart" className="col-md-4">
+                            <h3 id="speciesTitle">Species</h3>
+                            <div>
                                 <Pie 
                                     data={chartData} 
                                     height={"500px"}
                                     options={{ 
+                                        title: {
+                                            display: true,
+                                            text: 'Species'
+                                        },
+                                        responsive: true,
                                         plugins: {
                                             legend: {
+                                                position: 'bottom',
                                                 labels: {
                                                     font: {
                                                         weight: "bolder"
                                                     }
                                                 }
+                                            },
+                                            title: {
+                                                display: true,
+                                                text: "Species",
+                                                position: 'top'
                                             }
                                         },
                                         maintainAspectRatio: false,
@@ -303,36 +315,36 @@ const Charts = () => {
                                     }}
                                 />
                             </div>
-                            <div id="personalityChart" className="col-md-4">
-                                <h3 id="persTitle">Personalities</h3>
-                                <Bar 
-                                    data={barChartData}
-                                    height={"200px"}
-                                    options={{
-                                        scales: {
-                                            x: {
-                                                ticks: {
-                                                    font: {
-                                                        weight: "bolder"
-                                                    }
-                                                }
-                                            }
-                                        },
-                                        plugins: {
-                                            legend: {
-                                                display: false,
-                                                labels: {
-                                                    font: {
-                                                        weight: "bold"
-                                                    }
+                            
+                        </div>
+                        
+                        <div id="birthdayChart" className="col-md-4">
+                            <h3 id="bdayTitle">Birthdays</h3>
+                            <Line 
+                                data={lineChartData}
+                                height={"200px"}
+                                options={{
+                                    plugins: {
+                                        legend: {
+                                            display: false
+                                        }
+                                    },
+                                    scale: {
+                                        x: {
+                                            ticks: {
+                                                font: {
+                                                    weight: "bolder"
                                                 }
                                             }
                                         }
-                                    }} />
-                            </div>
+                                    }
+                                    
+                                }}
+                                />
                         </div>
                     </div>
                 </div>
+                
             </div>
         );
     }

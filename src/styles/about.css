@@ -4,13 +4,14 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    height: 200vh;
+    max-height: 100%;
 }
 
 #aboutTitle {
     text-align: center;
     font-size: 3.25em;
     font-weight: bolder;
-    -webkit-text-stroke: 2px var(--sand2);
     color: var(--colblue2);
 }
 
@@ -25,6 +26,7 @@
     background-color: var(--bubb);
     padding: 20px;
     border-radius: 30px;
+    margin-top: 20px;
     margin-bottom: 20px;
     border: 3px;
     border-style: solid;
@@ -117,10 +119,20 @@
 .aboutInfo {
     margin-left: 10px;
     margin-right: 10px;
+    font-weight: bold;
 }
 
 @media screen and (min-width: 776px) {
+    #cards {
+        padding-bottom: 20px;
+    }
+
+    #aboutDiv {
+        height: 100vh;
+    }
+
     .card-flip {
         justify-content: center;
+        height: 310px;
     }
 }
