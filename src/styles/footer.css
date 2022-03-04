@@ -23,3 +23,8 @@
   padding: 0;
   margin: 0;
 }
+
+#footer_button {
+  background-color: var(--home_btn_accent);
+  color: var(--home_btn_alt);
+}

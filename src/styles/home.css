@@ -2,17 +2,53 @@
   --home_dark: #39383d;
 }
 
+/* Default Theme - Villagers */
+.theme_villagers {
+  --home_bg: #eafcdc;
+  --home_btn: #66b888;
+  --home_font: #39383d;
+  --home_btn_accent: #bcf8cb;
+  --home_btn_pri: #fffffa;
+  --home_btn_alt: #39383d;
+  --home_textbox: #ffeab8;
+  --home_card_bg: #f2d99a;
+  --home_font: #39383d;
+}
+
+/* Theme - Fish */
+.theme_fish {
+  --home_bg: #b1f5fb;
+  --home_btn_accent: #b8f0ed;
+  --home_btn: #49a5b2;
+  --home_btn_pri: #fffffa;
+  --home_btn_alt: #39383d;
+  --home_textbox: #006a84;
+  --home_font: #fffffa;
+  --home_card_bg: #e8dece;
+  --fish_card: url("../img/underwater.png");
+}
+
+/* Theme - Fossils */
+.theme_fossils {
+  --home_bg: lightgray;
+  --home_btn: #ffeab8;
+  --home_btn_pri: #39383d;
+  --home_btn_alt: #fffffa;
+  --home_btn_accent: #5b4e4b;
+  --home_textbox: #836b55;
+  --home_font: #fffffa;
+  --home_card_bg: #e8dece;
+}
+
 #homepage {
-  height: 100vh;
-  max-height: 100%;
-  overflow: auto;
   background: var(--home_bg) no-repeat center center fixed;
   background-size: cover;
   font-family: "Dosis", sans-serif !important;
 }
 
 #homepage .container {
-  max-height: 100%;
+  margin-bottom: 2em;
+  overflow: hidden;
 }
 
 #title img {
@@ -39,18 +75,19 @@
   background-color: var(--home_btn);
   width: 75%;
   margin-bottom: 5px;
+  color: var(--home_btn_pri);
 }
 
 #enter .btn:hover {
   background-color: var(--home_btn_accent);
-  color: var(--home_dark);
+  color: var(--home_btn_alt);
 }
 
 #intro,
 #homepage #card_big img,
 #homepage #icon img,
 #homepage #enter .btn,
-#homepage .card_back {
+#homepage .back {
   filter: drop-shadow(1px 5px 7px #060606);
 }
 
@@ -59,79 +96,69 @@
   padding-bottom: 20px;
 }
 
-/* Animation for cards */
-#homepage .card_container {
+/*  */
+.flip-container {
   perspective: 1000;
 }
-
-#homepage .card_flip,
-.card-container {
+.flipper {
   transform-style: preserve-3d;
-  transition: all 0s ease;
+  display: flex;
+  align-items: stretch;
+  transition: transform 0.6s;
+  will-change: transform;
 }
-
-#homepage .card_flip div {
-  backface-visibility: hidden;
-  transform-style: preserve-3d;
-}
-
-#homepage .card_flip {
-  display: grid;
-  grid-template: 1fr/1fr;
-  grid-template-areas: "frontAndBack";
-  transform-style: preserve-3d;
-  transition: all 0.7s ease;
-}
-
-#homepage .card_front {
-  grid-area: frontAndBack;
-  background-color: none;
-}
-
-#homepage .card_back {
-  grid-area: frontAndBack;
-  transform: rotateY(-180deg);
-  background-color: var(--home_card_bg);
-  border-radius: 10px;
-}
-
-#homepage .card_front,
-#homepage .card_back {
-  backface-visibility: hidden;
-}
-
-#fossil_front {
-  max-width: 80%;
-}
-
-#homepage #fish_front {
-  background: var(--bg4);
-  border: 2px solid white;
-}
-
-#homepage .card_back img {
-  height: 80px;
-  margin-bottom: 10px;
-}
-
-#homepage .card_back p {
-  margin: 0.2em;
-}
-
-#homepage .card_container:hover .card_flip {
+.flip-container:hover .flipper {
   transform: rotateY(180deg);
 }
-
-@media screen and (max-width: 992px) {
-  #homepage .card_flipper {
-    width: 70%;
-  }
+.front,
+.back {
+  width: 100%;
+  flex: 0 0 auto;
+  backface-visibility: hidden;
 }
 
-@media screen and (max-width: 768px) {
-  #homepage .card_flipper {
-    width: 50%;
-  }
+.front img {
+  max-height: 200px;
+}
+
+.back {
+  height: 200px;
+  transform: rotateY(180deg);
+  margin-left: -100%;
+  background: none;
+  margin-right: 100px;
+  display: flex;
+  justify-content: center;
+  font-size: 0.9rem;
+}
+
+.back p {
+  margin: 10px;
+}
+
+.back img {
+  width: 80px;
+}
+
+.back_card {
+  width: 225px;
+  min-height: 100%;
+  overflow-y: auto;
+  background-color: var(--home_textbox);
+  color: var(--home_font);
+}
+
+.back_card::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.back_card::-webkit-scrollbar {
+  width: 6px;
+  background-color: transparent;
+}
+
+.back_card::-webkit-scrollbar-thumb {
+  background-color: var(--home_btn);
 }
 
 #drop_btn {

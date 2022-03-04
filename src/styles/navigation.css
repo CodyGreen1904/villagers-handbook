@@ -11,3 +11,8 @@
 #nav_text {
   color: var(--home_font) !important;
 }
+
+#nav_text:hover {
+  background-color: var(--home_btn_accent);
+  color: var(--home_btn_alt);
+}

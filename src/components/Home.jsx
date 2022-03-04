@@ -4,7 +4,18 @@ import "../styles/home.css";
 import title from "../img/title.png";
 import blathers from "../img/blathers.png";
 
+/**
+ * Glass component for application homepage.
+ * Calls to the ANCH API and renders different imagery based
+ * on the currently selected user theme. Adjusts routing to
+ * inner pages based on the selected theme.
+ */
 class Home extends React.Component {
+  /**
+   * Constructor for the class component.
+   * Sets default state and sets default page theme.
+   * @param {object} props
+   */
   constructor(props) {
     super(props);
 
@@ -29,24 +40,39 @@ class Home extends React.Component {
       currentCards: [],
       currentIcons: [],
 
-      theme: "villagers",
+      theme: "villagers"
     };
 
     document.body.classList.add("theme_villagers");
   }
 
+  /**
+   * Method to generate a random number.
+   * Returns a number contained in a user defined max.
+   * @param {int} max Max number.
+   */
   randNum(max) {
     return Math.floor(Math.random() * max);
   }
 
+  /**
+   * Fetches data when the component mounts.
+   */
   async componentDidMount() {
     this.fetchData(this.state.theme);
   }
 
-  componentDidUpdate() {
-    console.log("Update");
-  }
+  /**
+   * Handles action on component updates.
+   */
+  componentDidUpdate() {}
 
+  /**
+   * Asynchronous method for handling data. Takes the
+   * user defined tag and fetches from the API based
+   * on the parameter. Sets the state accordingly.
+   * @param {String} tag
+   */
   async fetchData(tag) {
     console.log("Loading " + tag);
     let urls = [];
@@ -72,7 +98,7 @@ class Home extends React.Component {
               currentCards: response.slice(0, 2),
               currentIcons: response.slice(2),
               villagerLoaded: true,
-              theme: "villagers",
+              theme: "villagers"
             });
           } catch (error) {
             console.log("Error", error);
@@ -100,7 +126,7 @@ class Home extends React.Component {
               currentCards: response.slice(0, 2),
               currentIcons: response.slice(2),
               fishLoaded: true,
-              theme: "fish",
+              theme: "fish"
             });
           } catch (error) {
             console.log("Error", error);
@@ -131,7 +157,7 @@ class Home extends React.Component {
                   data[rand[3]],
                   data[rand[4]],
                   data[rand[5]],
-                  data[rand[6]],
+                  data[rand[6]]
                 ],
                 currentCards: [data[rand[0]], data[rand[1]]],
                 currentIcons: [
@@ -139,10 +165,10 @@ class Home extends React.Component {
                   data[rand[3]],
                   data[rand[4]],
                   data[rand[5]],
-                  data[rand[6]],
+                  data[rand[6]]
                 ],
                 fossilLoaded: true,
-                theme: "fossils",
+                theme: "fossils"
               });
             });
         } catch (error) {
@@ -154,6 +180,10 @@ class Home extends React.Component {
     }
   }
 
+  /**
+   * Changes the theme according to user defined tag.
+   * @param {String} newTheme
+   */
   changeTheme(newTheme) {
     document.body.classList.remove(`theme_${this.state.theme}`);
     document.body.classList.add(`theme_${newTheme}`);
@@ -166,7 +196,7 @@ class Home extends React.Component {
           console.log("Setting state to villagers.");
           this.setState({
             currentCards: this.state.villagerCards,
-            currentIcons: this.state.villagerIcons,
+            currentIcons: this.state.villagerIcons
           });
         } else {
           console.log("Calling to fetch...");
@@ -179,7 +209,7 @@ class Home extends React.Component {
           console.log("Setting state to fish.");
           this.setState({
             currentCards: this.state.fishCards,
-            currentIcons: this.state.fishIcons,
+            currentIcons: this.state.fishIcons
           });
         } else {
           console.log("Calling to fetch...");
@@ -192,7 +222,7 @@ class Home extends React.Component {
           console.log("Setting state to fossils.");
           this.setState({
             currentCards: this.state.fossilCards,
-            currentIcons: this.state.fossilIcons,
+            currentIcons: this.state.fossilIcons
           });
         } else {
           console.log("Calling to fetch...");
@@ -204,10 +234,17 @@ class Home extends React.Component {
     }
   }
 
+  /**
+   * Method for returning a conditional link based on
+   * the current theme.
+   */
   conditionalLink() {
     return `/${this.state.theme}`;
   }
 
+  /**
+   * Rendering of the page.
+   */
   render() {
     function Logo() {
       return <img className="img-fluid" src={title} alt="Villagers HandBook" />;
@@ -231,16 +268,23 @@ class Home extends React.Component {
     function Villager(state) {
       if (villagerLoaded) {
         return (
-          <div className="p-3 card_flip">
-            <div className="card_front">
-              <img
-                className="img-fluid rounded mt-lg-4"
-                src={state.villager.image_uri}
-                alt="Random Villager"
-              />
-            </div>
-            <div className="card_back">
-              <VillagerBack villager={state.villager} />
+          <div
+            class="flip-container"
+            ontouchstart="this.classList.toggle('hover');"
+          >
+            <div class="flipper">
+              <div class="front">
+                <img
+                  className="img-fluid rounded"
+                  src={state.villager.image_uri}
+                  alt="Random Villager"
+                />
+              </div>
+              <div class="back">
+                <div class="back_card">
+                  <VillagerBack villager={state.villager} />
+                </div>
+              </div>
             </div>
           </div>
         );
@@ -250,12 +294,14 @@ class Home extends React.Component {
     /* Back of the villager card */
     function VillagerBack(state) {
       return (
-        <div id="villager_back" className="container-fluid">
+        <div className="container-fluid">
           <p>Name: {state.villager.name["name-USen"]}</p>
           <p>Species: {state.villager.species}</p>
+          <p>Gender: {state.villager.gender}</p>
           <p>Personality: {state.villager.personality}</p>
           <img src={state.villager.icon_uri} alt="Villager Icon" />
-          <p>Birthday: {state.villager["birthday-string"]}</p>
+          <p>Species: {state.villager.species}</p>
+          <p>Catch Phrase: {state.villager["catch-phrase"]}</p>
         </div>
       );
     }
@@ -263,16 +309,23 @@ class Home extends React.Component {
     /* Basic fish card */
     function Fish(state) {
       return (
-        <div className="p-3 card_flip">
-          <div id="fish_front" className="card_front">
-            <img
-              className="img-fluid rounded mt-lg-4"
-              src={state.fish.icon_uri}
-              alt="Random Fish"
-            />
-          </div>
-          <div className="card_back">
-            <FishBack fish={state.fish} />
+        <div
+          class="flip-container"
+          ontouchstart="this.classList.toggle('hover');"
+        >
+          <div class="flipper">
+            <div class="front">
+              <img
+                className="img-fluid rounded mt-lg-4"
+                src={state.fish.icon_uri}
+                alt="Random Fish"
+              />
+            </div>
+            <div class="back">
+              <div class="back_card">
+                <FishBack fish={state.fish} />
+              </div>
+            </div>
           </div>
         </div>
       );
@@ -282,11 +335,16 @@ class Home extends React.Component {
     function FishBack(state) {
       if (fishLoaded) {
         return (
-          <div id="villager_back" className="container-fluid">
+          <div className="container-fluid">
             <p>Name: {state.fish.name["name-USen"]}</p>
+            <img src={state.fish.image_uri} alt="Villager Icon" />
+            <p>Availabile (n): {state.fish.availability["month-northern"]}</p>
+            <p>Availabile (s): {state.fish.availability["month-southern"]}</p>
             <p>Available in: {state.fish.availability.location}</p>
             <p>Rarity: {state.fish.availability.rarity}</p>
             <p>Price: {state.fish.price}</p>
+            <p>Catch Phrase:{state.fish["catch-phrase"]} </p>
+            <p>Museum Phrase: {state.fish["museum-phrase"]}</p>
           </div>
         );
       } else return null;
@@ -296,18 +354,24 @@ class Home extends React.Component {
     function Fossil(state) {
       if (fossilLoaded) {
         return (
-          <div className="p-3 card_flip">
-            <div className="card_front">
-              <img
-                id="fossil_front"
-                className="img-fluid rounded mt-lg-4"
-                src={blathers}
-                //src={state.fossil.image_uri}
-                alt="Random Fossil"
-              />
-            </div>
-            <div className="card_back">
-              <FossilBack fossil={state.fossil} />
+          <div
+            class="flip-container"
+            ontouchstart="this.classList.toggle('hover');"
+          >
+            <div class="flipper">
+              <div class="front">
+                <img
+                  id="fossil_front"
+                  className="img-fluid rounded mt-lg-4"
+                  src={blathers}
+                  alt="Random Fossil"
+                />
+              </div>
+              <div class="back">
+                <div class="back_card">
+                  <FossilBack fossil={state.fossil} />
+                </div>
+              </div>
             </div>
           </div>
         );
@@ -322,6 +386,7 @@ class Home extends React.Component {
             <p>Name: {state.fossil.name["name-USen"]}</p>
             <img alt="Random Fossil" src={state.fossil.image_uri} />
             <p>Price: {state.fossil.price}</p>
+            <p>Museum Phrase: {state.fossil["museum-phrase"]}</p>
           </div>
         );
       } else return null;
@@ -356,7 +421,11 @@ class Home extends React.Component {
     return (
       <div
         id="homepage"
-        className="border d-flex align-items-center justify-content-center mt-auto"
+        className="border d-flex 
+        align-items-center 
+        justify-content-center 
+        mt-auto
+        min-vh-100"
       >
         <div className="container text-center">
           <div className="row d-flex align-items-center justify-content-around">
