@@ -17,7 +17,7 @@ function Footer() {
       <Modal size="lg" show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Modal heading
+            Contact us!
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -44,31 +44,18 @@ function Footer() {
         <Container className="col-12 justify-content-center">
           <div id="footer_container">
             <Nav>
-              <ul class="list-group list-group-horizontal text-center">
-                <li class="list-group-item">
-                  {" "}
+              <ul className="list-group list-group-horizontal text-center">
+                <li className="list-group-item">
+                  <Button id="footer_btn" onClick={handleShow}>
+                    Theme
+                  </Button>
+                </li>
+                <li className="list-group-item">
                   <Button id="footer_btn">
-                    <Link to="/about">
-                      <button
-                        id="footer_btn"
-                        type="button"
-                        className="btn btn-secondary"
-                      >
-                        About
-                      </button>
+                    {/**TODO: Add github link */}
+                    <Link to="#" id="footer_btn">
+                      Github
                     </Link>
-                  </Button>
-                </li>
-                <li class="list-group-item">
-                  {" "}
-                  <Button id="footer_btn" onClick={handleShow}>
-                    Contact
-                  </Button>
-                </li>
-                <li class="list-group-item">
-                  {" "}
-                  <Button id="footer_btn" onClick={handleShow}>
-                    Github
                   </Button>
                 </li>
               </ul>

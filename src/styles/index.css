@@ -41,6 +41,7 @@
   --home_textbox: #ffeab8;
   --home_card_bg: #f2d99a;
   --home_font: #39383d;
+  --home_font_alt: #fffffa;
   --inversion: invert(80);
 }
 
@@ -68,7 +69,9 @@
   --home_btn_pri: #0f1e21;
   --home_btn_alt: #563e27;
   --home_textbox: #5b5cc8;
-  --home_font: #fffbdf;
+  --home_font: #fffffa;
+  --home_font_alt: #39383d;
+  --home_font_alt: #fffffa;
   --home_card_bg: #e8dece;
   --inversion: invert(0%);
 }

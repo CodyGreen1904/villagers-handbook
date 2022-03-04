@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import title from "../img/vhtext_white.png";
 import "../styles/navigation.css";
 import { Navbar, Nav, Container } from "react-bootstrap";
 
 function Navigation(props) {
+  useEffect(() => {
+    let localStorageTheme = localStorage.getItem("theme");
+    console.log("Navbar theme: " + localStorageTheme);
+    if (localStorageTheme !== null) {
+      document.body.className = `theme_${localStorageTheme}`;
+    } else {
+      document.body.className = `theme_villagers`;
+    }
+  }, []);
+
   return (
     <div>
       <Navbar

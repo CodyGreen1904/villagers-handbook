@@ -8,6 +8,7 @@
 #footer_container {
   border-radius: 5px;
   filter: drop-shadow(5px 5px 11px #060606);
+  border: 1px solid var(--home_font);
 }
 
 #footer li,
@@ -16,6 +17,7 @@
   color: var(--home_font);
   border: none;
   background: none;
+  text-decoration: none;
 }
 
 #footer_btn {
@@ -24,7 +26,7 @@
   margin: 0;
 }
 
-#footer_button {
-  background-color: var(--home_btn_accent);
-  color: var(--home_btn_alt);
+#footer_btn:hover {
+  color: var(--home_font_alt);
+  background-color: var(--home_font) !important;
 }

@@ -1,6 +1,7 @@
 #navbar {
   background-color: var(--home_textbox) !important;
   color: var(--home_font) !important;
+  border-bottom: 1px solid var(--home_font);
 }
 
 #logo {
@@ -9,10 +10,10 @@
 }
 
 #nav_text {
-  color: var(--home_font) !important;
+  color: var(--home_font);
 }
 
 #nav_text:hover {
-  background-color: var(--home_btn_accent);
-  color: var(--home_btn_alt);
+  color: var(--home_font_alt);
+  background-color: var(--home_font);
 }
