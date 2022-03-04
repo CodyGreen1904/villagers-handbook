@@ -27,7 +27,6 @@ export default function App() {
           <Route path="/charts" element={<Charts />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
-        <Footer />
       </Router>
     </div>
   );
