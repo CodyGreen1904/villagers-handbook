@@ -23,6 +23,7 @@ function Fish() {
     if (test.innerHTML === "") {
       const newCard = document.createElement("div")
       newCard.setAttribute("class", "card")
+      newCard.setAttribute("id", "sadddd")
       newCard.setAttribute("style", "background-color: white !important")
 
       const newP = document.createElement("p")
@@ -58,7 +59,7 @@ function Fish() {
   function displayFish(data) {
     //Build the outer card
     const newCard = document.createElement("div")
-    newCard.setAttribute("id", data.name["name-USen"] + "Card")
+    newCard.setAttribute("id", data.name["name-USen"] + "-Card")
     newCard.setAttribute("class", "card")
     //Build inner card
     const newInner = document.createElement("div")

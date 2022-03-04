@@ -23,6 +23,7 @@ function Fossils() {
     if (test.innerHTML == "") {
       const newCard = document.createElement("div")
       newCard.setAttribute("class", "card")
+      newCard.setAttribute("id", "sadddd")
       newCard.setAttribute("style", "background-color: white !important")
 
       const newP = document.createElement("p")
@@ -40,9 +41,35 @@ function Fossils() {
     }
   }
   const alphabeticalOrder = () => {
-    displayInfo(info)
+    var parent = document.getElementById("fossils")
+    if (parent.firstChild.id == "sadddd") {
+      displayInfo(info)
+    }
+    let toSort = document.getElementById("fossils").children
+    toSort = Array.prototype.slice.call(toSort, 0)
+
+    toSort.sort(function (a, b) {
+      var aord = a.id.split("-")[0]
+      var bord = b.id.split("-")[0]
+      if (aord.toLowerCase() < bord.toLowerCase()) {
+        return -1
+      } else {
+        return 1
+      }
+    })
+
+    parent = document.getElementById("fossils")
+    parent.innerHTML = ""
+
+    for (var i = 0; i < toSort.length; i++) {
+      parent.append(toSort[i])
+    }
   }
   function priceLowOrder() {
+    var parent = document.getElementById("fossils")
+    if (parent.firstChild.id == "sadddd") {
+      displayInfo(info)
+    }
     let toSort = document.getElementById("fossils").children
     toSort = Array.prototype.slice.call(toSort, 0)
 
@@ -53,7 +80,6 @@ function Fossils() {
       var bord = b.getElementsByClassName("innerCard")
       bord = bord[0].getElementsByClassName("fossilCardFront")
       bord = bord[0].getElementsByClassName("villagerP")
-      console.log(aord)
       if (aord[0].textContent < bord[0].textContent) {
         return -1
       } else {
@@ -61,7 +87,7 @@ function Fossils() {
       }
     })
 
-    var parent = document.getElementById("fossils")
+    parent = document.getElementById("fossils")
     parent.innerHTML = ""
 
     for (var i = 0; i < toSort.length; i++) {
@@ -69,6 +95,10 @@ function Fossils() {
     }
   }
   function priceHighOrder() {
+    var parent = document.getElementById("fossils")
+    if (parent.firstChild.id == "sadddd") {
+      displayInfo(info)
+    }
     let toSort = document.getElementById("fossils").children
     toSort = Array.prototype.slice.call(toSort, 0)
 
@@ -79,7 +109,6 @@ function Fossils() {
       var bord = b.getElementsByClassName("innerCard")
       bord = bord[0].getElementsByClassName("fossilCardFront")
       bord = bord[0].getElementsByClassName("villagerP")
-      console.log(aord)
       if (aord[0].textContent < bord[0].textContent) {
         return 1
       } else {
@@ -87,7 +116,7 @@ function Fossils() {
       }
     })
 
-    var parent = document.getElementById("fossils")
+    parent = document.getElementById("fossils")
     parent.innerHTML = ""
 
     for (var i = 0; i < toSort.length; i++) {
@@ -113,7 +142,7 @@ function Fossils() {
   function displayFossil(data) {
     //Build the outer card
     const newCard = document.createElement("div")
-    newCard.setAttribute("id", data.name["name-USen"] + "Card")
+    newCard.setAttribute("id", data.name["name-USen"] + "-Card")
     newCard.setAttribute("class", "card")
     //Build inner card
     const newInner = document.createElement("div")
@@ -153,7 +182,7 @@ function Fossils() {
     )
     newB.setAttribute("class", "cardBack")
 
-    const newP2 = document.createElement("h4")
+    const newP2 = document.createElement("h5")
     newP2.setAttribute("id", data.name["name-USen"] + "BackName")
     newP2.innerHTML =
       "Name: " +

@@ -19,6 +19,7 @@ function Villagers() {
       const newCard = document.createElement("div")
       newCard.setAttribute("class", "card")
       newCard.setAttribute("style", "background-color: white !important")
+      newCard.setAttribute("id", "sadddd")
 
       const newP = document.createElement("p")
       newP.innerHTML = "No Results"
@@ -53,14 +54,47 @@ function Villagers() {
   }
 
   const alphabeticalOrder = () => {
-    displayInfo(info)
+    var parent = document.getElementById("villagers")
+    if (parent.firstChild.id == "sadddd") {
+      displayInfo(info)
+    }
+
     let toSort = document.getElementById("villagers").children
     toSort = Array.prototype.slice.call(toSort, 0)
 
     toSort.sort(function (a, b) {
       var aord = a.id.split("-")[0]
       var bord = b.id.split("-")[0]
-      if (aord < bord) {
+      if (aord.toLowerCase() < bord.toLowerCase()) {
+        return -1
+      } else {
+        return 1
+      }
+    })
+
+    parent = document.getElementById("villagers")
+    parent.innerHTML = ""
+
+    for (var i = 0; i < toSort.length; i++) {
+      parent.append(toSort[i])
+    }
+  }
+  function speciesOrder() {
+    var parent = document.getElementById("villagers")
+    if (parent.firstChild.id == "sadddd") {
+      displayInfo(info)
+    }
+    let toSort = document.getElementById("villagers").children
+    toSort = Array.prototype.slice.call(toSort, 0)
+
+    toSort.sort(function (a, b) {
+      var aord = a.getElementsByClassName("innerCard")
+      aord = aord[0].getElementsByClassName("cardBack")
+      aord = aord[0].getElementsByClassName("speciesOrderClass")
+      var bord = b.getElementsByClassName("innerCard")
+      bord = bord[0].getElementsByClassName("cardBack")
+      bord = bord[0].getElementsByClassName("speciesOrderClass")
+      if (aord[0].innerText < bord[0].innerText) {
         return -1
       } else {
         return 1
@@ -74,10 +108,11 @@ function Villagers() {
       parent.append(toSort[i])
     }
   }
-  function speciesOrder() {
-    displayInfo(info)
-  }
   function personalityOrder() {
+    var parent = document.getElementById("villagers")
+    if (parent.firstChild.id == "sadddd") {
+      displayInfo(info)
+    }
     let toSort = document.getElementById("villagers").children
     toSort = Array.prototype.slice.call(toSort, 0)
 
@@ -88,7 +123,6 @@ function Villagers() {
       var bord = b.getElementsByClassName("innerCard")
       bord = bord[0].getElementsByClassName("cardFront")
       bord = bord[0].getElementsByClassName("villagerP")
-      console.log(aord)
       if (aord[0].textContent < bord[0].textContent) {
         return -1
       } else {
@@ -241,6 +275,7 @@ function Villagers() {
     const newP3 = document.createElement("h4")
     newP3.setAttribute("id", data.name["name-USen"] + "Species")
     newP3.innerHTML = "Species: " + data.species
+    newP3.setAttribute("class", "speciesOrderClass")
     newB.appendChild(newP3)
 
     const newP4 = document.createElement("h4")
