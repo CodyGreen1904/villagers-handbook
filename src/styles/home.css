@@ -35,12 +35,19 @@
 
 #enter .btn {
   background-color: var(--home_btn);
-  width: 75%;
+  width: 70%;
   margin-bottom: 5px;
   color: var(--home_btn_pri);
 }
 
-#enter .btn:hover {
+@media only screen and (max-width: 600px) {
+  #enter .btn {
+    width: 100%;
+  }
+}
+
+#enter .btn:hover,
+#enter .btn:active {
   background-color: var(--home_btn_accent);
   color: var(--home_btn_alt);
 }
@@ -61,7 +68,7 @@
 #fish_card {
   width: 75%;
   border: 1px solid white;
-  background: var(--bg4) no-repeat;
+  background: var(--home_bg) no-repeat;
   background-size: cover;
 }
 
@@ -79,7 +86,8 @@
   will-change: transform;
 }
 
-.flip-container:hover .flipper {
+.flip-container:hover .flipper,
+.flip-container:active .flipper {
   transform: rotateY(180deg);
 }
 
@@ -141,7 +149,8 @@
 }
 
 /* Animation for ICONS */
-#homepage #icon_container img:hover {
+#homepage #icon_container img:hover,
+#homepage #icon_container img:active {
   animation: shake 0.5s;
   animation-iteration-count: 1;
 }

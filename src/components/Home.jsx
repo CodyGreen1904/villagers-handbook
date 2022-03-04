@@ -303,10 +303,7 @@ class Home extends React.Component {
     function Villager(state) {
       if (villagerLoaded) {
         return (
-          <div
-            className="flip-container"
-            onTouchStart={() => this.classList.toggle("hover")}
-          >
+          <div className="flip-container">
             <div className="flipper">
               <div className="front">
                 <img
@@ -344,10 +341,7 @@ class Home extends React.Component {
     /* Basic fish card */
     function Fish(state) {
       return (
-        <div
-          className="flip-container"
-          onTouchStart={() => this.classList.toggle("hover")}
-        >
+        <div className="flip-container">
           <div className="flipper">
             <div className="front">
               <div id="fish_card">
@@ -391,16 +385,14 @@ class Home extends React.Component {
     function Fossil(state) {
       if (fossilLoaded) {
         return (
-          <div
-            className="flip-container"
-            onTouchStart={() => this.classList.toggle("hover")}
-          >
+          <div className="flip-container">
             <div className="flipper">
               <div className="front">
                 <img
                   id="fossil_front"
                   className="img-fluid rounded"
                   src={blathers}
+                  a
                   alt="Random Fossil"
                 />
               </div>
@@ -520,7 +512,7 @@ class Home extends React.Component {
                 <button
                   className="btn btn-secondary dropdown-toggle"
                   type="button"
-                  id="dropdownMenuButton1"
+                  id="change_theme"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
