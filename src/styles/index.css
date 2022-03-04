@@ -26,6 +26,40 @@
   --gr: #8df25e;
 }
 
+/* Default Theme - Villagers */
+.theme_villagers {
+  --home_bg: #eafcdc;
+  --home_btn: #66b888;
+  --home_btn_accent: #bcf8cb;
+  --home_textbox: #ffeab8;
+  --home_card_bg: #f2d99a;
+  --home_font: #39383d;
+  --inversion: invert(80);
+}
+
+/* Theme - Fish */
+.theme_fish {
+  --home_bg: #b1f5fb;
+  --home_btn_accent: #b8f0ed;
+  --home_btn: #49a5b2;
+  --home_textbox: #006a84;
+  --home_font: #fffffa;
+  --inversion: invert(0%);
+  --home_card_bg: #e8dece;
+  --fish_card: url("../img/underwater.png");
+}
+
+/* Theme - Fossils */
+.theme_fossils {
+  --home_bg: #ffeab8;
+  --home_btn: #664a44;
+  --home_btn_accent: #f0e0cc;
+  --home_textbox: #836b55;
+  --home_font: #fffffa;
+  --inversion: invert(0%);
+  --home_card_bg: #e8dece;
+}
+
 html,
 body {
   margin: 0;
