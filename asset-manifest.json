@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/villagers-handbook/static/css/main.9d6986a7.css",
+    "main.js": "/villagers-handbook/static/js/main.9d13725b.js",
+    "static/media/bg_leaf.jpg": "/villagers-handbook/static/media/bg_leaf.594bb0d2ed31d455bfc6.jpg",
+    "static/media/title.png": "/villagers-handbook/static/media/title.fd6c300781e2fea3ee0d.png",
+    "static/media/tom.png": "/villagers-handbook/static/media/tom.c91129ed15ef4077904b.png",
+    "static/media/bg_blue.png": "/villagers-handbook/static/media/bg_blue.7a6c776b8fd7904915ff.png",
+    "static/media/bg_leaf_3.jpg": "/villagers-handbook/static/media/bg_leaf_3.725e176aa479c0a9c527.jpg",
+    "static/media/blathers.png": "/villagers-handbook/static/media/blathers.b87f712c1c1774570941.png",
+    "static/media/isabelle.png": "/villagers-handbook/static/media/isabelle.ca23d965263e9f7a6ecb.png",
+    "static/media/bg_leaf_4.jpg": "/villagers-handbook/static/media/bg_leaf_4.01cac16c8f31c7849b17.jpg",
+    "static/media/underwater.png": "/villagers-handbook/static/media/underwater.6b21690a6b2dd43573c9.png",
+    "static/media/bg_island.jpg": "/villagers-handbook/static/media/bg_island.0062b11bb389ac30855e.jpg",
+    "static/media/sadisabelle.png": "/villagers-handbook/static/media/sadisabelle.93c371d0ba7d9e7bbcd5.png",
+    "static/media/vhtext_white.png": "/villagers-handbook/static/media/vhtext_white.fa8119dba6d831dbe282.png",
+    "static/media/stars.png": "/villagers-handbook/static/media/stars.f531c9d78bc01d1dc408.png",
+    "index.html": "/villagers-handbook/index.html",
+    "main.9d6986a7.css.map": "/villagers-handbook/static/css/main.9d6986a7.css.map",
+    "main.9d13725b.js.map": "/villagers-handbook/static/js/main.9d13725b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9d6986a7.css",
+    "static/js/main.9d13725b.js"
+  ]
+}
