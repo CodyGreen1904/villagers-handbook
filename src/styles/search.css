@@ -110,7 +110,7 @@
   color: white;
   font-weight: bolder;
 }
-#searchDiv img {
+#searchDiv .container img {
   width: 250px;
   height: 250px;
   justify-self: center;

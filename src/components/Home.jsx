@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../styles/home.css";
 import title from "../img/title.png";
+import blathers from "../img/blathers.png";
+
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -27,7 +29,7 @@ class Home extends React.Component {
       currentCards: [],
       currentIcons: [],
 
-      theme: "villagers"
+      theme: "villagers",
     };
 
     document.body.classList.add("theme_villagers");
@@ -70,7 +72,7 @@ class Home extends React.Component {
               currentCards: response.slice(0, 2),
               currentIcons: response.slice(2),
               villagerLoaded: true,
-              theme: "villagers"
+              theme: "villagers",
             });
           } catch (error) {
             console.log("Error", error);
@@ -89,13 +91,7 @@ class Home extends React.Component {
 
           try {
             const response = await Promise.all(
-              urls.map((url) =>
-                fetch(url).then((res) => {
-                  /* console.log(res);
-                  console.log(res.status); */
-                  return res.json();
-                })
-              )
+              urls.map((url) => fetch(url).then((res) => res.json()))
             );
 
             this.setState({
@@ -104,7 +100,7 @@ class Home extends React.Component {
               currentCards: response.slice(0, 2),
               currentIcons: response.slice(2),
               fishLoaded: true,
-              theme: "fish"
+              theme: "fish",
             });
           } catch (error) {
             console.log("Error", error);
@@ -114,16 +110,41 @@ class Home extends React.Component {
       case "fossils":
         console.log("Loading " + tag);
         try {
-          const response = await Promise.all(
-            urls.map((url) => fetch(url).then((res) => res.json()))
-          );
+          fetch("https://acnhapi.com/v1/fossils/")
+            .then((response) => response.json())
+            .then((data) => {
+              data = Object.keys(data).map(function (k) {
+                return data[k];
+              });
 
-          this.setState({
-            fossilCards: response.slice(0, 2),
-            fossilIcons: response.slice(2),
-            fossilLoaded: true,
-            theme: "villagers"
-          });
+              let rand = [];
+              for (let i = 0; i < 7; ++i) {
+                rand.push(this.randNum(this.state.fossilMax));
+              }
+
+              console.log(rand);
+
+              this.setState({
+                fossilCards: [data[rand[0]], data[rand[1]]],
+                fossilIcons: [
+                  data[rand[2]],
+                  data[rand[3]],
+                  data[rand[4]],
+                  data[rand[5]],
+                  data[rand[6]],
+                ],
+                currentCards: [data[rand[0]], data[rand[1]]],
+                currentIcons: [
+                  data[rand[2]],
+                  data[rand[3]],
+                  data[rand[4]],
+                  data[rand[5]],
+                  data[rand[6]],
+                ],
+                fossilLoaded: true,
+                theme: "fossils",
+              });
+            });
         } catch (error) {
           console.log("Error", error);
         }
@@ -140,32 +161,51 @@ class Home extends React.Component {
 
     switch (newTheme) {
       case "villagers":
-        console.log("Switching theme to villagers.");
+        console.log(`Switching theme to ${newTheme}`);
         if (this.state.villagerLoaded) {
+          console.log("Setting state to villagers.");
           this.setState({
             currentCards: this.state.villagerCards,
-            currentIcons: this.state.villagerIcons
+            currentIcons: this.state.villagerIcons,
           });
         } else {
+          console.log("Calling to fetch...");
           this.fetchData("villagers");
         }
         break;
       case "fish":
-        console.log("Switching theme to fish.");
+        console.log(`Switching theme to ${newTheme}`);
         if (this.state.fishLoaded) {
+          console.log("Setting state to fish.");
           this.setState({
             currentCards: this.state.fishCards,
-            currentIcons: this.state.fishIcons
+            currentIcons: this.state.fishIcons,
           });
         } else {
+          console.log("Calling to fetch...");
           this.fetchData("fish");
         }
         break;
       case "fossils":
+        console.log(`Switching theme to ${newTheme}`);
+        if (this.state.fossilLoaded) {
+          console.log("Setting state to fossils.");
+          this.setState({
+            currentCards: this.state.fossilCards,
+            currentIcons: this.state.fossilIcons,
+          });
+        } else {
+          console.log("Calling to fetch...");
+          this.fetchData("fossils");
+        }
         break;
       default:
         break;
     }
+  }
+
+  conditionalLink() {
+    return `/${this.state.theme}`;
   }
 
   render() {
@@ -173,23 +213,41 @@ class Home extends React.Component {
       return <img className="img-fluid" src={title} alt="Villagers HandBook" />;
     }
 
-    function Villager(state) {
-      return (
-        <div className="p-3 card_flip">
-          <div className="card_front">
-            <img
-              className="img-fluid rounded mt-lg-4"
-              src={state.villager.image_uri}
-              alt="Random Villager"
-            />
-          </div>
-          <div className="card_back">
-            <VillagerBack villager={state.villager} />
-          </div>
-        </div>
-      );
+    /* Returns a different element based on the theme */
+    function Card(props) {
+      switch (props.tag) {
+        case "villagers":
+          return <Villager villager={props.currentCards[props.pos]} />;
+        case "fish":
+          return <Fish fish={props.currentCards[props.pos]} />;
+        case "fossils":
+          return <Fossil fossil={props.currentCards[props.pos]} />;
+        default:
+          break;
+      }
     }
 
+    /* Basic villager card */
+    function Villager(state) {
+      if (villagerLoaded) {
+        return (
+          <div className="p-3 card_flip">
+            <div className="card_front">
+              <img
+                className="img-fluid rounded mt-lg-4"
+                src={state.villager.image_uri}
+                alt="Random Villager"
+              />
+            </div>
+            <div className="card_back">
+              <VillagerBack villager={state.villager} />
+            </div>
+          </div>
+        );
+      } else return null;
+    }
+
+    /* Back of the villager card */
     function VillagerBack(state) {
       return (
         <div id="villager_back" className="container-fluid">
@@ -198,61 +256,95 @@ class Home extends React.Component {
           <p>Personality: {state.villager.personality}</p>
           <img src={state.villager.icon_uri} alt="Villager Icon" />
           <p>Birthday: {state.villager["birthday-string"]}</p>
-          {/*           <p>Catchphrase: {state.villager.saying}</p> */}
         </div>
       );
     }
 
+    /* Basic fish card */
+    function Fish(state) {
+      return (
+        <div className="p-3 card_flip">
+          <div id="fish_front" className="card_front">
+            <img
+              className="img-fluid rounded mt-lg-4"
+              src={state.fish.icon_uri}
+              alt="Random Fish"
+            />
+          </div>
+          <div className="card_back">
+            <FishBack fish={state.fish} />
+          </div>
+        </div>
+      );
+    }
+
+    /* Back of the fish card */
+    function FishBack(state) {
+      if (fishLoaded) {
+        return (
+          <div id="villager_back" className="container-fluid">
+            <p>Name: {state.fish.name["name-USen"]}</p>
+            <p>Available in: {state.fish.availability.location}</p>
+            <p>Rarity: {state.fish.availability.rarity}</p>
+            <p>Price: {state.fish.price}</p>
+          </div>
+        );
+      } else return null;
+    }
+
+    /* Basic fossil card */
+    function Fossil(state) {
+      if (fossilLoaded) {
+        return (
+          <div className="p-3 card_flip">
+            <div className="card_front">
+              <img
+                id="fossil_front"
+                className="img-fluid rounded mt-lg-4"
+                src={blathers}
+                //src={state.fossil.image_uri}
+                alt="Random Fossil"
+              />
+            </div>
+            <div className="card_back">
+              <FossilBack fossil={state.fossil} />
+            </div>
+          </div>
+        );
+      } else return null;
+    }
+
+    /* Back of the fossil card */
+    function FossilBack(state) {
+      if (fossilLoaded) {
+        return (
+          <div id="fossil_back" className="container-fluid">
+            <p>Name: {state.fossil.name["name-USen"]}</p>
+            <img alt="Random Fossil" src={state.fossil.image_uri} />
+            <p>Price: {state.fossil.price}</p>
+          </div>
+        );
+      } else return null;
+    }
+
     function Icon(props) {
-      switch (props.tag) {
-        case "villagers":
-          return (
-            <div id="icon" class="col-2">
-              <img
-                class="img-fluid rounded mx-auto"
-                alt="Random Villager Icon"
-                src={props.villagers.icon_uri}
-              />
-            </div>
-          );
-        case "fish":
-          return (
-            <div id="icon" class="col-2">
-              <img
-                class="img-fluid rounded mx-auto"
-                alt="Random Villager Icon"
-                src={props.villagers.icon_uri}
-              />
-            </div>
-          );
-        case "fossils":
-          return (
-            <div id="icon" class="col-2">
-              <img
-                class="img-fluid rounded mx-auto"
-                alt="Random Villager Icon"
-                src={props.fossil.icon_uri}
-              />
-            </div>
-          );
-        default:
-          break;
-      }
+      let img_src;
+      props.tag === "fossils"
+        ? (img_src = props.current.image_uri)
+        : (img_src = props.current.icon_uri);
+
+      return (
+        <div id="icon" className="col-2">
+          <img
+            className="img-fluid rounded mx-auto"
+            alt="Random Icon"
+            src={img_src}
+          />
+        </div>
+      );
     }
 
-    function Card(props) {
-      switch (props.tag) {
-        case "villagers":
-          return <Villager villager={props.currentCards[props.pos]} />;
-        case "fish":
-          return <Villager villager={props.currentCards[props.pos]} />;
-        case "fossils":
-          break;
-        default:
-          break;
-      }
-    }
-
+    /* Checks if any data is loaded */
     const { villagerLoaded, fishLoaded, fossilLoaded } = this.state;
     if (!villagerLoaded && !fishLoaded && !fossilLoaded)
       return (
@@ -270,7 +362,7 @@ class Home extends React.Component {
           <div className="row d-flex align-items-center justify-content-around">
             <div
               id="title"
-              class="col col-12 col-md-6 col-lg-6 order-lg-2 order-md-1 order-first"
+              className="col col-12 col-md-6 col-lg-6 order-lg-2 order-md-1 order-first"
             >
               <Logo />
             </div>
@@ -300,18 +392,20 @@ class Home extends React.Component {
 
             <div
               id="intro"
-              class="col col-8 col-md-6 align-self-center order-md-4"
+              className="col col-8 col-md-6 align-self-center order-md-4"
             >
-              Villagers Handbook is a lightweight search application that allows
-              you to quickly and easily look up information related to the world
-              of Animal Crossing New Horizons.
+              <p>
+                Villagers Handbook is a lightweight search application that
+                allows you to quickly and easily look up information related to
+                the world of Animal Crossing New Horizons.
+              </p>
             </div>
 
             <div
               id="enter"
               className="col col-6 col-md-5 m-2 align-self-center order-md-5 order-2"
             >
-              <Link to="/villagers">
+              <Link to={this.conditionalLink()}>
                 <button type="button" className="btn btn-secondary">
                   Get Started
                 </button>
@@ -363,26 +457,11 @@ class Home extends React.Component {
           </div>
 
           <div id="icon_container" className="row justify-content-center">
-            <Icon
-              villagers={this.state.currentIcons[0]}
-              tag={this.state.theme}
-            />
-            <Icon
-              villagers={this.state.currentIcons[1]}
-              tag={this.state.theme}
-            />
-            <Icon
-              villagers={this.state.currentIcons[2]}
-              tag={this.state.theme}
-            />
-            <Icon
-              villagers={this.state.currentIcons[3]}
-              tag={this.state.theme}
-            />
-            <Icon
-              villagers={this.state.currentIcons[4]}
-              tag={this.state.theme}
-            />
+            <Icon current={this.state.currentIcons[0]} tag={this.state.theme} />
+            <Icon current={this.state.currentIcons[1]} tag={this.state.theme} />
+            <Icon current={this.state.currentIcons[2]} tag={this.state.theme} />
+            <Icon current={this.state.currentIcons[3]} tag={this.state.theme} />
+            <Icon current={this.state.currentIcons[4]} tag={this.state.theme} />
           </div>
         </div>
       </div>
