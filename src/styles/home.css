@@ -2,44 +2,6 @@
   --home_dark: #39383d;
 }
 
-/* Default Theme - Villagers */
-.theme_villagers {
-  --home_bg: #eafcdc;
-  --home_btn: #66b888;
-  --home_font: #39383d;
-  --home_btn_accent: #bcf8cb;
-  --home_btn_pri: #fffffa;
-  --home_btn_alt: #39383d;
-  --home_textbox: #ffeab8;
-  --home_card_bg: #f2d99a;
-  --home_font: #39383d;
-}
-
-/* Theme - Fish */
-.theme_fish {
-  --home_bg: #b1f5fb;
-  --home_btn_accent: #b8f0ed;
-  --home_btn: #49a5b2;
-  --home_btn_pri: #fffffa;
-  --home_btn_alt: #39383d;
-  --home_textbox: #006a84;
-  --home_font: #fffffa;
-  --home_card_bg: #e8dece;
-  --fish_card: url("../img/underwater.png");
-}
-
-/* Theme - Fossils */
-.theme_fossils {
-  --home_bg: lightgray;
-  --home_btn: #ffeab8;
-  --home_btn_pri: #39383d;
-  --home_btn_alt: #fffffa;
-  --home_btn_accent: #5b4e4b;
-  --home_textbox: #836b55;
-  --home_font: #fffffa;
-  --home_card_bg: #e8dece;
-}
-
 #homepage {
   background: var(--home_bg) no-repeat center center fixed;
   background-size: cover;
@@ -96,10 +58,18 @@
   padding-bottom: 20px;
 }
 
-/*  */
+#fish_card {
+  width: 75%;
+  border: 1px solid white;
+  background: var(--home_bg) no-repeat center center fixed;
+}
+
+/*Animation for cards*/
 .flip-container {
   perspective: 1000;
+  margin-top: 15px;
 }
+
 .flipper {
   transform-style: preserve-3d;
   display: flex;
@@ -107,14 +77,18 @@
   transition: transform 0.6s;
   will-change: transform;
 }
+
 .flip-container:hover .flipper {
   transform: rotateY(180deg);
 }
+
 .front,
 .back {
   width: 100%;
   flex: 0 0 auto;
   backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
 }
 
 .front img {
@@ -127,8 +101,6 @@
   margin-left: -100%;
   background: none;
   margin-right: 100px;
-  display: flex;
-  justify-content: center;
   font-size: 0.9rem;
 }
 

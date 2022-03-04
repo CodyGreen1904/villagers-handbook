@@ -315,11 +315,13 @@ class Home extends React.Component {
         >
           <div class="flipper">
             <div class="front">
-              <img
-                className="img-fluid rounded mt-lg-4"
-                src={state.fish.icon_uri}
-                alt="Random Fish"
-              />
+              <div id="fish_card">
+                <img
+                  className="img-fluid rounded mt-lg-4"
+                  src={state.fish.icon_uri}
+                  alt="Random Fish"
+                />
+              </div>
             </div>
             <div class="back">
               <div class="back_card">
@@ -362,7 +364,7 @@ class Home extends React.Component {
               <div class="front">
                 <img
                   id="fossil_front"
-                  className="img-fluid rounded mt-lg-4"
+                  className="img-fluid rounded"
                   src={blathers}
                   alt="Random Fossil"
                 />
