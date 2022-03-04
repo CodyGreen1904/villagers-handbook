@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import { Navigation } from ".";
-import { Chart, ArcElement, Legend } from 'chart.js';
-import { Pie } from 'react-chartjs-2';
-import "../styles/stats.css";
+import { Chart, ArcElement, Legend, Tooltip, CategoryScale, LinearScale, BarElement } from 'chart.js';
+import { Pie, Bar } from 'react-chartjs-2';
+import "../styles/charts.css";
 
-Chart.register(ArcElement, Legend);
+Chart.register(ArcElement, Legend, Tooltip, CategoryScale, LinearScale, BarElement);
 
 const Charts = () => {
     const [chartData, setChartData] = useState({});
+    const [barChartData, setBarChartData] = useState({});
     const [haveData, setHaveData] = useState(false);
+    const [haveBarData, setHaveBarData] = useState(false);
     const [charSpeciesList, setCharSpeciesList] = useState([]);
     const [charCount, setCharCount] = useState([]);
 
@@ -69,36 +71,36 @@ const Charts = () => {
                         'rgba(75, 192, 192, 1)',
                         'rgba(153, 102, 255, 1)',
                         'rgba(255, 159, 64, 1)',
-                        'rgba(199, 199, 199, 1)',
+                        'rgba(60, 200, 70, 1)',
                         'rgba(83, 102, 255, 1)',
-                        'rgba(40, 159, 64, 1)',
-                        'rgba(210, 199, 199, 1)',
+                        'rgba(234, 74, 2, 1)',
+                        'rgba(148, 241, 19, 1)',
                         'rgba(78, 52, 199, 1)',
-                        'rgba(44, 162, 235, 1)',
-                        'rgba(245, 206, 86, 1)',
+                        'rgba(232, 72, 245, 1)',
+                        'rgba(102, 0, 245, 1)',
                         'rgba(245, 99, 132, 1)',
                         'rgba(55, 192, 192, 1)',
                         'rgba(143, 102, 255, 1)',
-                        'rgba(245, 159, 64, 1)',
-                        'rgba(189, 199, 199, 1)',
+                        'rgba(143, 37, 17, 1)',
+                        'rgba(254, 124, 0, 1)',
                         'rgba(73, 102, 255, 1)',
                         'rgba(30, 159, 64, 1)',
-                        'rgba(200, 199, 199, 1)',
+                        'rgba(82, 181, 249, 1)',
                         'rgba(68, 52, 199, 1)',
-                        'rgba(189, 189, 199, 1)',
-                        'rgba(73, 92, 255, 1)',
-                        'rgba(30, 149, 64, 1)',
-                        'rgba(200, 189, 199, 1)',
-                        'rgba(68, 42, 199, 1)',
-                        'rgba(64, 162, 235, 1)',
+                        'rgba(127, 221, 198, 1)',
+                        'rgba(254, 13, 0, 1)',
+                        'rgba(229, 254, 0, 1)',
+                        'rgba(142, 42, 79, 1)',
+                        'rgba(196, 125, 153, 1)',
+                        'rgba(19, 45, 187, 1)',
                         'rgba(155, 206, 86, 1)',
-                        'rgba(155, 99, 132, 1)',
-                        'rgba(65, 192, 192, 1)',
-                        'rgba(163, 102, 255, 1)',
-                        'rgba(155, 159, 64, 1)',
-                        'rgba(99, 199, 199, 1)',
-                        'rgba(93, 102, 255, 1)'],
-                        borderWidth: 4
+                        'rgba(51, 157, 14, 1)',
+                        'rgba(101, 114, 145, 1)',
+                        'rgba(224, 160, 57, 1)',
+                        'rgba(110, 27, 219, 1)',
+                        'rgba(203, 31, 166, 1)',
+                        'rgba(54, 195, 133, 1)'],
+                        borderWidth: 1
                     }
                 ]
             });
@@ -111,11 +113,58 @@ const Charts = () => {
         console.log(charSpeciesList, charCount);
     };
 
+    const barChart = () => {
+        let charPers = [];
+        let charPersList = [];
+        let charPersCount = [];
+        Axios.get("https://acnhapi.com/v1/villagers").then(response => {
+            charPersList = [
+                'Cranky', 'Jock', 'Lazy', 'Normal',
+                'Peppy', 'Uchi', 'Smug', 'Snooty'
+            ]
+            for (var n = 0; n<8; ++n) {
+                charPersCount.push(0);
+            }
+            for(let character in response.data){
+                charPers.push(response.data[character].personality);
+            }
+            for(var i = 0; i < charPers.length; ++i) {
+                for (var j = 0; j<8; ++j) {
+                    if(charPers[i] === charPersList[j]) {
+                        charPersCount[j]++;
+                    }
+                }
+            }
+            setBarChartData({
+                labels: charPersList,
+                datasets: [
+                    {
+                        label: "Villagers",
+                        data: charPersCount,
+                        backgroundColor: ['rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(60, 200, 70, 1)'
+                            ],
+                        borderWidth: 1
+                    }
+                ]
+            });
+            setHaveBarData(true);
+        })
+        .catch(error => {
+            console.log(error);
+            setHaveBarData(false);
+        });
+        console.log(charPersList, charPersCount);
+    }
+
     useEffect(() => {
         chart();
+        barChart();
     }, []);
 
-    if (!haveData) {
+    if (!haveData || !haveBarData) {
         return <div>Loading...</div>
     }
     else {
@@ -129,7 +178,47 @@ const Charts = () => {
                                 <h1 id="chartsHeader">Villager Charts</h1>
                             </div>
                             <div id="speciesChart" className="col-md-4">
-                                <Pie data={chartData} />
+                                <Pie 
+                                    data={chartData} 
+                                    height={"500px"}
+                                    options={{ 
+                                        maintainAspectRatio: false,
+                                        legend: {
+                                            display: true,
+                                            fontWeight: "bolder"
+                                        },
+                                        tooltip: {
+                                            enabled: true,
+                                            placement: "node:out",
+                                            callbacks: {
+                                                label: function(tooltipItem, chart) {
+                                                    var dataset = chart.datasets[tooltipItem.datasetIndex];
+                                                    var meta = dataset._meta[Object.keys(dataset._meta)[0]];
+                                                    var total = meta.total;
+                                                    var currentValue = dataset.data[tooltipItem.index];
+                                                    var percentage = parseFloat((currentValue/total*100).toFixed(1));
+                                                    return currentValue + ' (' + percentage + '%)';
+                                                },
+                                                title: function(tooltipItem, data) {
+                                                    return data.labels[tooltipItem[0].index];
+                                                }
+                                            }
+                                        }
+                                    
+                                    }}
+                                />
+                            </div>
+                            <div id="personalityChart" className="col-md-4">
+                                <Bar 
+                                    data={barChartData}
+                                    height={"200px"}
+                                    options={{
+                                        plugins: {
+                                            legend: {
+                                                display: false
+                                            }
+                                        }
+                                    }} />
                             </div>
                         </div>
                     </div>
