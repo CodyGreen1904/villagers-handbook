@@ -1,19 +1,85 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import { Navigation } from ".";
-import { Chart, ArcElement, Legend, Tooltip, CategoryScale, LinearScale, BarElement } from 'chart.js';
-import { Pie, Bar } from 'react-chartjs-2';
+import { Chart, ArcElement, Legend, Tooltip, CategoryScale, LinearScale, BarElement, PointElement, LineElement } from 'chart.js';
+import { Line, Pie, Bar } from 'react-chartjs-2';
 import "../styles/charts.css";
+import { borderLeft } from "@mui/system";
 
-Chart.register(ArcElement, Legend, Tooltip, CategoryScale, LinearScale, BarElement);
+Chart.register(ArcElement, Legend, Tooltip, CategoryScale, LinearScale, BarElement, PointElement, LineElement);
 
 const Charts = () => {
+    const [lineChartData, setLineChartData] = useState({});
     const [chartData, setChartData] = useState({});
     const [barChartData, setBarChartData] = useState({});
+    const [haveLineData, setHaveLineData] = useState(false);
     const [haveData, setHaveData] = useState(false);
     const [haveBarData, setHaveBarData] = useState(false);
     const [charSpeciesList, setCharSpeciesList] = useState([]);
     const [charCount, setCharCount] = useState([]);
+
+    const lineChart = () => {
+        let charBday = [];
+        let monthsList = [];
+        let charBdayCount = [];
+        let bday = null;
+        Axios.get("https://acnhapi.com/v1/villagers").then(response => {
+            monthsList = [
+                'January', 'February', 'March', 'April',
+                'May', 'June', 'July', 'August', 'September',
+                'October', 'November', 'December'
+            ]
+            for (var n = 0; n<12; ++n) {
+                charBdayCount.push(0);
+            }
+            for(let character in response.data){
+                //let data1 = response.data[character];
+                bday = response.data[character].birthday;
+                var mon = bday.split("/").pop();
+                console.log(mon);
+                charBday.push(mon);
+            }
+            for(var i = 0; i < charBday.length; ++i) {
+                for (var j = 0; j<12; ++j) {
+                    if((charBday[i] - 1) === j) {
+                        charBdayCount[j]++;
+                    }
+                }
+            }
+            setLineChartData({
+                labels: monthsList,
+                datasets: [
+                    {
+                        label: "Villager Birthdays",
+                        data: charBdayCount,
+                        fill: true,
+                        backgroundColor: ['rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(60, 200, 70, 1)',
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(60, 200, 70, 1)',
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(60, 200, 70, 1)'
+                            ],
+                        tension: 0.1,
+                        pointRadius: 5
+
+                    }
+                ]
+            });
+            setHaveLineData(true);
+        })
+        .catch(error => {
+            console.log(error);
+            setHaveLineData(false);
+        });
+        console.log(monthsList, charBdayCount);
+    }
 
     const chart = () => {
         let charSpc = [];
@@ -21,12 +87,6 @@ const Charts = () => {
         let charSpeciesList = [];
 
         Axios.get("https://acnhapi.com/v1/villagers").then(response => {
-            //console.log(response);
-            /*
-            for (const dataObj of response.data.data) {
-                charSpc.push(dataObj.species);
-            }
-            */
             charSpeciesList = [
                 'Alligator', 'Anteater', 'Bear', 'Bird', 'Bull',
                 'Cat', 'Chicken', 'Cow', 'Cub',
@@ -68,38 +128,38 @@ const Charts = () => {
                         backgroundColor: ['rgba(54, 162, 235, 1)',
                         'rgba(255, 206, 86, 1)',
                         'rgba(255, 99, 132, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)',
                         'rgba(60, 200, 70, 1)',
-                        'rgba(83, 102, 255, 1)',
-                        'rgba(234, 74, 2, 1)',
-                        'rgba(148, 241, 19, 1)',
-                        'rgba(78, 52, 199, 1)',
-                        'rgba(232, 72, 245, 1)',
-                        'rgba(102, 0, 245, 1)',
-                        'rgba(245, 99, 132, 1)',
-                        'rgba(55, 192, 192, 1)',
-                        'rgba(143, 102, 255, 1)',
-                        'rgba(143, 37, 17, 1)',
-                        'rgba(254, 124, 0, 1)',
-                        'rgba(73, 102, 255, 1)',
-                        'rgba(30, 159, 64, 1)',
-                        'rgba(82, 181, 249, 1)',
-                        'rgba(68, 52, 199, 1)',
-                        'rgba(127, 221, 198, 1)',
-                        'rgba(254, 13, 0, 1)',
-                        'rgba(229, 254, 0, 1)',
-                        'rgba(142, 42, 79, 1)',
-                        'rgba(196, 125, 153, 1)',
-                        'rgba(19, 45, 187, 1)',
-                        'rgba(155, 206, 86, 1)',
-                        'rgba(51, 157, 14, 1)',
-                        'rgba(101, 114, 145, 1)',
-                        'rgba(224, 160, 57, 1)',
-                        'rgba(110, 27, 219, 1)',
-                        'rgba(203, 31, 166, 1)',
-                        'rgba(54, 195, 133, 1)'],
+                        'rgba(15, 82, 186, 1)',
+                        'rgba(255, 191, 0, 1)',
+                        'rgba(159, 43, 104, 1)',
+                        'rgba(9, 121, 105, 1)',
+                        'rgba(8, 24, 168, 1)',
+                        'rgba(255, 255, 143, 1)',
+                        'rgba(222, 49, 99, 1)',
+                        'rgba(175, 225, 175, 1)',
+                        'rgba(135, 206, 235, 1)',
+                        'rgba(228, 208, 10, 1)',
+                        'rgba(248, 200, 220, 1)',
+                        'rgba(170, 255, 0, 1)',
+                        'rgba(0, 71, 171, 1)',
+                        'rgba(255, 215, 0, 1)',
+                        'rgba(227, 11, 92, 1)',
+                        'rgba(2, 48, 32, 1)',
+                        'rgba(0, 150, 255, 1)',
+                        'rgba(255, 250, 160, 1)',
+                        'rgba(227, 115, 131, 1)',
+                        'rgba(80, 200, 120, 1)',
+                        'rgba(0, 255, 255, 1)',
+                        'rgba(244, 196, 48, 1)',
+                        'rgba(218, 112, 214, 1)',
+                        'rgba(0, 128, 0, 1)',
+                        'rgba(0, 0, 139, 1)',
+                        'rgba(255, 170, 51, 1)',
+                        'rgba(119, 7, 55, 1)',
+                        'rgba(76, 187, 23, 1)',
+                        'rgba(31, 81, 255, 1)',
+                        'rgba(255, 255, 0, 1)',
+                        'rgba(248, 131, 121, 1)'],
                         borderWidth: 1
                     }
                 ]
@@ -158,34 +218,70 @@ const Charts = () => {
         });
         console.log(charPersList, charPersCount);
     }
-
     useEffect(() => {
+        lineChart();
         chart();
         barChart();
     }, []);
 
-    if (!haveData || !haveBarData) {
+    if (!haveData || !haveBarData || !haveLineData) {
         return <div>Loading...</div>
     }
     else {
         return (
             <div>
                 <Navigation />
-                <div id="chartsDiv" className="ChartsPage min-vh-100">
+                <div id="chartsDiv" className="ChartsPage">
                     <div className="container">
-                        <div className="row align-items-center my-5">
+                        <div className="row align-items-center">
                             <div id="chartsTitle" className="col-lg-12">
                                 <h1 id="chartsHeader">Villager Charts</h1>
                             </div>
+                            <div id="speciesTitle" className="col-lg-12">
+                                <h3 id="speciesHeader">Species</h3>
+                            </div>
+                            <div id="birthdayChart" className="col-md-4">
+                                <h3 id="bdayTitle">Birthdays</h3>
+                                <Line 
+                                    data={lineChartData}
+                                    height={"200px"}
+                                    options={{
+                                        plugins: {
+                                            legend: {
+                                                display: false
+                                            }
+                                        },
+                                        scale: {
+                                            x: {
+                                                ticks: {
+                                                    font: {
+                                                        weight: "bolder"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        
+                                    }}
+                                    />
+                            </div>
                             <div id="speciesChart" className="col-md-4">
+                                
                                 <Pie 
                                     data={chartData} 
                                     height={"500px"}
                                     options={{ 
+                                        plugins: {
+                                            legend: {
+                                                labels: {
+                                                    font: {
+                                                        weight: "bolder"
+                                                    }
+                                                }
+                                            }
+                                        },
                                         maintainAspectRatio: false,
                                         legend: {
-                                            display: true,
-                                            fontWeight: "bolder"
+                                            display: true
                                         },
                                         tooltip: {
                                             enabled: true,
@@ -204,18 +300,32 @@ const Charts = () => {
                                                 }
                                             }
                                         }
-                                    
                                     }}
                                 />
                             </div>
                             <div id="personalityChart" className="col-md-4">
+                                <h3 id="persTitle">Personalities</h3>
                                 <Bar 
                                     data={barChartData}
                                     height={"200px"}
                                     options={{
+                                        scales: {
+                                            x: {
+                                                ticks: {
+                                                    font: {
+                                                        weight: "bolder"
+                                                    }
+                                                }
+                                            }
+                                        },
                                         plugins: {
                                             legend: {
-                                                display: false
+                                                display: false,
+                                                labels: {
+                                                    font: {
+                                                        weight: "bold"
+                                                    }
+                                                }
                                             }
                                         }
                                     }} />

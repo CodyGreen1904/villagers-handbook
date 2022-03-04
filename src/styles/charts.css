@@ -6,7 +6,13 @@
   background-size: cover;
 }
 
-#speciesChart {
+#chartsTitle {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 
+#speciesTitle, #bdayTitle, #persTitle{
+  text-align: center;
   
 }
