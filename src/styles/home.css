@@ -61,7 +61,7 @@
 #fish_card {
   width: 75%;
   border: 1px solid white;
-  background: var(--home_bg) no-repeat center center fixed;
+  background: var(--bg4) no-repeat center center fixed;
 }
 
 /*Animation for cards*/
