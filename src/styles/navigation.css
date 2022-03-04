@@ -1,7 +1,13 @@
 #navbar {
-  background-color: #876e5b !important;
+  background-color: var(--home_textbox) !important;
+  color: var(--home_font) !important;
 }
 
 #logo {
   width: 15rem;
+  filter: var(--inversion);
+}
+
+#nav_text {
+  color: var(--home_font) !important;
 }
