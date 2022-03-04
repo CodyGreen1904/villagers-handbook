@@ -267,9 +267,8 @@ function Villagers() {
   }
   getVillagers()
   return (
-    <div>
-      <Navigation />
       <div id="searchDiv" className="Search min-vh-100">
+      <Navigation />
         <div className="container">
           <div className="row align-items-center my-5">
             <div id="villagerTitle" className="col-lg-12">
@@ -383,7 +382,6 @@ function Villagers() {
           </div>
         </div>
       </div>
-    </div>
   )
 }
 
