@@ -317,7 +317,7 @@ class Home extends React.Component {
             <div class="front">
               <div id="fish_card">
                 <img
-                  className="img-fluid rounded mt-lg-4"
+                  className="img-fluid rounded mt-3"
                   src={state.fish.icon_uri}
                   alt="Random Fish"
                 />
