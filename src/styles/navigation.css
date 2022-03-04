@@ -17,3 +17,8 @@
   color: var(--home_font_alt);
   background-color: var(--home_font);
 }
+
+#Home_Icon {
+  font-size: 2rem;
+  color: var(--home_font);
+}
