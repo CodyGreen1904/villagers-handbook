@@ -4,7 +4,7 @@
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  height: 150vh;
+  height: 200vh;
   max-height: 100%
   
 }
@@ -19,6 +19,12 @@
   margin-bottom: 20px;
 }
 
+#chartsHeader {
+  font-weight: bolder;
+  font-size: 3.25em;
+  color: var(--dark_green);
+}
+
 #chartContainer {
   height: 100vh;
   
@@ -26,6 +32,8 @@
 
 #speciesTitle, #bdayTitle, #persTitle{
   text-align: center;
+  color: #2167d0;
+  font-weight: bold;
   
 }
 
@@ -40,4 +48,10 @@
 #speciesChart {
   margin-top: 40px;
   height: 550px;
+}
+
+@media screen and (min-width: 776px) {
+  #chartPage {
+    height: 140vh;
+  }
 }
