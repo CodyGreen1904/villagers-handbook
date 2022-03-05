@@ -23,12 +23,12 @@ function Navigation() {
         expand="md"
         className="p-3"
       >
-        <Navbar.Brand className="d-none d-sm-block p-3 col-sm-3" href="#home">
+        <Navbar.Brand className="d-none d-sm-block p-3 col-sm-3">
           <Nav.Link href="/">
             <img id="logo" src={title} alt="Site logo" />
           </Nav.Link>
         </Navbar.Brand>
-        <Navbar.Brand className="d-sm-none col-3" href="#home">
+        <Navbar.Brand className="d-sm-none col-3">
           <Nav.Link href="/">
             <HomeIcon id="Home_Icon" />
           </Nav.Link>

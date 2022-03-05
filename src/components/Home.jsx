@@ -44,9 +44,6 @@ class Home extends React.Component {
 
       theme: "villagers"
     };
-
-    localStorage.setItem("theme", "villagers");
-    document.body.classList.add("theme_villagers");
   }
 
   /**
@@ -62,12 +59,13 @@ class Home extends React.Component {
    * Fetches data when the component mounts.
    */
   async componentDidMount() {
+    let localStorageTheme = localStorage.getItem("theme");
+    this.state.theme = localStorageTheme;
+
     this._isMounted = true;
     if (this._isMounted) {
       this.fetchData(this.state.theme);
-
       let localStorageTheme = localStorage.getItem("theme");
-      console.log("Home theme: " + localStorageTheme);
       if (localStorageTheme !== null) {
         document.body.className = `theme_${localStorageTheme}`;
       } else {
@@ -90,7 +88,6 @@ class Home extends React.Component {
   async fetchData(tag) {
     console.log("Loading " + tag);
     let urls = [];
-    let attempts = 0;
     switch (tag) {
       case "villagers":
         if (!this.state.villagerLoaded) {
@@ -115,6 +112,7 @@ class Home extends React.Component {
               villagerLoaded: true,
               theme: "villagers"
             });
+            localStorage.setItem("theme", "villagers");
           } catch (error) {
             console.log("Error", error);
           }
@@ -143,16 +141,10 @@ class Home extends React.Component {
               fishLoaded: true,
               theme: "fish"
             });
+            localStorage.setItem("theme", "fish");
           } catch (error) {
             console.log("Error", error);
 
-            while (attempts < 5) {
-              attempts += 1;
-              if (error.response.status === 404) {
-                this.fetchData("fish");
-              }
-            }
-            console.log("Maximum fetch attempts.");
             return (
               <div>
                 <h1> Loading.... </h1>{" "}
@@ -176,8 +168,6 @@ class Home extends React.Component {
                 rand.push(this.randNum(this.state.fossilMax));
               }
 
-              console.log(rand);
-
               this.setState({
                 fossilCards: [data[rand[0]], data[rand[1]]],
                 fossilIcons: [
@@ -198,6 +188,7 @@ class Home extends React.Component {
                 fossilLoaded: true,
                 theme: "fossils"
               });
+              localStorage.setItem("theme", "fossils");
             });
         } catch (error) {
           console.log("Error", error);
@@ -392,7 +383,6 @@ class Home extends React.Component {
                   id="fossil_front"
                   className="img-fluid rounded"
                   src={blathers}
-                  a
                   alt="Random Fossil"
                 />
               </div>
@@ -428,7 +418,7 @@ class Home extends React.Component {
         : (img_src = props.current.icon_uri);
 
       return (
-        <div id="icon" className="col-4">
+        <div id="icon" className="col-4 col-sm-2">
           <img
             className="img-fluid rounded mx-auto"
             alt="Random Icon"
