@@ -428,7 +428,7 @@ class Home extends React.Component {
         : (img_src = props.current.icon_uri);
 
       return (
-        <div id="icon" className="col-3 col-sm-2">
+        <div id="icon" className="col-4">
           <img
             className="img-fluid rounded mx-auto"
             alt="Random Icon"
@@ -554,7 +554,10 @@ class Home extends React.Component {
             </div>
           </div>
 
-          <div id="icon_container" className="row justify-content-center">
+          <div
+            id="icon_container"
+            className="row justify-content-center p-4 mt-2"
+          >
             <Icon current={this.state.currentIcons[0]} tag={this.state.theme} />
             <Icon current={this.state.currentIcons[1]} tag={this.state.theme} />
             <Icon current={this.state.currentIcons[2]} tag={this.state.theme} />
