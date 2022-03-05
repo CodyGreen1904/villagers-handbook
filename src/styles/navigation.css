@@ -2,6 +2,7 @@
   background-color: var(--home_textbox) !important;
   color: var(--home_font) !important;
   border-bottom: 1px solid var(--home_font);
+  text-align: center !important;
 }
 
 #logo {
