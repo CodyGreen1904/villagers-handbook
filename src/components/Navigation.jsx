@@ -4,10 +4,9 @@ import HomeIcon from "@mui/icons-material/Home";
 import "../styles/navigation.css";
 import { Navbar, Nav, Container } from "react-bootstrap";
 
-function Navigation(props) {
+function Navigation() {
   useEffect(() => {
     let localStorageTheme = localStorage.getItem("theme");
-    console.log("Navbar theme: " + localStorageTheme);
     if (localStorageTheme !== null) {
       document.body.className = `theme_${localStorageTheme}`;
     } else {
@@ -22,20 +21,20 @@ function Navigation(props) {
         collapseOnSelect
         sticky="top"
         expand="md"
-        className="p-1"
+        className="p-3"
       >
         <Navbar.Brand className="d-none d-sm-block p-3 col-sm-3" href="#home">
           <Nav.Link href="/">
             <img id="logo" src={title} alt="Site logo" />
           </Nav.Link>
         </Navbar.Brand>
-        <Navbar.Brand className="d-sm-none p-3 col-3" href="#home">
+        <Navbar.Brand className="d-sm-none col-3" href="#home">
           <Nav.Link href="/">
             <HomeIcon id="Home_Icon" />
           </Nav.Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav" className="text-center">
+        <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="container-fluid">
             <Nav.Item className="ms-auto" />
             <Nav.Link id="nav_text" href="/about">
