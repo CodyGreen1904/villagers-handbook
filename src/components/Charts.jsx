@@ -229,7 +229,7 @@ const Charts = () => {
     }
     else {
         return (
-            <div id="chartPage">
+            <div id="chartPage" className="min-vh-100">
                 <Navigation />
                 <div id="chartsTitle" className="col-lg-12">
                     <h1 id="chartsHeader">Villager Charts</h1>
