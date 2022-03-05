@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import title from "../img/vhtext_white.png";
 import HomeIcon from "@mui/icons-material/Home";
 import "../styles/navigation.css";
-import { Navbar, Nav, Container } from "react-bootstrap";
+import { Navbar, Nav } from "react-bootstrap";
 
 function Navigation() {
   useEffect(() => {
@@ -35,7 +35,7 @@ function Navigation() {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="container-fluid">
+          <Nav className="container-fluid text-center">
             <Nav.Item className="ms-auto" />
             <Nav.Link id="nav_text" href="/about">
               About

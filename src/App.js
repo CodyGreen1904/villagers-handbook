@@ -25,7 +25,7 @@ export default function App() {
           <Route path="/fossils" element={<Fossils />} />
           <Route path="/fish" element={<Fish />} />
           <Route path="/charts" element={<Charts />} />
-{/*           <Route path="*" element={<PageNotFound />} /> */}
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </Router>
     </div>
