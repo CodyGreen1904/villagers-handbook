@@ -4,7 +4,20 @@ import "../styles/home.css";
 import title from "../img/title.png";
 import blathers from "../img/blathers.png";
 
+/**
+ * Glass component for application homepage.
+ * Calls to the ANCH API and renders different imagery based
+ * on the currently selected user theme. Adjusts routing to
+ * inner pages based on the selected theme.
+ */
 class Home extends React.Component {
+  _isMounted = false;
+
+  /**
+   * Constructor for the class component.
+   * Sets default state and sets default page theme.
+   * @param {object} props
+   */
   constructor(props) {
     super(props);
 
@@ -24,29 +37,54 @@ class Home extends React.Component {
       //Max as of March-2022
       villagerMax: 391,
       fossilMax: 56,
-      fishMax: 80,
+      fishMax: 79,
 
       currentCards: [],
       currentIcons: [],
 
-      theme: "villagers",
+      theme: "villagers"
     };
-
-    document.body.classList.add("theme_villagers");
   }
 
+  /**
+   * Method to generate a random number.
+   * Returns a number contained in a user defined max.
+   * @param {int} max Max number.
+   */
   randNum(max) {
     return Math.floor(Math.random() * max);
   }
 
+  /**
+   * Fetches data when the component mounts.
+   */
   async componentDidMount() {
-    this.fetchData(this.state.theme);
+    let localStorageTheme = localStorage.getItem("theme");
+    this.state.theme = localStorageTheme;
+
+    this._isMounted = true;
+    if (this._isMounted) {
+      this.fetchData(this.state.theme);
+      let localStorageTheme = localStorage.getItem("theme");
+      if (localStorageTheme !== null) {
+        document.body.className = `theme_${localStorageTheme}`;
+      } else {
+        document.body.className = `theme_villagers`;
+      }
+    }
   }
 
-  componentDidUpdate() {
-    console.log("Update");
-  }
+  /**
+   * Handles action on component updates.
+   */
+  componentDidUpdate() {}
 
+  /**
+   * Asynchronous method for handling data. Takes the
+   * user defined tag and fetches from the API based
+   * on the parameter. Sets the state accordingly.
+   * @param {String} tag
+   */
   async fetchData(tag) {
     console.log("Loading " + tag);
     let urls = [];
@@ -72,8 +110,9 @@ class Home extends React.Component {
               currentCards: response.slice(0, 2),
               currentIcons: response.slice(2),
               villagerLoaded: true,
-              theme: "villagers",
+              theme: "villagers"
             });
+            localStorage.setItem("theme", "villagers");
           } catch (error) {
             console.log("Error", error);
           }
@@ -100,10 +139,17 @@ class Home extends React.Component {
               currentCards: response.slice(0, 2),
               currentIcons: response.slice(2),
               fishLoaded: true,
-              theme: "fish",
+              theme: "fish"
             });
+            localStorage.setItem("theme", "fish");
           } catch (error) {
             console.log("Error", error);
+
+            return (
+              <div>
+                <h1> Loading.... </h1>{" "}
+              </div>
+            );
           }
         }
         break;
@@ -122,8 +168,6 @@ class Home extends React.Component {
                 rand.push(this.randNum(this.state.fossilMax));
               }
 
-              console.log(rand);
-
               this.setState({
                 fossilCards: [data[rand[0]], data[rand[1]]],
                 fossilIcons: [
@@ -131,7 +175,7 @@ class Home extends React.Component {
                   data[rand[3]],
                   data[rand[4]],
                   data[rand[5]],
-                  data[rand[6]],
+                  data[rand[6]]
                 ],
                 currentCards: [data[rand[0]], data[rand[1]]],
                 currentIcons: [
@@ -139,11 +183,12 @@ class Home extends React.Component {
                   data[rand[3]],
                   data[rand[4]],
                   data[rand[5]],
-                  data[rand[6]],
+                  data[rand[6]]
                 ],
                 fossilLoaded: true,
-                theme: "fossils",
+                theme: "fossils"
               });
+              localStorage.setItem("theme", "fossils");
             });
         } catch (error) {
           console.log("Error", error);
@@ -154,6 +199,14 @@ class Home extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
+  /**
+   * Changes the theme according to user defined tag.
+   * @param {String} newTheme
+   */
   changeTheme(newTheme) {
     document.body.classList.remove(`theme_${this.state.theme}`);
     document.body.classList.add(`theme_${newTheme}`);
@@ -166,12 +219,13 @@ class Home extends React.Component {
           console.log("Setting state to villagers.");
           this.setState({
             currentCards: this.state.villagerCards,
-            currentIcons: this.state.villagerIcons,
+            currentIcons: this.state.villagerIcons
           });
         } else {
           console.log("Calling to fetch...");
           this.fetchData("villagers");
         }
+        localStorage.setItem("theme", "villagers");
         break;
       case "fish":
         console.log(`Switching theme to ${newTheme}`);
@@ -179,12 +233,13 @@ class Home extends React.Component {
           console.log("Setting state to fish.");
           this.setState({
             currentCards: this.state.fishCards,
-            currentIcons: this.state.fishIcons,
+            currentIcons: this.state.fishIcons
           });
         } else {
           console.log("Calling to fetch...");
           this.fetchData("fish");
         }
+        localStorage.setItem("theme", "fish");
         break;
       case "fossils":
         console.log(`Switching theme to ${newTheme}`);
@@ -192,22 +247,30 @@ class Home extends React.Component {
           console.log("Setting state to fossils.");
           this.setState({
             currentCards: this.state.fossilCards,
-            currentIcons: this.state.fossilIcons,
+            currentIcons: this.state.fossilIcons
           });
         } else {
           console.log("Calling to fetch...");
           this.fetchData("fossils");
         }
+        localStorage.setItem("theme", "fossils");
         break;
       default:
         break;
     }
   }
 
+  /**
+   * Method for returning a conditional link based on
+   * the current theme.
+   */
   conditionalLink() {
     return `/${this.state.theme}`;
   }
 
+  /**
+   * Rendering of the page.
+   */
   render() {
     function Logo() {
       return <img className="img-fluid" src={title} alt="Villagers HandBook" />;
@@ -231,16 +294,20 @@ class Home extends React.Component {
     function Villager(state) {
       if (villagerLoaded) {
         return (
-          <div className="p-3 card_flip">
-            <div className="card_front">
-              <img
-                className="img-fluid rounded mt-lg-4"
-                src={state.villager.image_uri}
-                alt="Random Villager"
-              />
-            </div>
-            <div className="card_back">
-              <VillagerBack villager={state.villager} />
+          <div className="flip-container">
+            <div className="flipper">
+              <div className="front">
+                <img
+                  className="img-fluid rounded"
+                  src={state.villager.image_uri}
+                  alt="Random Villager"
+                />
+              </div>
+              <div className="back">
+                <div className="back_card">
+                  <VillagerBack villager={state.villager} />
+                </div>
+              </div>
             </div>
           </div>
         );
@@ -250,12 +317,14 @@ class Home extends React.Component {
     /* Back of the villager card */
     function VillagerBack(state) {
       return (
-        <div id="villager_back" className="container-fluid">
+        <div className="container-fluid">
           <p>Name: {state.villager.name["name-USen"]}</p>
           <p>Species: {state.villager.species}</p>
+          <p>Gender: {state.villager.gender}</p>
           <p>Personality: {state.villager.personality}</p>
           <img src={state.villager.icon_uri} alt="Villager Icon" />
-          <p>Birthday: {state.villager["birthday-string"]}</p>
+          <p>Species: {state.villager.species}</p>
+          <p>Catch Phrase: {state.villager["catch-phrase"]}</p>
         </div>
       );
     }
@@ -263,16 +332,22 @@ class Home extends React.Component {
     /* Basic fish card */
     function Fish(state) {
       return (
-        <div className="p-3 card_flip">
-          <div id="fish_front" className="card_front">
-            <img
-              className="img-fluid rounded mt-lg-4"
-              src={state.fish.icon_uri}
-              alt="Random Fish"
-            />
-          </div>
-          <div className="card_back">
-            <FishBack fish={state.fish} />
+        <div className="flip-container">
+          <div className="flipper">
+            <div className="front">
+              <div id="fish_card">
+                <img
+                  className="img-fluid rounded mt-lg-4"
+                  src={state.fish.icon_uri}
+                  alt="Random Fish"
+                />
+              </div>
+            </div>
+            <div className="back">
+              <div className="back_card">
+                <FishBack fish={state.fish} />
+              </div>
+            </div>
           </div>
         </div>
       );
@@ -282,11 +357,16 @@ class Home extends React.Component {
     function FishBack(state) {
       if (fishLoaded) {
         return (
-          <div id="villager_back" className="container-fluid">
+          <div className="container-fluid">
             <p>Name: {state.fish.name["name-USen"]}</p>
+            <img src={state.fish.image_uri} alt="Villager Icon" />
+            <p>Availabile (n): {state.fish.availability["month-northern"]}</p>
+            <p>Availabile (s): {state.fish.availability["month-southern"]}</p>
             <p>Available in: {state.fish.availability.location}</p>
             <p>Rarity: {state.fish.availability.rarity}</p>
             <p>Price: {state.fish.price}</p>
+            <p>Catch Phrase:{state.fish["catch-phrase"]} </p>
+            <p>Museum Phrase: {state.fish["museum-phrase"]}</p>
           </div>
         );
       } else return null;
@@ -296,18 +376,21 @@ class Home extends React.Component {
     function Fossil(state) {
       if (fossilLoaded) {
         return (
-          <div className="p-3 card_flip">
-            <div className="card_front">
-              <img
-                id="fossil_front"
-                className="img-fluid rounded mt-lg-4"
-                src={blathers}
-                //src={state.fossil.image_uri}
-                alt="Random Fossil"
-              />
-            </div>
-            <div className="card_back">
-              <FossilBack fossil={state.fossil} />
+          <div className="flip-container">
+            <div className="flipper">
+              <div className="front">
+                <img
+                  id="fossil_front"
+                  className="img-fluid rounded"
+                  src={blathers}
+                  alt="Random Fossil"
+                />
+              </div>
+              <div className="back">
+                <div className="back_card">
+                  <FossilBack fossil={state.fossil} />
+                </div>
+              </div>
             </div>
           </div>
         );
@@ -322,6 +405,7 @@ class Home extends React.Component {
             <p>Name: {state.fossil.name["name-USen"]}</p>
             <img alt="Random Fossil" src={state.fossil.image_uri} />
             <p>Price: {state.fossil.price}</p>
+            <p>Museum Phrase: {state.fossil["museum-phrase"]}</p>
           </div>
         );
       } else return null;
@@ -334,7 +418,7 @@ class Home extends React.Component {
         : (img_src = props.current.icon_uri);
 
       return (
-        <div id="icon" className="col-2">
+        <div id="icon" className="col-4 col-sm-2">
           <img
             className="img-fluid rounded mx-auto"
             alt="Random Icon"
@@ -356,7 +440,11 @@ class Home extends React.Component {
     return (
       <div
         id="homepage"
-        className="border d-flex align-items-center justify-content-center mt-auto"
+        className="border d-flex 
+          align-items-center 
+          justify-content-center 
+          mt-auto
+          min-vh-100"
       >
         <div className="container text-center">
           <div className="row d-flex align-items-center justify-content-around">
@@ -414,7 +502,7 @@ class Home extends React.Component {
                 <button
                   className="btn btn-secondary dropdown-toggle"
                   type="button"
-                  id="dropdownMenuButton1"
+                  id="change_theme"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
@@ -456,7 +544,10 @@ class Home extends React.Component {
             </div>
           </div>
 
-          <div id="icon_container" className="row justify-content-center">
+          <div
+            id="icon_container"
+            className="row justify-content-center p-4 mt-2"
+          >
             <Icon current={this.state.currentIcons[0]} tag={this.state.theme} />
             <Icon current={this.state.currentIcons[1]} tag={this.state.theme} />
             <Icon current={this.state.currentIcons[2]} tag={this.state.theme} />

@@ -2,51 +2,15 @@
   --home_dark: #39383d;
 }
 
-/* Default Theme - Villagers */
-.theme_villagers {
-  --home_bg: #eafcdc;
-  --home_bg: url(../img/tom.png);
-  --home_btn: #66b888;
-  --home_btn_accent: #bcf8cb;
-  --home_textbox: #ffeab8;
-  --home_card_bg: #f2d99a;
-  --home_font: #39383d;
-}
-
-/* Theme - Fish */
-.theme_fish {
-  --home_bg: #b1f5fb;
-  --home_bg: url(../img/bg_blue.png);
-  --home_btn_accent: #b8f0ed;
-  --home_btn: #1d9c9c;
-  --home_textbox: #006a84;
-  --home_font: #fffffa;
-  --home_card_bg: #e8dece;
-  --fish_card: url("../img/underwater.png");
-}
-
-/* Theme - Fossils */
-.theme_fossils {
-  --home_bg: #ffeab8;
-  --home_bg: url(../img/bg_leaf_3.jpg);
-  --home_btn: #664a44;
-  --home_btn_accent: #f0e0cc;
-  --home_textbox: #836b55;
-  --home_font: #fffffa;
-  --home_card_bg: #e8dece;
-}
-
 #homepage {
-  height: 100vh;
-  max-height: 100%;
-  overflow: auto;
   background: var(--home_bg) no-repeat center center fixed;
   background-size: cover;
   font-family: "Dosis", sans-serif !important;
 }
 
 #homepage .container {
-  max-height: 100%;
+  margin-bottom: 2em;
+  overflow: hidden;
 }
 
 #title img {
@@ -71,101 +35,111 @@
 
 #enter .btn {
   background-color: var(--home_btn);
-  width: 75%;
+  width: 70%;
   margin-bottom: 5px;
+  color: var(--home_btn_pri);
 }
 
-#enter .btn:hover {
+@media only screen and (max-width: 600px) {
+  #enter .btn {
+    width: 100%;
+  }
+}
+
+#enter .btn:hover,
+#enter .btn:active {
   background-color: var(--home_btn_accent);
-  color: var(--home_dark);
+  color: var(--home_btn_alt);
 }
 
 #intro,
 #homepage #card_big img,
 #homepage #icon img,
 #homepage #enter .btn,
-#homepage .card_back {
+#homepage .back {
   filter: drop-shadow(1px 5px 7px #060606);
 }
 
 #homepage #icon_container {
-  padding-top: 30px;
-  padding-bottom: 20px;
+  padding-top: 20px;
+  padding-bottom: 10px;
 }
 
-/* Animation for cards */
-#homepage .card_container {
+#fish_card {
+  width: 75%;
+  border: 1px solid white;
+  background: var(--bg4) no-repeat;
+  background-size: cover;
+}
+
+/*Animation for cards*/
+.flip-container {
   perspective: 1000;
+  margin-top: 15px;
 }
 
-#homepage .card_flip,
-.card-container {
+.flipper {
   transform-style: preserve-3d;
-  transition: all 0s ease;
+  display: flex;
+  align-items: stretch;
+  transition: transform 0.6s;
+  will-change: transform;
 }
 
-#homepage .card_flip div {
-  backface-visibility: hidden;
-  transform-style: preserve-3d;
-}
-
-#homepage .card_flip {
-  display: grid;
-  grid-template: 1fr/1fr;
-  grid-template-areas: "frontAndBack";
-  transform-style: preserve-3d;
-  transition: all 0.7s ease;
-}
-
-#homepage .card_front {
-  grid-area: frontAndBack;
-  background-color: none;
-}
-
-#homepage .card_back {
-  grid-area: frontAndBack;
-  transform: rotateY(-180deg);
-  background-color: var(--home_card_bg);
-  border-radius: 10px;
-}
-
-#homepage .card_front,
-#homepage .card_back {
-  backface-visibility: hidden;
-}
-
-#fossil_front {
-  max-width: 80%;
-}
-
-#homepage #fish_front {
-  background: var(--bg4);
-  border: 2px solid white;
-}
-
-#homepage .card_back img {
-  height: 80px;
-  margin-bottom: 10px;
-}
-
-#homepage .card_back p {
-  margin: 0.2em;
-}
-
-#homepage .card_container:hover .card_flip {
+.flip-container:hover .flipper,
+.flip-container:active .flipper {
   transform: rotateY(180deg);
 }
 
-@media screen and (max-width: 992px) {
-  #homepage .card_flipper {
-    width: 70%;
-  }
+.front,
+.back {
+  width: 100%;
+  flex: 0 0 auto;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
 }
 
-@media screen and (max-width: 768px) {
-  #homepage .card_flipper {
-    width: 50%;
-  }
+.front img {
+  max-height: 200px;
+}
+
+.back {
+  height: 200px;
+  transform: rotateY(180deg);
+  margin-left: -100%;
+  background: none;
+  margin-right: 100px;
+  font-size: 0.9rem;
+}
+
+.back p {
+  margin: 10px;
+}
+
+.back img {
+  width: 80px;
+}
+
+.back_card {
+  width: 225px;
+  min-height: 100%;
+  overflow-y: auto;
+  background-color: var(--home_textbox);
+  color: var(--home_font);
+}
+
+.back_card::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.back_card::-webkit-scrollbar {
+  width: 6px;
+  background-color: transparent;
+}
+
+.back_card::-webkit-scrollbar-thumb {
+  background-color: var(--home_btn);
 }
 
 #drop_btn {
@@ -175,7 +149,8 @@
 }
 
 /* Animation for ICONS */
-#homepage #icon_container img:hover {
+#homepage #icon_container img:hover,
+#homepage #icon_container img:active {
   animation: shake 0.5s;
   animation-iteration-count: 1;
 }

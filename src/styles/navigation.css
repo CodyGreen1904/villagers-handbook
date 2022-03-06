@@ -1,7 +1,30 @@
 #navbar {
-  background-color: #876e5b !important;
+  background-color: var(--home_textbox) !important;
+  color: var(--home_font) !important;
+  border-bottom: 1px solid var(--home_font);
 }
 
 #logo {
   width: 15rem;
+  filter: var(--inversion);
+}
+
+#nav_text {
+  color: var(--home_font);
+}
+
+@media only screen and (max-width: 600px) {
+  #nav_text {
+    font-size: 1.5rem;
+  }
+}
+
+#nav_text:hover {
+  color: var(--home_font_alt);
+  background-color: var(--home_font);
+}
+
+#Home_Icon {
+  font-size: 2rem;
+  color: var(--home_font);
 }

@@ -12,6 +12,9 @@
   --bg5: url(../img/bg_leaf_3.jpg);
   --bg6: url(../img/bg_blue.png);
   --bg7: url(../img/stars.png);
+  --bg8: url(../img/bg_island.jpg);
+  --bg9: url(../img/bg_leaf.jpg);
+  --bg10: url(../img/bg_leaf_4.jpg);
   --textbox: #ffe599;
   --wood: #976e29;
   --gold: #ffc936;
@@ -26,14 +29,58 @@
   --gr: #8df25e;
 }
 
+/* Default Theme - Villagers */
+.theme_villagers {
+  background: var(--bg2) no-repeat center center fixed;
+  background-size: cover;
+  --home_btn: #66b888;
+  --home_font: #39383d;
+  --home_btn_accent: #bcf8cb;
+  --home_btn_pri: #fffffa;
+  --home_btn_alt: #39383d;
+  --home_textbox: #ffeab8;
+  --home_card_bg: #f2d99a;
+  --home_font: #39383d;
+  --home_font_alt: #fffffa;
+  --inversion: invert(80);
+}
+
+/* Theme - Fish */
+.theme_fish {
+  background: var(--bg6) no-repeat center center fixed;
+  background-size: cover;
+  --home_btn_accent: #b8f0ed;
+  --home_btn: #49a5b2;
+  --home_btn_pri: #fffffa;
+  --home_btn_alt: #39383d;
+  --home_textbox: #006a84;
+  --home_font: #fffffa;
+  --home_card_bg: #e8dece;
+  --fish_card: url("../img/underwater.png");
+  --inversion: invert(0%);
+}
+
+/* Theme - Fossils */
+.theme_fossils {
+  background: var(--bg10) no-repeat center center fixed;
+  background-size: cover;
+  --home_btn: #fffbdf;
+  --home_btn_accent: #f7c94c;
+  --home_btn_pri: #0f1e21;
+  --home_btn_alt: #563e27;
+  --home_textbox: #5b5cc8;
+  --home_font: #fffffa;
+  --home_font_alt: #39383d;
+  --home_font_alt: #fffffa;
+  --home_card_bg: #e8dece;
+  --inversion: invert(0%);
+}
+
 html,
 body {
   margin: 0;
   padding: 0;
   border: 3px;
-  /*   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
