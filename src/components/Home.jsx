@@ -42,7 +42,7 @@ class Home extends React.Component {
       currentCards: [],
       currentIcons: [],
 
-      theme: "villagers"
+      theme: "villagers",
     };
   }
 
@@ -60,8 +60,12 @@ class Home extends React.Component {
    */
   async componentDidMount() {
     let localStorageTheme = localStorage.getItem("theme");
-    this.state.theme = localStorageTheme;
-
+    if (localStorageTheme === null) {
+      this.state.theme = "villagers"
+    } else {
+      this.state.theme = localStorageTheme;
+    }
+    
     this._isMounted = true;
     if (this._isMounted) {
       this.fetchData(this.state.theme);
@@ -110,7 +114,7 @@ class Home extends React.Component {
               currentCards: response.slice(0, 2),
               currentIcons: response.slice(2),
               villagerLoaded: true,
-              theme: "villagers"
+              theme: "villagers",
             });
             localStorage.setItem("theme", "villagers");
           } catch (error) {
@@ -139,7 +143,7 @@ class Home extends React.Component {
               currentCards: response.slice(0, 2),
               currentIcons: response.slice(2),
               fishLoaded: true,
-              theme: "fish"
+              theme: "fish",
             });
             localStorage.setItem("theme", "fish");
           } catch (error) {
@@ -175,7 +179,7 @@ class Home extends React.Component {
                   data[rand[3]],
                   data[rand[4]],
                   data[rand[5]],
-                  data[rand[6]]
+                  data[rand[6]],
                 ],
                 currentCards: [data[rand[0]], data[rand[1]]],
                 currentIcons: [
@@ -183,10 +187,10 @@ class Home extends React.Component {
                   data[rand[3]],
                   data[rand[4]],
                   data[rand[5]],
-                  data[rand[6]]
+                  data[rand[6]],
                 ],
                 fossilLoaded: true,
-                theme: "fossils"
+                theme: "fossils",
               });
               localStorage.setItem("theme", "fossils");
             });
@@ -219,7 +223,7 @@ class Home extends React.Component {
           console.log("Setting state to villagers.");
           this.setState({
             currentCards: this.state.villagerCards,
-            currentIcons: this.state.villagerIcons
+            currentIcons: this.state.villagerIcons,
           });
         } else {
           console.log("Calling to fetch...");
@@ -233,7 +237,7 @@ class Home extends React.Component {
           console.log("Setting state to fish.");
           this.setState({
             currentCards: this.state.fishCards,
-            currentIcons: this.state.fishIcons
+            currentIcons: this.state.fishIcons,
           });
         } else {
           console.log("Calling to fetch...");
@@ -247,7 +251,7 @@ class Home extends React.Component {
           console.log("Setting state to fossils.");
           this.setState({
             currentCards: this.state.fossilCards,
-            currentIcons: this.state.fossilIcons
+            currentIcons: this.state.fossilIcons,
           });
         } else {
           console.log("Calling to fetch...");
