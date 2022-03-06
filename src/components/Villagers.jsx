@@ -15,7 +15,7 @@ function Villagers() {
   const searchVillagers = () => {
     displaySearchInfo(info)
     const test = document.getElementById("villagers")
-    if (test.innerHTML == "") {
+    if (test.innerHTML === "") {
       const newCard = document.createElement("div")
       newCard.setAttribute("class", "card")
       newCard.setAttribute("style", "background-color: white !important")
@@ -42,7 +42,7 @@ function Villagers() {
     displayPersonality(info)
   }
   const checkEnter = (event) => {
-    if (event.code == "Enter") {
+    if (event.code === "Enter") {
       searchVillagers()
     }
   }
@@ -55,7 +55,7 @@ function Villagers() {
 
   const alphabeticalOrder = () => {
     var parent = document.getElementById("villagers")
-    if (parent.firstChild.id == "sadddd") {
+    if (parent.firstChild.id === "sadddd") {
       displayInfo(info)
     }
 
@@ -81,7 +81,7 @@ function Villagers() {
   }
   function speciesOrder() {
     var parent = document.getElementById("villagers")
-    if (parent.firstChild.id == "sadddd") {
+    if (parent.firstChild.id === "sadddd") {
       displayInfo(info)
     }
     let toSort = document.getElementById("villagers").children
@@ -101,7 +101,7 @@ function Villagers() {
       }
     })
 
-    var parent = document.getElementById("villagers")
+    parent = document.getElementById("villagers")
     parent.innerHTML = ""
 
     for (var i = 0; i < toSort.length; i++) {
@@ -110,7 +110,7 @@ function Villagers() {
   }
   function personalityOrder() {
     var parent = document.getElementById("villagers")
-    if (parent.firstChild.id == "sadddd") {
+    if (parent.firstChild.id === "sadddd") {
       displayInfo(info)
     }
     let toSort = document.getElementById("villagers").children
@@ -130,7 +130,7 @@ function Villagers() {
       }
     })
 
-    var parent = document.getElementById("villagers")
+    parent = document.getElementById("villagers")
     parent.innerHTML = ""
 
     for (var i = 0; i < toSort.length; i++) {
@@ -302,8 +302,9 @@ function Villagers() {
   }
   getVillagers()
   return (
-      <div id="searchDiv" className="Search min-vh-100">
+    <div>
       <Navigation />
+      <div id="searchDiv" className="Search min-vh-100">
         <div className="container">
           <div className="row align-items-center my-5">
             <div id="villagerTitle" className="col-lg-12">
@@ -417,6 +418,7 @@ function Villagers() {
           </div>
         </div>
       </div>
+    </div>
   )
 }
 

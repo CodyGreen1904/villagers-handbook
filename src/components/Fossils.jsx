@@ -13,14 +13,14 @@ function Fossils() {
     })
   }
   const checkEnter = (event) => {
-    if (event.code == "Enter") {
+    if (event.code === "Enter") {
       searchFossils()
     }
   }
   const searchFossils = () => {
     displaySearchInfo(info)
     const test = document.getElementById("fossils")
-    if (test.innerHTML == "") {
+    if (test.innerHTML === "") {
       const newCard = document.createElement("div")
       newCard.setAttribute("class", "card")
       newCard.setAttribute("id", "sadddd")
@@ -42,7 +42,7 @@ function Fossils() {
   }
   const alphabeticalOrder = () => {
     var parent = document.getElementById("fossils")
-    if (parent.firstChild.id == "sadddd") {
+    if (parent.firstChild.id === "sadddd") {
       displayInfo(info)
     }
     let toSort = document.getElementById("fossils").children
@@ -67,7 +67,7 @@ function Fossils() {
   }
   function priceLowOrder() {
     var parent = document.getElementById("fossils")
-    if (parent.firstChild.id == "sadddd") {
+    if (parent.firstChild.id === "sadddd") {
       displayInfo(info)
     }
     let toSort = document.getElementById("fossils").children
@@ -96,7 +96,7 @@ function Fossils() {
   }
   function priceHighOrder() {
     var parent = document.getElementById("fossils")
-    if (parent.firstChild.id == "sadddd") {
+    if (parent.firstChild.id === "sadddd") {
       displayInfo(info)
     }
     let toSort = document.getElementById("fossils").children
