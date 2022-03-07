@@ -5,7 +5,7 @@ import title from "../img/title.png";
 import blathers from "../img/blathers.png";
 
 /**
- * Glass component for application homepage.
+ * Class component for application homepage.
  * Calls to the ANCH API and renders different imagery based
  * on the currently selected user theme. Adjusts routing to
  * inner pages based on the selected theme.
@@ -65,7 +65,7 @@ class Home extends React.Component {
     } else {
       this.state.theme = localStorageTheme;
     }
-    
+
     this._isMounted = true;
     if (this._isMounted) {
       this.fetchData(this.state.theme);
@@ -296,6 +296,7 @@ class Home extends React.Component {
 
     /* Basic villager card */
     function Villager(state) {
+      let name = "Image of "+state.villager.name["name-USen"]
       if (villagerLoaded) {
         return (
           <div className="flip-container">
@@ -304,7 +305,7 @@ class Home extends React.Component {
                 <img
                   className="img-fluid rounded"
                   src={state.villager.image_uri}
-                  alt="Random Villager"
+                  alt={name}
                 />
               </div>
               <div className="back">
@@ -320,13 +321,14 @@ class Home extends React.Component {
 
     /* Back of the villager card */
     function VillagerBack(state) {
+      let name = "Icon of "+state.villager.name["name-USen"]
       return (
         <div className="container-fluid">
           <p>Name: {state.villager.name["name-USen"]}</p>
           <p>Species: {state.villager.species}</p>
           <p>Gender: {state.villager.gender}</p>
           <p>Personality: {state.villager.personality}</p>
-          <img src={state.villager.icon_uri} alt="Villager Icon" />
+          <img src={state.villager.icon_uri} alt={name} />
           <p>Species: {state.villager.species}</p>
           <p>Catch Phrase: {state.villager["catch-phrase"]}</p>
         </div>
@@ -335,6 +337,7 @@ class Home extends React.Component {
 
     /* Basic fish card */
     function Fish(state) {
+      let name = "Image of "+state.fish.name["name-USen"]
       return (
         <div className="flip-container">
           <div className="flipper">
@@ -343,7 +346,7 @@ class Home extends React.Component {
                 <img
                   className="img-fluid rounded mt-lg-4"
                   src={state.fish.icon_uri}
-                  alt="Random Fish"
+                  alt={name}
                 />
               </div>
             </div>
@@ -359,11 +362,12 @@ class Home extends React.Component {
 
     /* Back of the fish card */
     function FishBack(state) {
+      let name = "Icon of "+state.fish.name["name-USen"]
       if (fishLoaded) {
         return (
           <div className="container-fluid">
             <p>Name: {state.fish.name["name-USen"]}</p>
-            <img src={state.fish.image_uri} alt="Villager Icon" />
+            <img src={state.fish.image_uri} alt={name} />
             <p>Availabile (n): {state.fish.availability["month-northern"]}</p>
             <p>Availabile (s): {state.fish.availability["month-southern"]}</p>
             <p>Available in: {state.fish.availability.location}</p>
@@ -378,6 +382,7 @@ class Home extends React.Component {
 
     /* Basic fossil card */
     function Fossil(state) {
+
       if (fossilLoaded) {
         return (
           <div className="flip-container">
@@ -387,7 +392,7 @@ class Home extends React.Component {
                   id="fossil_front"
                   className="img-fluid rounded"
                   src={blathers}
-                  alt="Random Fossil"
+                  alt="Image of Blathers the Owl"
                 />
               </div>
               <div className="back">
@@ -403,11 +408,12 @@ class Home extends React.Component {
 
     /* Back of the fossil card */
     function FossilBack(state) {
+      let name = "Image of "+state.fossil.name["name-USen"]
       if (fossilLoaded) {
         return (
           <div id="fossil_back" className="container-fluid">
             <p>Name: {state.fossil.name["name-USen"]}</p>
-            <img alt="Random Fossil" src={state.fossil.image_uri} />
+            <img alt={name} />
             <p>Price: {state.fossil.price}</p>
             <p>Museum Phrase: {state.fossil["museum-phrase"]}</p>
           </div>
@@ -417,6 +423,7 @@ class Home extends React.Component {
 
     function Icon(props) {
       let img_src;
+      let name = "Icon of "+props.current.name["name-USen"]
       props.tag === "fossils"
         ? (img_src = props.current.image_uri)
         : (img_src = props.current.icon_uri);
@@ -425,7 +432,7 @@ class Home extends React.Component {
         <div id="icon" className="col-4 col-sm-2">
           <img
             className="img-fluid rounded mx-auto"
-            alt="Random Icon"
+            alt={name}
             src={img_src}
           />
         </div>
@@ -508,13 +515,11 @@ class Home extends React.Component {
                   type="button"
                   id="change_theme"
                   data-bs-toggle="dropdown"
-                  aria-expanded="false"
                 >
                   Change Theme
                 </button>
                 <ul
                   className="dropdown-menu text-center"
-                  aria-labelledby="dropdownMenuButton1"
                 >
                   <li>
                     <button
